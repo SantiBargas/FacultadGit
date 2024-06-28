@@ -1,0 +1,10 @@
+En el Segundo parcial de 2014 de Calculo II, tomaron el siguiente ejercicio 
+Calcular el area de las siguientes superficies:
+
+Porcion del cono z^2=x^2+y^2 situada entre los planos x+2z=3 y z=0
+
+En el Pdf de integrales de superficie En la pagina 160 esta la resolucion
+
+
+
+

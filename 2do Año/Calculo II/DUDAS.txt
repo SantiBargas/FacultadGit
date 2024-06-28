@@ -1,0 +1,37 @@
+Reciprocos cuadro diferenciabilidad. EJ: F No diferenciable <- F no continua verdadero
+
+Fcvc <-> ap/ay =aq/ax si ap/ay es distinto de aq/ax entonces
+no es conservativo? . NO, NO ES CONSERVATIVO
+
+STOKES: Para que se anule n=grad(g) / |grad(g)| el modulo
+del gradiente de g, g(x,y,z) debe estar despejado z? SI
+
+Recuperatorio parcial 2 ejercicio 2
+ejercicio 3 b ii)
+
+Final 22 de julio 2019 ejercicio de 
+el primero
+lagrange
+signos en el de green
+
+Ejercico 3 parcial de google docs
+
+Ejercicio 4 FINAL VIEJO 1
+
+MAXIMA TASA DE INCREMENTO FINAL 2014
+
+EJERCICIO 5 FINAL 2014
+
+Evaluando las derivadas parciales por definicion de h->0
+me dan distintos el limite no existe 
+o no se puede concluir nada?
+Para que existan las derivadas parciales con h->0 me tiene 
+que dar un numero o las dos tienen que ser iguales? final google docs ejemplo
+
+Para orientar positivamente un anillo x2 + y2 = 1 tengo 
+tomar x=sen(t) y=cos(t) o x=cos(t) y=sen(t)?
+
+En multiplicadores de lagrange cuando tengo una funcion
+F(x,y,z) y G(x,y,z) al hacer gradF=lambda*gradG
+el o los puntos que me da son candidatos a maximos o minimos
+pero no puedo afirmar nada ya que no puedo aplicar el hessiano?
