@@ -1,0 +1,16 @@
+Base de un EV definición y ejemplo https://youtu.be/NWSRnkg2mPw
+
+Una mirada al teorema 5.5.1https://youtu.be/OnlYi03IxiQ
+
+Vector de coordenadas https://youtu.be/BXA5ONgkDD4
+
+Dimensión de un EV y bases canónicas https://youtu.be/bSLFHfv5qjM
+
+Dimensión de un subespacio https://youtu.be/pwdBbX5qqs0
+
+Matriz de cambio de base https://youtu.be/itbjjV6hHIE
+
+
+Otro modo de demostrar LI https://youtu.be/Eu8oDYjDoxc
+
+

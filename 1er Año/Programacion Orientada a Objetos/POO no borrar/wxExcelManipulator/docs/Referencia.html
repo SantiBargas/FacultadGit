@@ -1,0 +1,613 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>wxExcelManipulator: Referencia de la Clase wxExcelManipulator</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.7.1 -->
+
+<div class="contents">
+<h1>Referencia de la Clase wxExcelManipulator</h1><!-- doxytag: class="wxExcelManipulator" -->Esta clase permite modificar e imprimir una planilla de Excel.  
+<a href="#_details">Más...</a>
+
+<p>
+
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Métodos públicos</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#291f41dcef4364a820f8cc3fdc43a00a">wxExcelManipulator</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor, crea la instancia de Excel sin incializar nada.  <a href="#291f41dcef4364a820f8cc3fdc43a00a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#33fa37222586bcbf7d19e3d8b22b20b4">wxExcelManipulator</a> (wxString fname=&quot;&quot;, bool visible=false)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor, crea la instancia de Excel y abre un documento.  <a href="#33fa37222586bcbf7d19e3d8b22b20b4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ff7cc7a960ee286115b65e4b90cd411b">Open</a> (wxString fname=&quot;&quot;, bool visible=false)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crea la instancia de Excel y abre un documento.  <a href="#ff7cc7a960ee286115b65e4b90cd411b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#97bedec13635eb17a825a3ed0e8f3243">IsOpen</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indica si el documento se pudo abrir correctamente y esta listo para ser editador/impreso.  <a href="#97bedec13635eb17a825a3ed0e8f3243"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#85b2994217d06f7c0d86fbab31f61b0f">SelectSheet</a> (int number)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Selecciona una hoja en un archivo con muchas hojas.  <a href="#85b2994217d06f7c0d86fbab31f61b0f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#63b2a5c5a97617c854272201217b2648">GetSheetsCount</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retorna la cantidad de hojas que tiene el archivo abierto actualmente.  <a href="#63b2a5c5a97617c854272201217b2648"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#b29de21eea153b99323b22acc10761f5">SetValue</a> (int row, int col, wxString value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Asigna un valor de texto a una celda.  <a href="#b29de21eea153b99323b22acc10761f5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#7af91ca3d6177dd341c56b7080c293f7">SetValue</a> (int row, int col, int value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Asigna un valor entero a una celda.  <a href="#7af91ca3d6177dd341c56b7080c293f7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#eb9d2816c2895a40906630e97384659b">SetValue</a> (int row, int col, double value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Asigna un valor double a una celda.  <a href="#eb9d2816c2895a40906630e97384659b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#0831cb94e80871d4123f423ba80682f9">Print</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imprime la planilla.  <a href="#0831cb94e80871d4123f423ba80682f9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#679f317dc145ee549dc6f240c678c8ef">SaveAs</a> (wxString fname)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Guarda la planilla modificada.  <a href="#679f317dc145ee549dc6f240c678c8ef"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#f6bfdb9ef045a67cb9c7bf60c9e0429a">Close</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Cierra la instancia de Excel utilizada por la clase.  <a href="#f6bfdb9ef045a67cb9c7bf60c9e0429a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">wxString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#bc7c24705bb1405e3acd8c1a1e808c0e">GetValue</a> (int row, int col)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Obtiene el valor de una celda como wxString.  <a href="#bc7c24705bb1405e3acd8c1a1e808c0e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ebaaa3c99724265406c29867476be6b6">GetValueAsInt</a> (int row, int col)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Obtiene el valor de una celda como int.  <a href="#ebaaa3c99724265406c29867476be6b6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#bd6a80cb9e666ead52caddfbdc78d256">GetValueAsDouble</a> (int row, int col)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Obtiene el valor de una celda como double.  <a href="#bd6a80cb9e666ead52caddfbdc78d256"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#016b614f398249ddab0fc056f3a36eb6">~wxExcelManipulator</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Llama a Close si no se ha llamado manualmente antes.  <a href="#016b614f398249ddab0fc056f3a36eb6"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>Descripción detallada</h2>
+Esta clase permite modificar e imprimir una planilla de Excel. 
+<p>
+Esta clase permite abrir una planilla de calculo de Excel, modificarla, guardarla imprimirla, etc. La idea es que el programador diseñe el formulario que desea imprimir con Excel, y deje en blanco los campos a completar. Luego, desde la aplicacion que debe imprimir, se utiliza esta clase para completar esos campos.<p>
+La clase utiliza al mismisimo Excel, cargandolo en memoria (de forma oculta si se quiere, para que el usuario de la aplicacion no lo note) y le envia los comandos para editar e imprimir la planilla. Todo se realiza a traves de un objeto OLE, razon por la cual la implementacion depende de la biblioteca wxAutomationObject, que es parte de wxWidgets.<p>
+Lo bueno de esta biblioteca es que hace muy facil la impresion de formularios y planillas, ya que se las diseña con Excel directamente. Ademas, si hay que cambiar la planilla, basta con modificar el xls, y no es necesario recompilar. Como desventaja, es muy costoso levantar en memoria todo un Excel para imprimir cosas simples, y ademas depende de que este instalado. En consecuencia, tampoco funciona en GNU/Linux. Sin embargo, la biblioteca compila sin errores en GNU/Linux pero en ese caso ningun metodo hace nada.<p>
+El procedimiento para usar esta biblioteca es entonces:<ol type=1>
+<li>Diseñar el formulario con Excel y guardarlo</li><li>Crear una instancia de <a class="el" href="" title="Esta clase permite modificar e imprimir una planilla de Excel.">wxExcelManipulator</a>, pasandolo al constructor la ruta al archivo de xls creado en el punto anterior</li><li>Utilizar los metodos SetValue para completar las celdas en blanco</li><li>Utilizar el metodo Print para imprimir el formulario</li><li>Utilizar el metodo Close para descargar la planilla de la memoria</li></ol>
+<p>
+Para utilizar esta biblioteca en un proyecto de ZinjaI, simplemente debe agregar los archivos <a class="el" href="wx_excel_manipulator_8h.html">wxExcelManipulator.h</a> y <a class="el" href="wx_excel_manipulator_8cpp.html">wxExcelManipulator.cpp</a> al proyecto. Si el proyecto fue creado con la plantilla para wxWidgets no necesita realizar ninguna otra configuración. En caso contrario, copie las opciones de compilación y enlazado de un proyecto wxWidgets.<p>
+por Pablo Novara (<a href="mailto:zaskar_84@yahoo.com.ar">zaskar_84@yahoo.com.ar</a>), ultima modificacion: 07-04-2014 <hr><h2>Documentación del constructor y destructor</h2>
+<a class="anchor" name="291f41dcef4364a820f8cc3fdc43a00a"></a><!-- doxytag: member="wxExcelManipulator::wxExcelManipulator" ref="291f41dcef4364a820f8cc3fdc43a00a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">wxExcelManipulator::wxExcelManipulator           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructor, crea la instancia de Excel sin incializar nada. 
+<p>
+Despues de utiliza este constructor se debe invocar al metodo Open para comenzar a trabajar 
+</div>
+</div><p>
+<a class="anchor" name="33fa37222586bcbf7d19e3d8b22b20b4"></a><!-- doxytag: member="wxExcelManipulator::wxExcelManipulator" ref="33fa37222586bcbf7d19e3d8b22b20b4" args="(wxString fname=&quot;&quot;, bool visible=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">wxExcelManipulator::wxExcelManipulator           </td>
+          <td>(</td>
+          <td class="paramtype">wxString&nbsp;</td>
+          <td class="paramname"> <em>fname</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>visible</em> = <code>false</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructor, crea la instancia de Excel y abre un documento. 
+<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>fname</em>&nbsp;</td><td>Ruta del archivo de excel (generalmente un .xls) que se debe abrir. Si esta en blanco se crea una planilla nueva. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>visible</em>&nbsp;</td><td>Si es true, la instancia de excel que realiza las modificaciones sera visible, para poder observar los cambios que la clase realiza en el documento. No se debe cerrar manualmente esa ventana de Excel, sino llamar al metodo Close, porque si se generara un error. En general, este argumento deberia ser false en la version final del programa cliente, pero true durante la depuracion del algoritmo que completa la planilla. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="016b614f398249ddab0fc056f3a36eb6"></a><!-- doxytag: member="wxExcelManipulator::~wxExcelManipulator" ref="016b614f398249ddab0fc056f3a36eb6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">wxExcelManipulator::~wxExcelManipulator           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Llama a Close si no se ha llamado manualmente antes. 
+<p>
+
+</div>
+</div><p>
+<hr><h2>Documentación de las funciones miembro</h2>
+<a class="anchor" name="f6bfdb9ef045a67cb9c7bf60c9e0429a"></a><!-- doxytag: member="wxExcelManipulator::Close" ref="f6bfdb9ef045a67cb9c7bf60c9e0429a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wxExcelManipulator::Close           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Cierra la instancia de Excel utilizada por la clase. 
+<p>
+Se pierden los cambios realizados a la planilla. Luego de llamar a Close el objeto queda como si se hubiese construido con el constructor por defecto, listo para utilizarse llamando al metodo Open. 
+</div>
+</div><p>
+<a class="anchor" name="63b2a5c5a97617c854272201217b2648"></a><!-- doxytag: member="wxExcelManipulator::GetSheetsCount" ref="63b2a5c5a97617c854272201217b2648" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wxExcelManipulator::GetSheetsCount           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retorna la cantidad de hojas que tiene el archivo abierto actualmente. 
+<p>
+<dl compact><dt><b>Valores devueltos:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>cantidad</em>&nbsp;</td><td>de hojas del archivo de Excel </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bc7c24705bb1405e3acd8c1a1e808c0e"></a><!-- doxytag: member="wxExcelManipulator::GetValue" ref="bc7c24705bb1405e3acd8c1a1e808c0e" args="(int row, int col)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">wxString wxExcelManipulator::GetValue           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>col</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Obtiene el valor de una celda como wxString. 
+<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>fila de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>col</em>&nbsp;</td><td>columna de la celda a modificar (en base 1)</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>Valores devueltos:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>el</em>&nbsp;</td><td>valor de la celda como cadena </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bd6a80cb9e666ead52caddfbdc78d256"></a><!-- doxytag: member="wxExcelManipulator::GetValueAsDouble" ref="bd6a80cb9e666ead52caddfbdc78d256" args="(int row, int col)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double wxExcelManipulator::GetValueAsDouble           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>col</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Obtiene el valor de una celda como double. 
+<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>fila de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>col</em>&nbsp;</td><td>columna de la celda a modificar (en base 1)</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>Valores devueltos:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>el</em>&nbsp;</td><td>valor de la celda convertido a double </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ebaaa3c99724265406c29867476be6b6"></a><!-- doxytag: member="wxExcelManipulator::GetValueAsInt" ref="ebaaa3c99724265406c29867476be6b6" args="(int row, int col)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wxExcelManipulator::GetValueAsInt           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>col</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Obtiene el valor de una celda como int. 
+<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>fila de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>col</em>&nbsp;</td><td>columna de la celda a modificar (en base 1)</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>Valores devueltos:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>el</em>&nbsp;</td><td>valor de la celda convertido a int </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="97bedec13635eb17a825a3ed0e8f3243"></a><!-- doxytag: member="wxExcelManipulator::IsOpen" ref="97bedec13635eb17a825a3ed0e8f3243" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool wxExcelManipulator::IsOpen           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indica si el documento se pudo abrir correctamente y esta listo para ser editador/impreso. 
+<p>
+<dl compact><dt><b>Valores devueltos:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>true</em>&nbsp;</td><td>si se abrio correctamente </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>false</em>&nbsp;</td><td>si no pudo abrirse (por ejemplo, porque excel no esta instalado) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ff7cc7a960ee286115b65e4b90cd411b"></a><!-- doxytag: member="wxExcelManipulator::Open" ref="ff7cc7a960ee286115b65e4b90cd411b" args="(wxString fname=&quot;&quot;, bool visible=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool wxExcelManipulator::Open           </td>
+          <td>(</td>
+          <td class="paramtype">wxString&nbsp;</td>
+          <td class="paramname"> <em>fname</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>visible</em> = <code>false</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crea la instancia de Excel y abre un documento. 
+<p>
+Se utiliza cuando se creo la instancia de la clase con el constructor por defecto, o cuando se invoco a Close para reiniciar el estado del objeto.<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>fname</em>&nbsp;</td><td>Ruta del archivo de excel (generalmente un .xls) que se debe abrir. Si esta en blanco se crea una planilla nueva. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>visible</em>&nbsp;</td><td>Si es true, la instancia de excel que realiza las modificaciones sera visible, para poder observar los cambios que la clase realiza en el documento. No se debe cerrar manualmente esa ventana de Excel, sino llamar al metodo Close, porque si se generara un error. En general, este argumento deberia ser false en la version final del programa cliente, pero true durante la depuracion del algoritmo que completa la planilla. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="0831cb94e80871d4123f423ba80682f9"></a><!-- doxytag: member="wxExcelManipulator::Print" ref="0831cb94e80871d4123f423ba80682f9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wxExcelManipulator::Print           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imprime la planilla. 
+<p>
+Este metodo imprime directamente en la impresora predeterminada sin pedir confirmacion ni mostrar dialogo alguno. 
+</div>
+</div><p>
+<a class="anchor" name="679f317dc145ee549dc6f240c678c8ef"></a><!-- doxytag: member="wxExcelManipulator::SaveAs" ref="679f317dc145ee549dc6f240c678c8ef" args="(wxString fname)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wxExcelManipulator::SaveAs           </td>
+          <td>(</td>
+          <td class="paramtype">wxString&nbsp;</td>
+          <td class="paramname"> <em>fname</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Guarda la planilla modificada. 
+<p>
+Este metodo imprime guarda la planilla modificada en el archivo que recibe como argumento. Si el archivo ya existe lo sobreescribe sin preguntar.<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>fname</em>&nbsp;</td><td>Ruta del archivo de excel (generalmente un .xls) donde se debe guadar. No puede ser una cadena vacia. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="85b2994217d06f7c0d86fbab31f61b0f"></a><!-- doxytag: member="wxExcelManipulator::SelectSheet" ref="85b2994217d06f7c0d86fbab31f61b0f" args="(int number)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool wxExcelManipulator::SelectSheet           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>number</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Selecciona una hoja en un archivo con muchas hojas. 
+<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>número de hoja a seleccionar (base 1) </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>Valores devueltos:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>true</em>&nbsp;</td><td>si la hoja existía y se pudo seleccionar </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>false</em>&nbsp;</td><td>si el número de hoja no era válido </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="eb9d2816c2895a40906630e97384659b"></a><!-- doxytag: member="wxExcelManipulator::SetValue" ref="eb9d2816c2895a40906630e97384659b" args="(int row, int col, double value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wxExcelManipulator::SetValue           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Asigna un valor double a una celda. 
+<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>fila de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>col</em>&nbsp;</td><td>columna de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>valor a colocar en esa celda </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="7af91ca3d6177dd341c56b7080c293f7"></a><!-- doxytag: member="wxExcelManipulator::SetValue" ref="7af91ca3d6177dd341c56b7080c293f7" args="(int row, int col, int value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wxExcelManipulator::SetValue           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Asigna un valor entero a una celda. 
+<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>fila de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>col</em>&nbsp;</td><td>columna de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>valor a colocar en esa celda </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b29de21eea153b99323b22acc10761f5"></a><!-- doxytag: member="wxExcelManipulator::SetValue" ref="b29de21eea153b99323b22acc10761f5" args="(int row, int col, wxString value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wxExcelManipulator::SetValue           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">wxString&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Asigna un valor de texto a una celda. 
+<p>
+<dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>fila de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>col</em>&nbsp;</td><td>columna de la celda a modificar (en base 1) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>valor a colocar en esa celda </td></tr>
+  </table>
+</dl>
+
+</div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Mon Apr 7 22:54:50 2014 para wxExcelManipulator por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.7.1 </small></address>
+</body>
+</html>

@@ -1,0 +1,9 @@
+TRAZAR F1 Y F2 con lineas paralelas al cuerpo desde el punto de vista hasta el cuadro
+y bajar hsta la linea de horizonte
+Prolongamos un lado del cuerpo hasta el cuadro,bajamos hasta la altura del cuerpo y fugamos a F2
+Lo mismo con el otro lado y fugamos a F1
+Desde el P.V trazamos lineas auxiliares a los puntos del cuerpo, y bajamos hasta 
+el cuadro en linea recta formando puntos
+Bajamos desde el punto central formando la primer arista en los puntos A y E
+Bajamos desde el D=G hasta obtener los puntos D y G y fugamos a f2
+ Bajamos desde el F=B hasta obtener los puntos F y B y fugamos a f1

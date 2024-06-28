@@ -1,0 +1,17 @@
+DEFINICION DE ESPACIO VECTORIAL:
+https://youtu.be/FVKoaZPyI_Q
+
+Ejemplo de un conjunto que es EV:
+https://youtu.be/DrT2Bm4Bd1U
+
+Ejemplo de un conjunto que no es EV:
+https://youtu.be/wM1zfcKYapk
+
+Propiedades de un EV:
+https://youtu.be/rjBSFsW18oM
+
+Definición y ejemplo de Subespacio Vectorial (SV):
+https://youtu.be/tn9KW-qOtGU
+
+Ejemplo de un subconjunto que no es SV:
+https://youtu.be/_fBrzcQ_s34

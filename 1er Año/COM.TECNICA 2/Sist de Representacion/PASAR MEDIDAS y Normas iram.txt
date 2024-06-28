@@ -1,0 +1,22 @@
+Km a m = multiplicar km por 1000, por ej 1km = 1000m
+
+m a cm = multiplicar m por 100, por ej 1 m = 100cm
+
+norma iram:
+4501: Defincion de vistas
+4502: Tipo de linea
+4503: letras y numero
+4504: Formato de hoja
+4505: Escala
+4507: Proyeccion de una pieza
+4513: Cotas
+
+Medida Dibujo = medida real / escala
+Medida Real = medida dibujo * escala
+Esacala = medida real / medida dibujo
+Otra Escala = (medida dibujo * escala) Otra Escala 
+
+Tipos de escala: 
+Naturales: E= 1/1 La medida dibujada = a la unidad real 
+De reducción: E=1/M La medida dibujada es menor que la medida real
+De ampliación: E=M/1 La medida dibujada es ma
