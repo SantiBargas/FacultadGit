@@ -1,0 +1,13 @@
+1	a.)
+	b.) Verdadera. El patron arquitectonico es allow to use
+	c.) Falsa
+	d.) Falsa. El patron usado es el arquitectonico, el cual el almazenamiento de datos
+		no es una debilidad
+	e.) Verdadera
+
+2)	a) Falsa 
+	b) Falsa .No es polimorfico, la clase A tiene la funcion m1() para que sea polimorfico 
+		B C y D deberian tener m1() tambien pero tienen m2() m3() y m4()
+	c.) Verdadera.
+	d.) Verdadera. Bajo acoplamiento: Poca dependencia entre las clases.
+	e.) Falsa. Tiene que existir solo un valor

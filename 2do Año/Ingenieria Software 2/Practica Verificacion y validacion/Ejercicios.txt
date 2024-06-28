@@ -1,0 +1,4 @@
+Ejercicio 4:
+Considerando el diseño de pantalla anterior, proponga alternativas de validación de
+interface de usuario. ¿Qué técnica utilizaría?. 
+La tecnica que utilizaria seria ir comparando elemento a elemento con el mockup y un diseño de interfaz de usuario

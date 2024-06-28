@@ -1,0 +1,22 @@
+Es un sistema para una pasteleria
+Primero estan las mesas, que se dividen en Habilitadas y No Habilitadas,
+ademas se identifican con un numero y una capacidad. Ademas se marcan en libre,
+ ocupadas o reservadas. 
+Un cliente hace una reserva indicando el dia y la hora de la misma. 
+El sistema le devuelve las mesas disponibles para esa fecha y rango de hora,
+si el cliente acepta se marca como reservada la mesa. 
+Si no hay mesas disponibles, el sistema amplia la busqueda y
+muestra mesas en otros horarios o fechas. Si aun asi el cliente no quiere ninguna
+ de esas mesas, cancela la reserva.
+En el dia de la reserva, cuando el cliente llega se le pregunta si tiene reserva, 
+si tiene,se verifica que haya llegado hasta con 30 min de demora de la hora de la reserva,
+si se paso de esa hora, se lo toma como cliente sin reserva y la reserva anterior 
+se cancela, liberando la mesa. 
+Se quiere saber la cantidad de clientes con reserva que llegaron pasados los 30 min 
+en la ult semana, el cliente que mas veces fue en el ultimo mes, y la mesa que fue mas 
+reservada entre 2 fechas. 
+1. Hacer la historia de usuario para que un cliente realize una reserva
+2. Hacer el diagrama de clases y modelar un metodo para la cantidad de clientes 
+con reservas que no asistieron.
+
+Como cliente quiero realizar una reserva para poder asegurar mi lugar en el restaurante

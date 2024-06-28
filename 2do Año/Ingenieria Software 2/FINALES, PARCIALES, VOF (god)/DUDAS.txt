@@ -1,0 +1,9 @@
+En diagrama de clases cuando el enunciado dice: el Usuario puede ver la lista de proyectos. La funcion VerProyectos() iria en la clase controladora, en usuario o ambas?
+
+Para casos de uso, cuando el enunciado dice por ejemplo: el administrador puede realizar una alta de los empleados. Agregamos que el administrador pueda hacer 
+un ALTA BAJA MODIFICAR de empleados o solamente el alta ?
+
+Es necesario poner todos los set y get en las clases o podemos poner 
+getAll() setAll()
+
+Si tengo una relacion de Herencia de la clase B a la clase A. Si se destruye A, se destruye B?

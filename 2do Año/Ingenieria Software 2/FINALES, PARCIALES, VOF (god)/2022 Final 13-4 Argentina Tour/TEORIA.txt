@@ -1,0 +1,11 @@
+1	a.)Falso. Persistencia de datos pertenece al patron centrado de datos
+	b.)Falso. Conector lectura/escritura es para centrado en datos
+	c.)Verdadera. Todos los patrones arquitectonicos se basan en requerimientos NO FUNCIONALES
+	d.)Falso. InterfazUsuario aparece en el modelo vista-controlador
+	e.)Verdadera.
+
+2	a.)Falsa. El actor 3 debe ser el abstracto
+	b.)Falsa. CU2 no puede invocar a CU5
+	c.)Verdadera. 
+	d.)
+	e.)Verdadera.

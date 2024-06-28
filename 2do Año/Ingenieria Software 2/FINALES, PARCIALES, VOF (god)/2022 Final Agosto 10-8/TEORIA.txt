@@ -1,0 +1,11 @@
+1 a.) Verdadero
+  b.) Falso. No pueden ser mutuamente excluyentes ya que se ejecutan los dos
+  c.) Verdadero. El nodo join sincroniza flujos
+  d.) Falso. Al reves es, las postcondiciones del nodo origen, las precondiciones del nodo destino
+  e.) Falso. Esta describiendo el nodo decision
+
+2)	a.) Falso. Patron Creador es
+	b.)Verdadero. Es una relacion de composicion, se destruye D ----> se destruye E
+	c.)Verdadero. A tiene instancias de F, F tiene instancias de G Y H
+	d.)Falso. La relacion de C y B es de agregacion Se destuye B --/--> Se destruye C 
+	e.)Falso. H es una instancia de F, viceversa NO
