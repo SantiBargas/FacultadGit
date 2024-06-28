@@ -1,0 +1,59 @@
+void qsort(stack<int> &S) {
+  int pivot;
+  int x;
+  
+  stack<int>S1;stack<int>S2;stack<int>tmp1;stack<int>tmp2;
+  
+  
+  int aux1=S.top();
+  S.pop();
+  if(S.empty()) return;
+  int aux2=S.top();
+  
+  if(aux1>aux2){
+    pivot=aux1;
+  }else{
+    pivot=aux2;
+  }
+  
+  while(!S.empty()){
+    x=S.top();
+    S.pop();
+    if(x<pivot){
+      S.push(x);
+    }
+    if(x>=pivot){
+      S.push(x);
+    }
+  }
+  qsort(S);
+  
+  int n;
+  while(!S1.empty()){
+    n=S1.top();
+    S1.pop();
+    S.push(n);
+  }
+  while(!S2.empty()){
+    n=S2.top();
+    S2.pop();
+    S.push(n);
+  }
+
+  while(!S.empty()){
+    n=S.top();
+    S.pop();
+    tmp1.push(n);
+  }
+  
+  while(!tmp1.empty()){
+    n=tmp1.top();
+    tmp1.pop();
+    tmp2.push(n);
+  }
+  while(!tmp2.empty()){
+    n=tmp2.top();
+    tmp2.pop();
+    S.push(n);
+  }
+  

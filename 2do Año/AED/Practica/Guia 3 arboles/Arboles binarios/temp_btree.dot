@@ -1,0 +1,23 @@
+digraph h {
+aaaab[label="0"]
+aaaac[label="10"]
+aaaba[label="4"]
+aaabc[label="9"]
+aaabd[label=" ",color="#FFFFFF"]
+aaabb[label="17"]
+aaacc[label="15"]
+aaada[label="16"]
+aaadb[label=" ",color="#FFFFFF"]
+aaacd[label=" ",color="#FFFFFF"]
+aaaad[label=" ",color="#FFFFFF"]
+aaaab->aaaac
+aaaac->aaaba
+aaaba->aaabc
+aaaba->aaabd[color="#999999"]
+aaaac->aaabb
+aaabb->aaacc
+aaacc->aaada
+aaacc->aaadb[color="#999999"]
+aaabb->aaacd[color="#999999"]
+aaaab->aaaad[color="#999999"]
+}
