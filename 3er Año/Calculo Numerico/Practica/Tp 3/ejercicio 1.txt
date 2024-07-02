@@ -1,0 +1,10 @@
+Para calcular los autovalores de la matriz A=[ 3/4   1/6]
+							   [ 1/4   1/4]
+lo calculamos como:
+			det(A)=[ 3/4-lambda     1/6]
+		             [ 1/4     1/4-lambda] lo cual nos da lambda1: 6+raiz(15) / 12
+										  lambda2: 6-raiz(15) / 12
+
+el radio espectral p(A) esta dado como el maximo entre los autovalores
+en este caso p(A)=6+raiz(15) / 12 = 0,8227   
+Como p(a)<1 es convergente

@@ -1,0 +1,108 @@
+clc LIMPIA TODA LA PANTALLA
+
+1)
+(5^2)-(1/2^3)-sqrt(3^2+(2*2)^2)
+
+sin(pi/6) - atan(0.5)
+
+log(3+1/5)-e^2
+
+2)y=@(x) sin(2*x)/(x*(x+1))
+y(-4) y(-pi/8) y(sqrt(2)/4) y(pi/2) y(9pi/5)
+si quiero definir x como un arreglo x= [-4 -pi/8 raiz2/4 pi/2 9pi/5] para evaluar y 
+tengo que agregarle un punto antes del multiplicador y=@(x) sin(2.*x)/(x.*(x+1))
+
+3)
+A=[1 2 3 -4]
+B=[1 2 3 -4]'
+C=-2.5:0.5:1
+D=(-2.5:0.5:1)’
+E=[-3:2:4]
+
+A.*B   A./B  A.^n
+
+4) x=[−0.5 7 2] z=[2 -1 3]' 
+
+5)  p = [2 3 5 7]
+polyout(p, ’x’) muestra el polinomio con la variable x
+polyval(p, x) evalua el polinomio en el valor que asignamos a x antes
+roots(p) nos da las raices
+
+6)
+A*B multiplica normalmente una matriz 
+A.*B multiplica cada componente con cada componente
+A = [1 2 3;4 5 6;7 8 9] da una matriz separada por los ;
+B=A' Invierte filas y columnas
+C = [-3.2,5,7.4,6;4,17,-1.3,2.1;5.9,-6,0,4.5] matriz de 4x3 con decimales
+mat=C' Invierte filas y columnas
+C(1:2,2:4) Corta la matriz 
+zeros(5,2) una matriz de 5x2 de ceros
+ones(2,3) matriz de 2x3 de unos
+v = diag(A) diagonal de la matriz a
+
+7)
+>> m = 5;
+>> n = 4*m+1;
+>> x = linspace(0,1,n); crea un vector de n elementos con valores del 0 al 1
+>> y = zeros(1,n); crea una matriz de ceros tamaño 1xn
+>> a = x(1:m+1);   
+>> y(1:m+1) = sin(2*pi*a);
+>> y(2*m+1:-1:m+2) = y(1:m);
+>> y(2*m+2:n) = -y(2:2*m);
+
+
+8) y=@(x) ((x+1)/(x^2+x+1))^6*(cos(x)+3)
+8)
+>> plot(x,y) grafica x e y
+>> axis([0 2 0 2]); solo muestra el intervalo x=[0,2] y y=[0,2]
+>> grid on;
+
+
+9)
+>> A=[1 2 3;5 4 8;4 2 1]
+A =
+
+   1   2   3
+   5   4   8
+   4   2   1
+                   ^
+>> B = [ 6 5 2]'		(AHI SE DEFINE Ax=B)
+B =
+
+   6
+   5
+   2
+
+>> x1= inv(A)*B
+x1 =
+
+  -1.8333			(Resuelve sistema de ecuaciones)
+   5.0417
+  -0.7500
+>> x2 = A\B
+x2 =
+
+  -1.8333
+   5.0417
+  -0.7500
+
+11)
+>> baskara(1, 2 ,3)
+x1 = -1.0000 + 1.4142i
+x2 = -1.0000 - 1.4142i
+Ambas raices son imaginarias
+ans = -1.0000 + 1.4142i
+
+12)x=[-1 0 1.5 2]; y=[3 2 2 0]; plot(x,y)
+a)plot(x,y,'o') dibuja los puntos donde la funcion decrece con una O
+b)plot(x,y,'*') dibuja los puntos donde la funcion decrece con un *
+c)plot(x,y,'r') dibuja la funcion con una recta ROJA (RED)
+d)plot(x,y,'g-*') dibuja la funcion con * en cada parte con color VERDE=GREEN
+
+13)
+x=linspace(0,2*pi,201) hace un vector de 0  a 2*pi de 201 elementos
+y=sin(x);      para cada valor de x se hace el sin
+plot(x,y);  grafica 
+hold on   mantiene el grafico
+plot(x,z,"k-.") grafica con una linea punteada
+hold off deja de mantener el grafico 

@@ -1,0 +1,1 @@
+la formula del w optimo 2 / 1 - sqrt() solo se usa para matrices estrictamente diagonal dominante y simetrica positiva

@@ -1,0 +1,9 @@
+hay q hacer dos trazadores cubicos
+uno para x=0 t=0 hasta t=2 x=6
+
+otro para t=2 x=6 hasta t=4 x=0
+
+eje hacia arriba es x eje hacia el costado es t
+
+primer trazador t=[0,1,2] x=[0,2,6]
+segundo trazador t=[2,3,4] x=[6,3,0]

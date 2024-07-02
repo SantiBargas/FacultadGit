@@ -1,0 +1,4 @@
+f= @(x) 20.x-x.^3/5   defino f
+df= @(x) ...
+
+g=@(x) 2*pi*f*sqrt(1+df^2)
