@@ -1,0 +1,183 @@
+package HolaMundo;
+
+import java.util.Calendar;
+
+import java.util.GregorianCalendar;
+
+public class HolaMundo {
+
+	public static void main(String[] args) {
+		System.out.println("Hola Mundo");
+		
+		Calendar santiagoCalendar = Calendar.getInstance();
+		santiagoCalendar.set(2001, 9, 11);
+		
+		Persona omiPersona = new Persona("Santiago","Bargas",43538588,santiagoCalendar,"Gallardo912");
+	
+			
+		System.out.println(omiPersona.mostrar());
+		System.out.println("Edad: "+ omiPersona.mostarEdad());
+		System.out.println("Edad en dias del año: "+omiPersona.mostarEdadEnDias());
+		System.out.println("Edad en dias total: "+omiPersona.mostarEdadEnDiasTotal());
+		System.out.println("Dia que cumple años: "+omiPersona.mostrarDia());
+		boolean a = omiPersona.validarPassword("Gallardo912");
+		if(a==true) System.out.println("Contraseña Correcta");
+		if(a==false)System.out.println("Contraseña incorrecta");
+	
+		
+	
+	}
+
+}
+
+
+
+package HolaMundo;
+
+import java.util.Calendar;
+import java.util.Collection;
+
+public class Persona {
+	private String nombre;
+	private String apellido;
+	private Integer documento;
+	private Calendar fecha_nac;
+	private String password;
+	private Integer edad;
+	private Integer edad_endias;
+	private long edad_endiastotal;
+	private String dia_cumple;
+	
+ 
+ 	public Persona(String nombre,String apellido, Integer documento, Calendar santiagoCalendar, String password) {
+	
+ 		this.nombre = nombre;
+ 		this.apellido = apellido;
+ 		this.documento = documento;
+ 		this.fecha_nac = santiagoCalendar;
+
+ 		this.password = StringMD.getStringMessageDigest(password,StringMD.SHA256);
+ 	
+ 		//Calculamos la edad
+ 		Calendar ahora = Calendar.getInstance();
+		this.edad_endiastotal = (ahora.getTimeInMillis() - fecha_nac.getTimeInMillis())
+		                        / 1000 / 60 / 60 / 24;
+
+		this.edad = Double.valueOf(edad_endiastotal / 365.25d).intValue(); //Año bisiesto 1 día cada 4 años implica 0.25d por año
+		this.edad_endias = Double.valueOf(edad_endiastotal % 365.25d).intValue();
+		
+	
+ 	}
+ 
+	public void getPassword() {
+		System.out.println(this.password);
+	}
+ 
+	public String mostrar() {
+		return this.nombre + "," +this.apellido+ " - " + this.documento;
+	}
+ 
+	public Integer mostarEdad() {
+		return this.edad;
+	}
+	public Integer mostarEdadEnDias() {
+		return this.edad_endias;
+	}
+	public long mostarEdadEnDiasTotal() {
+		return this.edad_endiastotal;
+	}
+	
+	public String mostrarDia() {
+		//Calculamos que dia cumplira años
+		Calendar ahora = Calendar.getInstance();
+		ahora.set(ahora.YEAR,fecha_nac.MONTH-1,fecha_nac.DAY_OF_WEEK);
+		int dia =  ahora.get(Calendar.DAY_OF_WEEK);
+		
+		 
+		 if(dia==Calendar.SUNDAY){
+		   this.dia_cumple="Domingo";}
+		 if(dia==Calendar.MONDAY){
+		   this.dia_cumple="Lunes";}
+		if(dia==Calendar.TUESDAY){
+		   this.dia_cumple="Martes";}
+		if(dia==Calendar.WEDNESDAY){
+			   this.dia_cumple="Miercoles";}
+		if(dia==Calendar.THURSDAY){
+			   this.dia_cumple="Jueves";}
+		if(dia==Calendar.FRIDAY){
+			   this.dia_cumple="Viernes";}
+		if(dia==Calendar.SATURDAY){
+			   this.dia_cumple="Sabado";}
+		
+		return this.dia_cumple;
+	}
+	
+	
+	
+	
+	
+	public boolean validarPassword(String clave) {
+		String clave_test = StringMD.getStringMessageDigest(clave, StringMD.SHA256);
+		
+		if(this.password.equals(clave_test)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	
+}
+
+
+
+package HolaMundo;
+
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+public class StringMD{
+ //algoritmos
+ public static String MD2 = "MD2";
+ public static String MD5 = "MD5";
+ public static String SHA1 = "SHA-1";
+ public static String SHA256 = "SHA-256";
+ public static String SHA384 = "SHA-384";
+ public static String SHA512 = "SHA-512";
+ 
+ /***
+  * Convierte un arreglo de bytes a String usando valores hexadecimales
+  * @param digest arreglo de bytes a convertir
+  * @return String creado a partir de <code>digest</code>
+  */
+  private static String toHexadecimal(byte[] digest){
+  String hash = "";
+  for(byte aux : digest) {
+  int b = aux & 0xff;
+  if (Integer.toHexString(b).length() == 1) hash += "0";
+  hash += Integer.toHexString(b);
+  }
+  return hash;
+  }
+  /***
+   * Encripta un mensaje de texto mediante algoritmo de resumen de mensaje.
+   * @param message texto a encriptar
+   * @param algorithm algoritmo de encriptación, puede ser: MD2,MD5,SHA-1,SHA-256,SHA-384,SHA-512
+   * @return mensaje encriptado
+   */
+   public static String getStringMessageDigest(String message, String algorithm){
+   byte[] digest = null;
+   byte[] buffer = message.getBytes();
+   try {
+   MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
+   messageDigest.reset();
+   messageDigest.update(buffer);
+   digest = messageDigest.digest();
+   } catch (NoSuchAlgorithmException ex) {
+   System.out.println("Error creando Digest");
+   }
+   return toHexadecimal(digest);
+   }
+
+  }
+

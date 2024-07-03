@@ -1,0 +1,39 @@
+(define minimo
+  (lambda (x)
+    (if (= (length x) 1)
+        (car x)
+        (let ((actual (car x))
+              (min_prox (minimo (cdr x))))
+          (if (< actual min_prox)
+              actual
+              min_prox
+              )))))
+
+
+(define peso
+  (lambda (lista_car)
+    (if (null? lista_car)
+        0
+        (+ (char->integer (car lista_car)) (peso (cdr lista_car))))))
+
+(define concatenar
+  (lambda (L1 L2)
+    (if (null? L1)
+        L2
+        (cons (car L1) (concatenar (cdr L1) L2))))) 
+
+(define ordenar
+  (lambda (lista)
+    (if (null? lista)
+        '()
+        (if (<= (peso (string->list (car lista)))
+                (minimo (map (lambda (x) (peso (string->list x))) lista)))
+            (cons (car lista) (ordenar (cdr lista)))
+            (ordenar (concatenar (cdr lista) (list (car lista))))
+            )
+        )
+    ))
+
+
+        
+(ordenar '("moto" "auto" "casa" "juego" "aire"))

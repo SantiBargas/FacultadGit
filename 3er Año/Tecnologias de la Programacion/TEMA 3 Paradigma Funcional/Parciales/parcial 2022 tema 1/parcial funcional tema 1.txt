@@ -1,0 +1,17 @@
+3 funciones:
+una para reemplazar el recuperatorio
+si era promocionado
+si era regular
+
+pregunto si hay una lista de un solo elemento seria 
+que no tiene nota entonces reemplazo por el recuperatorio
+si el car es igual al car del recuperatorio
+
+Reemp ( (nom1 lista1) (nom2 lista2)...)
+Prom ( (nom1 lista1 prom1) (nom2 lista2 prom2) ...)
+cond ( (nom1 cond1) (nom2 cond2) ... )
+
+wrapper:(cond (prom (reemplazar ls))
+
+(cadar lista)
+(caddar lista)

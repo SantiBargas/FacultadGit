@@ -1,0 +1,121 @@
+Teniendo una serie de declaraciones f/1 con los que se declara una serie de átomos como sus argumentos, se desea obtener una lista ordenada alfabéticamente con dichos átomos, para lo cual se debe programar en Prolog un predicado resu/1.
+
+Si hay átomos repetidos, solo debe retornarse uno solo en la lista final.
+
+Los elementos de la lisa resultado, debe ser listas de no más de cinco elementos con los átomos ordenados.
+
+ATENCIÓN: No se puede utilizar predicado predefinido para ordenar listas ni para eliminar elementos.
+
+Ej.:
+f(b).
+f(a).
+f(f).
+f(a).
+f(c).
+f(d).
+f(g).
+f(h).
+f(c).
+
+resu(X).
+X = [[a, b, c, d, f], [g, h]]
+
+Consignas:
+1) Obtener lista de átomos
+2) Ordenar la lista quitando duplicados
+3) Agrupar en listas de a cinco elementos
+
+
+
+
+
+
+
+
+
+
+
+
+%Resolucion hecha por un alumno
+%%%%%%
+
+f(b).
+f(a).
+f(f).
+f(a).
+f(c).
+f(d).
+f(g).
+f(h).
+f(c).
+
+%1- Obtener una lista de atomos
+lista_atomo(L):- findall(X,f(X),L).
+
+%2- Ordenar una lista quitando duplicados
+%Primero elimino los duplicados y despues la ordeno
+pertenece(X,[X|_]).
+pertenece(X,[_|C]):- pertenece(X,C).
+eliminar_dup([],[]).
+eliminar_dup([X|R],L):- pertenece(X,R),eliminar_dup(R,L).
+eliminar_dup([X|R],[X|L]):- not(pertenece(X,R)),eliminar_dup(R,L).
+
+%probarEliminarDuplicados(X):-lista_atomo(Y),eliminar_dup(Y,X),!
+insertar(X,[],[X]).
+insertar(X,[Y|C],[X,Y|C]):- X@=<Y,!.
+insertar(X,[Y|C],[Y|L]):- X@>Y, insertar(X,C,L).
+ordenar([],[]).
+ordenar([X],[X]).
+ordenar([X|C],L):- ordenar(C,Z),!,insertar(X,Z,L).
+
+%probarOrdenar(H):-lista_atomo(Y),eliminar_dup(Y,X),ordenar(X,H),!.
+
+%3- Agrupar de a 5 elementos como maximo
+concatenar([], L, L).
+concatenar([X | L1], L2, [X | L3]):-concatenar(L1, L2, L3).
+
+eliminar([],_,[]):-!.
+eliminar([_|L],R,C):-R<5,!,L1 is R+1,eliminar(L,L1,C).
+eliminar([X|L],R,[X|C]):-eliminar(L,R,C).
+
+agrupar1([],_,[]):-!.
+agrupar1([X|L],R,[X|C]):-R<5,!,L1 is R+1, agrupar1(L,L1,C).
+agrupar1([_|L],R,C):-agrupar1(L,R,C).
+
+agrupar([],[]):-!.
+agrupar(L,L1):-agrupar1(L,0,R),eliminar(L,0,L2),agrupar(L2,S), concatenar([R],S,L1).
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% RESOLUCION HECHA POR EL PROFESOR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+
+f(b).
+f(a).
+f(f).
+f(a).
+f(c).
+f(d).
+f(g).
+f(h).
+f(c).
+
+lista(L) :- findall(X, f(X), L).
+
+insertar(I, [], [I]):-!.
+insertar(I, [X|L], [X | L]):- I =@= X, !.
+insertar(I, [X|L], [I, X | L]):- I @< X, !.
+insertar(I, [X|L], [X | L1]):- insertar(I, L, L1).
+
+orden([], []).
+orden([X|L], Lo) :- orden(L, Lo1), insertar(X, Lo1, Lo).
+
+dividir([X1, X2, X3, X4, X5 | L], [[X1, X2, X3, X4, X5] | L1]) :- !, dividir(L, L1).
+dividir(L, [L]).
+
+resu(R) :- lista(L), orden(L, Lo), dividir(Lo, R).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,49 @@
+(define list-max
+  (lambda (lista)
+    (if (= (length lista) 1)
+        (car lista)
+        (let ((maxcdr (list-max (cdr lista)))) 
+          (if (> (car lista) maxcdr)
+              (car lista)
+              maxcdr
+              )
+          )
+        )
+    )
+  )
+
+;; Contrato: distance2d: (x1 . y1) (x2 . y2) -> real
+;; Calcula la distancia entre dos puntos en el plano a partir de una representació
+;; de pares como listas impropias
+;; definición:
+(define distancia2d 
+  (lambda (point1 point2)
+    (sqrt
+     (+
+      (expt (- (car point1) (car point2) ) 2)
+      (expt (- (cdr point1) (cdr point2) ) 2)
+      )
+     )
+    )
+  )
+;; Ejemplo: (distance2d '(1 . 1) '(2 . 2)) -> 1.41
+
+;; como no se dió buil-list en clase se utiliza una conversión para aprovechar las funciones de vectores
+(define max-dist
+  (lambda (l)
+    (if (< (length l) 2)
+        (display "ERROR: se necesitan al menos dos elementos para calcular la distancia")
+        (if (= (length l) 2)
+            (distancia2d (car l) (cadr l))
+            (list-max 
+             (cons 
+              (max-dist (cdr l)) 
+              (map distancia2d 
+                   (vector->list (make-vector (length (cdr l)) (car l))) 
+                   (cdr l))
+              )
+             )
+            ); fin if
+        )
+    )
+  )

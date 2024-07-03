@@ -1,0 +1,23 @@
+;Defina una función llamada circlestuff que compute el área y el perímetro de un
+;círculo y los devuelva en una lista, con el área primero.
+;Ej: (circlestuff 3) → (28.26 18.84)
+
+(define cuadrado
+ (lambda (n)
+ (* n n)))
+
+(define perimetro
+  (lambda (a)  ;a=radio del circulo
+    (* 2 pi a )))
+
+(define area
+  (lambda (a)  ;a=radio del circulo
+    (* pi (cuadrado a) )))
+
+
+(define circlestuff
+  (lambda (radio)
+    (list (area radio) (perimetro radio))))
+
+  
+     

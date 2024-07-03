@@ -1,0 +1,56 @@
+Encontrar el camino con menor puntaje en un arbol binario. Dato un arbol binario sumar cada uno de los caminos en sus ramas y determinar cual es el camino cuyos nodos suman el menor puntaje (puede ser más de uno).
+
+
+	1
+	1	2
+	2 7	1 4
+
+caminos:
+	1 1 2 = 4
+	1 1 7 = 9
+	1 2 1 = 4
+	1 2 4 = 7
+
+Consignas:
+	1) crear un predicado sumar/2 que reciba una lista de números y retorne la suma de los mismos (0 en caso de ser lista vacía)
+	2) crear un predicado caminos/2 que dado un arbol binario retorne los distintos caminos del mismo.
+	3) crear un predicado menor_valor/2 que reciba una lista de caminos y calcule la menor suma.
+	4) crear un predicado caminos_min/2 que reciba un árbol y retorne la lista de los caminos que poseen el máximo puntaje.
+
+caminos_min([[[2], 1, [7]], 1, [[1], 2, [4]]], L).
+L = [[1, 1, 2], [1, 2, 1]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%Resolucion hecha por el profesor
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+sumar([], 0) :- !.
+sumar([X|L], V) :- sumar(L, V1), V is X + V1.
+
+caminos([X], [X]):-!.
+caminos([I, N, _], [N|Ci]) :- caminos(I, Ci).
+caminos([_, N, D], [N|Cd]) :- caminos(D, Cd).
+
+menor_valor([X], V) :- sumar(X, V), !.
+menor_valor([C | R], Vm) :- sumar(C, V), menor_valor(R, V1), Vm is min(V, V1).
+
+caminos_min(A, C) :- findall(X, caminos(A, X), L), menor_valor(L, V), findall(X, (caminos(A, X), sumar(X, V)), C).

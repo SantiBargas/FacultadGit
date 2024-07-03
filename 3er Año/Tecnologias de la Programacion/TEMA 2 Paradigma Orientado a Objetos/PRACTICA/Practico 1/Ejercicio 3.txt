@@ -1,0 +1,180 @@
+package tp1Ej3;
+
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.GregorianCalendar;
+
+public class HolaMundo {
+
+	public static void main(String[] args) {
+		
+		
+		
+		Facultad FICH = new Facultad("FICH");
+		Carrera Informatica=new Carrera("Informatica",FICH);
+		Carrera Ambiental=new Carrera("Ambiental",FICH);	
+		Carrera RecursosHidricos=new Carrera("Recursos Hidricos",FICH);
+		
+		Calendar ANac = new GregorianCalendar(2001, 9, 11);
+		Calendar AIns = new GregorianCalendar(2020, 6, 11);
+		Persona Santiago = new Persona("Santiago Bargas",45798588,ANac);
+		Alumno  SantiagoA = new Alumno(AIns,Santiago,Informatica);
+		Alumno  SantiagoAB = new Alumno(AIns,Santiago,Ambiental);
+		
+		Calendar BNac = new GregorianCalendar(2001, 4, 11);
+		Calendar BIns = new GregorianCalendar(2020, 3, 11);
+		Persona Tomas = new Persona("Tomas Molet",43538528,BNac);
+		Alumno  TomasB = new Alumno(BIns,Tomas,Informatica);
+		
+		Calendar CNac = new GregorianCalendar(2003, 9, 11);
+		Calendar CIns = new GregorianCalendar(2020, 8, 11);
+		Persona Pablo = new Persona("Pablo Risso",43538588,CNac);
+		Alumno  PabloC = new Alumno(CIns,Pablo,Ambiental);
+		
+		Calendar DNac = new GregorianCalendar(2002,2, 7);
+		Calendar DIns = new GregorianCalendar(2020, 2, 14);
+		Persona Aitana = new Persona("Aitana Martinez",42558588,DNac);
+		Alumno  AitanaD = new Alumno(DIns,Aitana,RecursosHidricos);
+		
+	
+	
+		FICH.mostrarCarrerasyAlumnos();
+				
+		
+	}
+
+package tp1Ej3;
+
+
+import java.util.Vector;
+public class Facultad {
+	private Vector<Carrera> cCarreras;
+	private String nombre;
+	
+	public Facultad(String nombre) {
+		this.nombre = nombre;
+		this.cCarreras=new Vector<Carrera>();
+	}
+	
+	public String toString(){
+		return "Facultad:" + this.nombre;
+	}
+
+	public void addCarrera(Carrera carrera) {
+		cCarreras.add(carrera);
+	}
+
+	public void mostrarCarrerasyAlumnos() {
+		System.out.println( this.nombre);
+		for (Carrera oCarrera: cCarreras) {
+			System.out.println(oCarrera.toString());
+			oCarrera.mostrarAlumnos();
+		}
+	}
+}
+
+package tp1Ej3;
+import java.util.Vector;
+
+public class Carrera {
+
+	private String nombre;
+	private Vector<Alumno> cAlumnos;
+	private Facultad facul;
+	
+	public Carrera(String nombre,Facultad facultad) {
+		this.nombre = nombre;
+		this.facul = facultad;
+		
+		this.cAlumnos=new Vector<Alumno>();
+		facul.addCarrera(this);
+		
+	}
+	
+	public void addAlumno(Alumno alumno) {
+		this.cAlumnos.add(alumno);
+		
+	}
+
+	public String toString(){
+		return "Carrera: " + this.nombre;
+	}
+	
+	public void mostrarAlumnos() {
+		for (Alumno oAlumno: cAlumnos) {
+			System.out.println(oAlumno.toString());
+		}
+	}	
+}
+
+package tp1Ej3;
+
+import java.util.Calendar;
+import java.util.Vector;
+
+public class Persona {
+
+	private String nombre;
+	private Integer documento;
+	private Calendar fecha_nac;
+	private Vector<Alumno> cAlumnos;
+	
+	public Persona(String nombre, Integer documento, Calendar fecha_nac) {
+		this.nombre = nombre;
+		this.documento = documento;
+		this.fecha_nac = fecha_nac;
+		this.cAlumnos=new Vector<Alumno>();
+	
+	}
+
+	public void addAlumno(Alumno oAlumno) {
+		this.cAlumnos.add(oAlumno);
+	}
+	
+	public Integer CalcularEdad() {
+		Calendar ahora = Calendar.getInstance();
+		long edadEnDias = (ahora.getTimeInMillis() - fecha_nac.getTimeInMillis())
+		                        / 1000 / 60 / 60 / 24;
+		int edad = Double.valueOf(edadEnDias / 365.25d).intValue();
+		int dias = Double.valueOf(edadEnDias % 365.25d).intValue();
+		return edad;
+	}
+
+	public String ToString() {
+		return this.nombre;
+
+	}
+}
+
+package tp1Ej3;
+
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Alumno {
+
+	private Calendar fecha_inscripcion;
+	private Persona persona;
+	private Carrera carrera;
+	
+	
+	public Alumno(Calendar fecha_inscripcion, Persona persona, Carrera carrera) {
+		
+		if(fecha_inscripcion == null || persona==null || carrera== null) {
+			throw new RuntimeException("Parametros ivalidos");
+		}
+		
+		this.fecha_inscripcion = fecha_inscripcion;
+		this.persona = persona;
+		this.carrera = carrera;
+		
+		persona.addAlumno(this);
+		carrera.addAlumno(this);
+	}
+	
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyy");
+		return persona.ToString()+ "  -  " + sdf.format(new Date(this.fecha_inscripcion.getTimeInMillis()));
+	}
+}

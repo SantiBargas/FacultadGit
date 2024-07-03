@@ -1,0 +1,38 @@
+#|
+
+Dada una entrada de datos que sea una lista de listas, en donde el primer elemento es el nombre del alumno,
+después una lista con todas las notas de los parciales y por último una lista con los recuperatorios.
+Las listas de notas tienen elementos que son listas impropias en donde el 1er elemento en el tema y
+el 2do la nota, el AUSENTE se interpreta como una lista de un solo elemento con el tema.
+
+( ("Pablo" ((POO . 75)(FUNCIONAL . 66)(LOGICO . 89)) () )
+  ("Federico" ((POO . 75)(FUNCIONAL . 90)(LOGICO . 45)) ((LOGICO . 60)) )
+  ("Franco" ((POO . 50)(FUNCIONAL)(LOGICO . 89)) ((POO . 40)) )
+  ("Gabriel" ((POO . 35)(FUNCIONAL)(LOGICO)) () )
+)
+
+Se desea que programen una función utilizando el paradigma funcional que reciba como parámetro de
+entrada una lista y que procese cada elemento para verificar la condición en la que quedaría un
+alumno según el régimen propuesto por la cátedra:
+
+* Para Regularizar: Se deberá obtener un mínimo de 40 puntos en cada uno de los parciales, 50 puntos en promedio.
+* Para Promocionar: Se deberá obtener un mínimo de 60 puntos en cada uno de los parciales, 70 puntos en promedio.
+* Libre: Si saca menos de 40 en alguno de los parciales.
+
+Se puede recuperar solo un tema y lo que vale siempre es la NOTA MAS ALTA
+
+El resultado debe ser una lista con el siguiente formato:
+((Pablo . "Promocionado") (Federico . "Promocionado") (Franco . "Regular") (Gabriel . "Libre"))
+
+ACLARACIONES: No pueden utilizar funciones predefinidas de racket, con excepción de las
+que vimos en clases para validar o convertir string, listas, char, vectores, etc. Ante la duda pregunten.
+
+
+
+(define notas '(("Pablo" ((POO . 75)(FUNCIONAL . 66)(LOGICO . 89)) ())
+                ("Federico" ((POO . 75)(FUNCIONAL . 90)(LOGICO . 45)) ((LOGICO . 60)))
+                ("Franco" ((POO . 50)(FUNCIONAL)(LOGICO . 89)) ((POO . 40)))
+                ("Gabriel" ((POO . 35)(FUNCIONAL)(LOGICO)) ()))
+  )
+
+|#

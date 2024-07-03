@@ -1,0 +1,57 @@
+﻿Puntos: 100
+Dada una lista, validar que todos sus elementos sean átomos, en caso de encontrar alguno que no lo sea, se debe mostrar un mensaje 'Lista no válida' y finalizar sin fallar.
+Si la lista es válida se debe encontrar el elemento que más se repite en la misma, en caso de repetirse con la máxima cantidad más de un elemento, devolver cualquiera de ellos.
+
+NOTA: Se puede utilizar cualquier predicado predefinido
+Ejemplos:
+?- encontrar_max([a, b, c, f, e, f, f, a, a, d, a, a], L).
+L = [a, 5]
+?- encontrar_max([a, 1, c, f, e, f, f, a, a, d, a, a], L).
+Lista no válida
+True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%RESOLUCION
+
+validar(L):-forall(member(X,L),atom(X)).
+
+contar(_,[],0):-!.
+contar(X,[X|C],S):-contar(X,C,S1),!,S is S1+1.
+contar(X,[_|C],S):-contar(X,C,S).
+
+eliminar(_,[],[]):-!.
+eliminar(X,[X|C],C1):-eliminar(X,C,C1),!.	
+eliminar(X,[M|C],[M|C1]):-eliminar(X,C,C1).
+
+armar([],[]):-!.
+armar([X|C],[[X,Y]|C1]):-contar(X,C,S),Y is S+1,eliminar(X,C,L1),armar(L1,C1),!.
+
+
+maximo([[W,Z]],[W,Z]):-!.
+maximo([[_,Y]|L],[W,Z]):-maximo(L,[W,Z]),Y<Z,!.
+maximo([[X,Y]|_],[X,Y]).
+
+encontrar_max([],[]):-!.
+encontrar_max(C,_):-not(validar(C)),!,write('Lista no valida').
+encontrar_max(C,L):-armar(C,L1),maximo(L1,L).

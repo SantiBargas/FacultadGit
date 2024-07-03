@@ -1,0 +1,37 @@
+;. Utilizando la función MAP cree una función llamada “fullreverse-list” que permite
+;revertir completamente el contenido de una lista.
+;(fullreverse-list (1 (2 3 4 (4 5) (3 (5 6)) 4))) --> (4 ((6 5) 3) (5 4) 4 3 2) 1)
+(define concatenar
+  (lambda (list1 list2)
+    (if (null? list1)
+        list2
+        (cons (car list1) (concatenar (cdr list1) list2))
+        )
+    )
+  )
+
+(define fullreverse
+  (lambda (ls)
+    (if (null? ls)
+        '()
+        (if (list? (car ls))
+          (cons (fullreverse (cdr ls)) (list (fullreverse (car ls))))
+          (concatenar(fullreverse (cdr ls)) (list (car ls)))
+          )
+        )
+    )
+  )
+
+(define inverse
+  (lambda (ls)
+    (if (null? ls)
+        '()
+       (append(reverse (cdr ls)) (list (car ls)))
+    )
+  )
+  )
+        
+(inverse '(1 2 3))
+
+(fullreverse '(1 (2 3 4 (4 5) (3 (5 6)) 4)))
+(fullreverse '((1) 2 3))

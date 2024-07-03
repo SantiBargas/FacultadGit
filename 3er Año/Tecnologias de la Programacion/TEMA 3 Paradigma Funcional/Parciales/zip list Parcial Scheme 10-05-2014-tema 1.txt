@@ -1,0 +1,45 @@
+Cree una función zipList que reciba como parámetro una lista propia y devuelva como resultado una lista con los elementos ordenados de a pares impropios indicando en el primer elemento del par el objeto y en el segundo la cantidad de elementos iguales que se encuentran en forma consecutiva. 
+
+Ej:
+(zipList '(a a a b a b b c c)) --> ((a . 3) (b . 1) (a . 1) (b . 2) (c . 2))
+
+
+;Cuenta los elementos continuos iguales
+(define contar
+  (lambda (lista x)
+    (if (null? lista)
+        0
+        (if (equal? (car lista) x)
+            (+ 1 (contar (cdr lista) x))
+            0))))
+
+
+;Elimino los primeros n elementos
+(define eliminar
+  (lambda (lista cantidad)
+    (if (null? lista)
+        '()
+        (if (= 1 cantidad)
+            (cdr lista)
+            (eliminar (cdr lista) (- cantidad 1))
+            )
+        )))
+
+;(zipList '(a a a b a b b c c)) --> ((a . 3) (b . 1) (a . 1) (b . 2) (c . 2))
+
+(define zipList
+  (lambda (lista)
+    (if (null? lista)
+        '()
+        (let* ((elemento (car lista)) ;
+               (cantidad (contar lista elemento))) ; 
+          (cons 
+           (cons elemento cantidad) ;armo una lista impropia con el elemento y la cantidad
+           (zipList (eliminar lista cantidad)) ;elimino los elementos que ya evalue y llamo a la 
+           ) ;recursion con la nueva lista sin los elementos anteriores 
+          )
+        )
+    ))
+%Comentario: utilizó secuencialidad
+%Parcialmente correcto
+%Puntos para este envío: 90/100.

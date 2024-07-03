@@ -1,0 +1,71 @@
+Dada una lista de fuentes de alimentos distribuídos en la plaza, se desea obtener cual de ellos es el que ofrece menor relación alimento/riegos. 
+Para estimar la riesgo se debe tener en cuenta la distancia al alimento. El riesgo se calculará con la siguiente fórmula:
+
+
+
+Riesgo:
+ dist < 1m --> 0.1 * dist.
+	
+1m <= dist < 3m --> 0.3 * dist.
+	
+3m <= dist --> 0.5 * dist
+
+
+
+
+Los alimentos se encuentran en una lista de vectores donde sus componentes son (X Y A) y que es como la siguiente:
+
+
+(list #(1 1 500)
+#(2 4 1500)
+#(5 7 7500)
+...
+)
+
+
+El hormiguero se encuentra en (0 0).
+
+
+---------------
+
+
+;Solucion:
+
+(define cuadrado
+  (lambda (x)
+    (* x x)))
+
+;Calcula la distancia entre un punto y el origen (0,0)
+(define distancia
+  (lambda (vector)
+    (sqrt(+ (cuadrado (vector-ref vector 0)) (cuadrado(vector-ref vector 1))))))
+
+
+;Calcula el riesgo de la comida en un punto, segun la distancia
+(define riesgo
+  (lambda (vector)
+    (cond
+      ((< (distancia vector) 1) (* 0.1 (distancia vector)))
+      ((and (< (distancia vector) 3)(> (distancia vector) 1)) (* 0.3 (distancia vector)))
+      (else (* 0.5 (distancia vector))))
+    )
+  )
+(define comida_riesgo
+  (lambda (vector)
+    (/ (vector-ref vector 2) (riesgo vector)))) ;Divide comida entre el riesgo
+
+;Devuelve el vector que tiene menor porcentaje de comida/riesgo
+(define list-min
+  (lambda (lista)
+    (if (= 1 (length lista))
+        (car lista)
+        (let ((min_resto(list-min (cdr lista))))
+          (if (< (comida_riesgo(car lista)) (comida_riesgo min_resto))
+             (car lista)
+             min_resto
+          )
+        )
+    )))
+
+(list-min (list #(2 4 1500)  #(1 1 500) #(5 7 7500))) ;---> #(2 4 1500) CORRECTO!
+

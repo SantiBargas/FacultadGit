@@ -1,0 +1,13 @@
+(define minimo
+  (lambda (x)
+    (if (= (length x) 1)
+        (car x)
+        (let ((actual (car x))
+              (min_prox (minimo (cdr x))))
+          (if (< actual min_prox)
+              actual
+              min_prox
+              )
+          )
+        )
+    ))

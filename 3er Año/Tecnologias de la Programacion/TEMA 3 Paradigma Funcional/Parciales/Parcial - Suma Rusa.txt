@@ -1,0 +1,63 @@
+;
+;Escribir los números (A y B) que se desea multiplicar en la parte superior de sendas columnas.
+;Dividir A entre 2, sucesivamente, ignorando el resto, hasta llegar a la unidad. Escribir los resultados en la columna A.
+;Multiplicar B por 2 tantas veces como veces se ha dividido A entre 2. Escribir los resultados sucesivos en la columna B.
+;Sumar todos los números de la columna B que estén al lado de un número impar de la columna A. Éste es el resultado.
+;Ejemplo: 27 × 82
+;
+;A	B	Sumandos
+;27	82	82
+;13	164	164
+;6	328	
+;3	656	656
+;1	1312	1312
+
+;Result: 2214
+
+                                  
+(define div-2
+  (lambda (X)
+    (if (= X 1)
+        (cons 1 '())
+        (cons X (div-2 (truncate(/ X 2))))
+            )
+        )
+    )
+
+
+
+(define mult-2
+  (lambda (X cantidad)
+    (if (= cantidad 1)
+        (cons X '())
+        (cons X (mult-2 (* X 2) (- cantidad 1)))
+        )
+    )
+  )
+ 
+
+(define sumar_impar
+  (lambda (A B)
+    (if (null? A)
+        0
+        (if (odd? (car A))
+            (+ (car B) (sumar_impar (cdr A) (cdr B)))
+            (sumar_impar (cdr A) (cdr B)))
+        )
+    )
+  ) 
+(define mult-rusa
+  (lambda (A B)
+    (let* ((Col_div2 (div-2 A))
+          (Cantidad (length Col_div2))
+          (Col_mult2 (mult-2 B Cantidad)))
+      (sumar_impar Col_div2 Col_mult2)))
+    )
+  
+          
+(define A1 (div-2 27))
+(define B1 (mult-2 82 (length (div-2 27))))
+;A1
+;B1
+(sumar_impar  A1 B1)
+(mult-rusa 27 82)

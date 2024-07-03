@@ -1,0 +1,51 @@
+;Cree una función zipList que reciba como parámetro una lista propia y
+;devuelva como resultado una lista con los elementos ordenados de
+;a pares impropios indicando en el primer elemento del par el objeto
+;y en el segundo la cantidad de elementos iguales que se encuentran en
+;forma consecutiva. 
+
+;Ej:
+;(zipList '(a a a b a b b c c)) --> ((a . 3) (b . 1) (a . 1) (b . 2) (c . 2))
+
+
+(define cuentaRepetidos ;cuento los repetidos continuos
+  (lambda (x lista)
+    (if (null? lista)
+        0
+        (if (equal? x (car lista))
+            (+ 1 (cuentaRepetidos x (cdr lista)))
+            0
+            )
+        )
+    )
+  )
+(cuentaRepetidos 'a '(a a a b a b b c c))
+
+(define eliminar-n
+  (lambda (lista cantidad)
+    (if (null? lista)
+        '()
+        (if (= 1 cantidad)
+            (cdr lista)
+            (eliminar-n (cdr lista) (- cantidad 1))
+            )
+        )
+    )
+  )
+(eliminar-n '(a a a b a b b c c) (cuentaRepetidos 'a '(a a a b a b b c c)) )
+
+(define zipListAux
+  (lambda (x lista)
+    (cons x (cuentaRepetidos (car lista) lista))))
+
+(zipListAux 'a '(a a a b a b b c c))
+
+(define zipList
+  (lambda (lista)
+    (if (null? lista)
+        '()
+        (cons (zipListAux (car lista) lista) (zipList(eliminar-n lista (cuentaRepetidos (car lista) lista))))
+    )
+  )
+  )
+(zipList '(a a a b a b b c c))

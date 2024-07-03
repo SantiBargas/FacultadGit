@@ -1,0 +1,21 @@
+
+(define '( ("Lunes" (("DESAYUNO" . 120)("ALMUERZO" . 280)("MERIENDA" . 110)("CENA" . 220)) (("ALMUERZO" . 380)) )
+  ("Martes" (("DESAYUNO" . 120)("ALMUERZO" . 295)("MERIENDA" . 90)("CENA" . 250)) (("ALMUERZO" . 295)) )
+  ("Miércoles" (("DESAYUNO" . 125)("ALMUERZO" . 270)("MERIENDA" . 95)("CENA" . 290)) (("CENA" . 220)) )
+  ("Jueves" (("DESAYUNO" . 130)("ALMUERZO" . 270)("MERIENDA" . 120)("CENA" . 280)) (("MERIENDA" . 70)) )
+  ("Viernes" (("DESAYUNO" . 120)("ALMUERZO" . 275)("MERIENDA" . 115)("CENA" . 270)) () )
+))
+( ("Lunes" ((DESAYUNO . 120)(ALMUERZO . 280)(MERIENDA . 110)(CENA . 220)) ((ALMUERZO . 380)) )
+  ("Martes" ((DESAYUNO . 120)(ALMUERZO)(MERIENDA . 90)(CENA . 250)) ((ALMUERZO . 295)) )
+  ("Miércoles" ((DESAYUNO . 125)(ALMUERZO . 270)(MERIENDA . 95)(CENA . 290)) ((CENA . 220)) )
+  ("Jueves" ((DESAYUNO . 130)(ALMUERZO . 270)(MERIENDA . 120)(CENA . 280)) ((MERIENDA . 70)) )
+  ("Viernes" ((DESAYUNO . 120)(ALMUERZO . 275)(MERIENDA . 115)(CENA . 270)) () )
+)
+
+
+( ("Lunes" ((DESAYUNO . 120)(ALMUERZO . 280)(MERIENDA . 110)(CENA . 220)) ) 
+  ("Martes" ((DESAYUNO . 120)(ALMUERZO . 295)(MERIENDA . 90)(CENA . 250)) ) 
+  ("Miércoles" ((DESAYUNO . 125)(ALMUERZO . 270)(MERIENDA . 95)(CENA . 220)) )
+  ("Jueves" ((DESAYUNO . 130)(ALMUERZO . 270)(MERIENDA . 70)(CENA . 280)) ) 
+  ("Viernes" ((DESAYUNO . 120)(ALMUERZO . 275)(MERIENDA . 115)(CENA . 270)) ) 
+)
