@@ -1,0 +1,36 @@
+.text
+
+li t1,15
+li t2,10
+
+#beq t1,t2,igual #a
+
+#bge t1,t2,mayor_igual #b
+
+#bge t2,t1,nomenor_igual #c #no se puede usar ble
+#li a0,500
+#j fin
+
+#bne t1,t2,distinto #d
+
+#blt t1,t2,menor #e
+
+#blt t1,t2,nomayor #f #no se puede usar bgt
+#li a0,500
+#j fin
+
+igual: li a0,1
+	j fin
+nomenor_igual: j fin
+
+mayor_igual: li a0,3
+	j fin
+distinto: li a0,4
+	j fin
+menor: li a0,5
+	j fin
+
+nomayor: j fin
+
+fin: ori a7,x0,10
+     ecall

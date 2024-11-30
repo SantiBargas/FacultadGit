@@ -1,0 +1,5 @@
+examen diciembre: 
+- Riesgos de datos. Que son, cuales son. Como solucionarlos
+- Arquitectura multihilo. Funcionamiento. Diferencias y similitudes con multinucleo.
+- Puerto serie. Que es. Explicar funcionamiento asincrono
+

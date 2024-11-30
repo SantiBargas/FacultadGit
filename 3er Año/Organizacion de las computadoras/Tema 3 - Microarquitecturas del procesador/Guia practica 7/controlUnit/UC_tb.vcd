@@ -1,0 +1,206 @@
+$date
+	Fri Nov 01 21:20:52 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module UC_tb $end
+$var wire 1 ! resultSrc_test $end
+$var wire 1 " regWrite_test $end
+$var wire 1 # pcSrc_test $end
+$var wire 1 $ memWrite_test $end
+$var wire 2 % inmSrc_test [1:0] $end
+$var wire 1 & branch_test $end
+$var wire 1 ' aluSrc_test $end
+$var wire 3 ( aluCtrl_test [2:0] $end
+$var parameter 32 ) DURATION $end
+$var reg 1 * clk $end
+$var reg 3 + f3_test [2:0] $end
+$var reg 1 , f7_5_test $end
+$var reg 7 - opcode_test [6:0] $end
+$var reg 1 . zero_test $end
+$scope module UUT $end
+$var wire 3 / f3_s [2:0] $end
+$var wire 1 , f7_5_s $end
+$var wire 7 0 opcode_s [6:0] $end
+$var wire 1 . zero $end
+$var wire 1 ! resultSrc_s $end
+$var wire 1 " regWrite_s $end
+$var wire 1 # pcSrc_s $end
+$var wire 1 $ memWrite_s $end
+$var wire 2 1 inmSrc_s [1:0] $end
+$var wire 1 & branch_s $end
+$var wire 1 ' aluSrc_s $end
+$var wire 2 2 aluOp_s [1:0] $end
+$var wire 3 3 aluCtrl_s [2:0] $end
+$scope module alu_dec $end
+$var wire 3 4 aluCtrl [2:0] $end
+$var wire 3 5 f3 [2:0] $end
+$var wire 1 , f7_5 $end
+$var wire 1 6 op_5 $end
+$var wire 2 7 aluOp [1:0] $end
+$var reg 3 8 alu_reg [2:0] $end
+$upscope $end
+$scope module main_dec $end
+$var wire 7 9 op [6:0] $end
+$var wire 1 # pcSrc $end
+$var wire 1 . zero $end
+$var wire 1 ! resultSrc $end
+$var wire 1 " regWrite $end
+$var wire 1 $ memWrite $end
+$var wire 2 : inmSrc [1:0] $end
+$var wire 1 & branch $end
+$var wire 1 ' aluSrc $end
+$var wire 2 ; aluOp [1:0] $end
+$var reg 9 < signals [8:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1010 )
+$end
+#0
+$dumpvars
+b101001 <
+b0 ;
+b0 :
+b11 9
+b0 8
+b0 7
+06
+b0 5
+b0 4
+b0 3
+b0 2
+b0 1
+b11 0
+b0 /
+0.
+b11 -
+0,
+b0 +
+0*
+b0 (
+1'
+0&
+b0 %
+0$
+0#
+1"
+1!
+$end
+#50000
+1*
+#100000
+0!
+1$
+b1 %
+b1 1
+b1 :
+0"
+b11010 <
+16
+0*
+1.
+b100011 -
+b100011 0
+b100011 9
+#150000
+1*
+#200000
+b1 (
+b1 3
+b1 4
+b1 8
+b10 2
+b10 7
+b10 ;
+0$
+0'
+b0 %
+b0 1
+b0 :
+1"
+b100000001 <
+0*
+1,
+b110011 -
+b110011 0
+b110011 9
+#250000
+1*
+#300000
+b10 (
+b10 3
+b10 4
+b10 8
+0*
+b111 +
+b111 /
+b111 5
+#350000
+1*
+#400000
+b1 (
+b1 3
+b1 4
+b1 8
+1#
+b1 2
+b1 7
+b1 ;
+1&
+b10 %
+b10 1
+b10 :
+0"
+b11000100 <
+0*
+b1100011 -
+b1100011 0
+b1100011 9
+#450000
+1*
+#500000
+0*
+#550000
+1*
+#600000
+0*
+#650000
+1*
+#700000
+0*
+#750000
+1*
+#800000
+0*
+#850000
+1*
+#900000
+0*
+#950000
+1*
+#1000000
+0*
+#1050000
+1*
+#1100000
+0*
+#1150000
+1*
+#1200000
+0*
+#1250000
+1*
+#1300000
+0*
+#1350000
+1*
+#1400000
+0*

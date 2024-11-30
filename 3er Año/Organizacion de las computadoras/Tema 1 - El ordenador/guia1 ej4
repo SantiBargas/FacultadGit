@@ -1,0 +1,15 @@
+.text
+lui t0, 0x12345 #Carga el valor 0x12345000 en el registro t0.
+sw t0, (sp) #almacena el valor de t0 en la dirección apuntada por el registro de pila (sp).
+lui a1, 0x10010 #Carga el valor 0x10010000 en el registro a1
+lw t1, (sp)  #Carga el valor desde la dirección de memoria apuntada por sp en el registro t1
+sw t1, (a1) #Almacena el valor de t1 en la dirección apuntada por a1.
+li a7, 10 #Carga el valor 10 en el registro a7.
+ecall #Llama a ecall, que es una llamada al sistema (generalmente usada para finalizar el programa o realizar una operación específica del sistema).
+
+#El valor de t0 (0x12345000) se almacena en la dirección de memoria apuntada por sp (el registro de pila). Esta dirección puede variar dependiendo del estado actual del registro sp, pero se utiliza como almacenamiento temporal.
+
+#lui a1, 0x10010 asigna 0x10010000 a a1. Esto se hace para establecer la base de una dirección de memoria específica.
+
+#Después de ejecutar lw t1, (sp), el registro t1 tomará el valor almacenado en la dirección apuntada por sp, que es 0x12345000
+

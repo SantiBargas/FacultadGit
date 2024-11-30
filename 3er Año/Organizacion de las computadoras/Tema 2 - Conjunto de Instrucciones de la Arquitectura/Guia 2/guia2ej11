@@ -1,0 +1,12 @@
+.text
+
+li t0,4 #Cargamos el valor a multiplicar
+slli t1,t0,5 # -> t1 = t0 * 2^5 -> t0 * 32
+slli t2,t0,4 # -> t2 = t0 * 2^4 -> t0 * 16
+slli t3,t0,3 # -> t3 = t0 * 2^3 -> to * 8
+slli t4,t0,2 # -> t4 = t0 * 2^2 -> t0 * 4
+
+add a1,t1,t2 # t0 * 32 + t0 * 16 (multiplicado por 48)
+add a2,t3,t4 # t0 * 8 + t0 + 4 (multiplicado por 12)
+add a3,a1,a2 #ahora tengo en total multiplicado por 60, le sumo uno mas
+add a0,a3,t0 #

@@ -1,0 +1,29 @@
+.data
+	V: .word 1,1,1,0
+	total: .word 0
+
+.text
+	
+	li a0,4
+	li a1,0
+	li a2,0
+	la t0,V
+	la t1,total
+	
+	for: beq a0,a1,fin
+	     lw t2,(t0)
+	     addi t0,t0,4
+	     addi a1,a1,1
+	     beqz t2,contar
+	     j for
+	
+	contar: addi a2,a2,1
+		j for
+		
+
+	
+	fin:
+	sw a2,(t1)
+	ori a7,x0,10
+	ecall
+	

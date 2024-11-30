@@ -1,0 +1,11 @@
+.data
+elemento: .word 0x4E1C532D
+.text
+lw t1,elemento
+
+#Las etiquetas facilitan la lectura y mantenimiento del código, ya que permiten identificar fácilmente lo que se almacena en cada posición de memoria sin tener que memorizar direcciones específicas. Además, permiten que el código sea más flexible, ya que las etiquetas pueden ser reubicadas en memoria sin necesidad de modificar todas las referencias a las direcciones.
+
+
+#El valor almacenado en la dirección de memoria apuntada por elemento es 0x4E1C532D
+
+#Al ejecutar la instrucción lw t1,elemento, el valor 0x4E1C532D es cargado en el registro t1. Por lo tanto, al finalizar el programa, el registro t1 contendrá el valor 0x4E1C532D

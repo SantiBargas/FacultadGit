@@ -1,0 +1,75 @@
+.data
+a: .word 1
+b: .word 2
+c: .word 3
+d: .word 4
+e: .word 5
+
+#reservamos un espacio en memoria para la variable a,b,c,d,e y 
+#le asignamos el valor inicial 0
+
+.text
+lw t0,a
+lw t1,b
+lw t2,c
+lw t3,d
+lw t4,e 
+
+#A)
+#lw t0,a   #valor de b t0=a
+#lw t0,b  #valor de a = b
+
+#B)
+#lw t0,b
+#lw t1,c
+#add t2,t0,t1  #Si pasamos un registro a lo ultimo va add, si pasamos un numero a lo ultimo va addi
+
+#C
+#lw t0,a
+#addi t0,t0,1
+
+#D
+#lw t0,d
+#addi t0,t0,2
+
+#E
+#add t0,t0,t1 #a + b
+#add t0,t0,t2 #(a+b) + c
+#add t0,t0,t3 #(a+b+c)+d
+#add t0,t0,t4 #(a+b+c+d)+e
+
+#F
+#sub t0,t1,t2
+
+#G
+#sub t5,t1,t3
+#add t0,t5,t2
+
+#H
+#add t5,t1,t2
+#add t6,t3,t4
+#sub t0,t5,t6
+ 
+#I
+#mul t0,t1,t2
+
+#J
+#div t0,t1,t2
+
+#K
+#li t6,3
+#mul t0,t4,t6
+
+#L
+#sub t5,t1,t2
+#sub t6,t3,t4
+#mul t0,t5,t6
+
+#M
+#mul t5, t1,t2
+#mul t6,t5,t3
+
+#N
+add t0,t1,t2
+div t1 t4,t5
+mul t0,t0,t1

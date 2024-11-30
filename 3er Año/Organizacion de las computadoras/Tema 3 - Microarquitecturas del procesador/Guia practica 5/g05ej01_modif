@@ -1,0 +1,21 @@
+.text
+ori a0,x0,12      #2 Inicializar a0 = 12
+ori a1,x0,7       #3 Inicializar a1 = 7
+ori a2,x0,35      #4 Inicializar a2 = 35
+ 		
+addi sp,sp,-12    #6 Reservar 12 bytes en la pila para a0, a1 y a2
+sw a0,8(sp)       #7 Guardar a0 en la pila (en sp+8)
+sw a1,4(sp)       #9 Guardar a1 en la pila (en sp+4)
+sw a2,0(sp)       #11 Guardar a2 en la pila (en sp+0)
+		
+add a0,a1,a2      #13 Sumar a0 = a1 + a2
+addi a1,a1,7      #14 a1 = a1 + 7
+addi a2,a2,-20    #15 a2 = a2 - 20
+ 		 
+lw a2,0(sp)       #17 Restaurar a2 desde la pila (en sp+0)
+lw a1,4(sp)       #19 Restaurar a1 desde la pila (en sp+4)
+lw a0,8(sp)       #21 Restaurar a0 desde la pila (en sp+8)
+
+addi sp,sp,12     #23 Devolver el puntero de pila a su valor original
+addi a7,x0,10     #24 Llamada al sistema con ecall
+ecall             #25

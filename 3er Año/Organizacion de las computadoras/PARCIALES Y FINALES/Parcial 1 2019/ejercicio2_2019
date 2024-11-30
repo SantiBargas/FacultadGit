@@ -1,0 +1,25 @@
+.data
+	cadena: .asciz "hola sin espacio"
+	DESTINO: .space 50 #espacio para los caracteres
+.text
+
+	la t0,cadena #Cargamos la direccion de cadena
+	lb t1,(t0) #Guardamos en t1 el primer byte
+	la a0,DESTINO #Cargamos la direccion de donde vamos a guardar la nueva cadena
+	li a3,' ' #cargamos el espacio
+	
+	bucle: 
+	       lb t1,(t0) #cargamos en t1 el primer char
+	       beqz t1,fin #si t1 es igual a 0 llego al final de la cadena
+	       beq t1,a3,espacionulo
+	       addi a0,a0,1
+	       addi t0,t0,1
+	       sb t1,(a0)
+	       j bucle
+	       
+	espacionulo: addi t0,t0,1 #si es nulo no guardamos nada, solo movemos el puntero que apunta a la cadena
+		     j bucle	       
+	       #si t1 es igual a espacio en blanco salteamos
+	 
+	fin: ori a0,x0,10
+		ecall

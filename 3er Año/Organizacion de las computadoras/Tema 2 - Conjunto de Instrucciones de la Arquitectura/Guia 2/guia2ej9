@@ -1,0 +1,13 @@
+.text
+ori t0, zero, 0x465  #t0 toma el valor 0x456 porque hace un Or inmediato con zero
+ori t1, zero, 0x0FF  #t1 toma el valor 0x456 porque hace un Or inmediato con zero
+ori t2, zero, 0x123  #t2 toma el valor 0x456 porque hace un Or inmediato con zero
+and a0, t0, t2  #Realiza la operacion AND entre t0 y t2 en binario
+andi a1, t1, 0x35  #Realiza la operacion AND entre t1 y 0x35 en binario, es andi (inmediato pq le pasamos un valor nosotros)
+or a2, t1, t0  #Realiza el OR en binario entre t1 y t0 y guarda en a2
+ori a3, t1, 1 #Realiza el OR en binario entre t1 y t0 y guarda en a2 (inmediato pq le pasamos un valor nosotros)
+addi a4, t1, 1 #Realiza la suma inmediata entre t1 y 1 en binario (255 + 1 = 256)
+xor a5, t0, t0  #Realiza la operacion XOR en binario entre t0 y t0 (queda todo 0 ya que XOR en t0 con t0 es 0)
+xori a6, t0, 0x371  #Realiza la operacion XOR en binario entre t0 y 0x371 en binario
+xori a7, a6, 0x371  #Realiza la operacion XOR en binario entre t0 y 0x371 en binario
+not s1, a0  

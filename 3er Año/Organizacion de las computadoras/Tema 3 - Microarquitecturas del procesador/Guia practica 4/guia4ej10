@@ -1,0 +1,31 @@
+.data
+    V: .word 0x50, 0x60, 0x70, 0x80, 0x90,0x100, 0x110, 0x120, 0x130, 0x140, 
+    	     0x150, 0x160, 0x170, 0x180,0x190, 0x200, 0x210, 0x220, 0x230,0x240,
+    	    0x250, 0x260, 0x270, 0x280, 0x230, 0x240, 0x250,0x260,0x70,0x280 #solo 11 entre 0x100 y 0x200
+.text 
+	li a0,0 #-> contador de valores
+	li a1,0 #-> contador para el for
+	li a2,30 #-> contador hasta para el for
+	li a3,0x100 #-> cargo valor para comparar
+	li a4,0x200 #-> cargo valor para comparar
+	
+	la t0,V #->guardo la direccion de V
+
+	
+	for: beq a1,a2,fin
+		
+		addi a1,a1,1
+		lw t1,(t0) #me guardo en t1 el valor de la direccion t0
+		addi t0,t0,4 #sumamos 4 para recorrer el vector
+		bge t1,a3,mayor_100 #si es mayor vamos a mayor
+		
+		j for
+		
+	mayor_100: ble t1,a4,mayor_menor
+		   j for
+	
+	mayor_menor: addi a0,a0,1
+		     j for
+	
+	fin: ori a7,x0,10
+		ecall

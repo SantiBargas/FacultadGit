@@ -1,0 +1,51 @@
+.data
+	V: .space 32 #vector de 16/4 = 4
+	n: .word 8
+	total: .word
+.text
+	la t0,V #guardammos direccion del vector en t0
+	la t1,n #guardamos direccion de cantidad de elementos en t1
+	la t2,total #guardamos direccion de t2 en total
+	lw t6,(t2)
+	li a0,0 #-> contador para el for
+	lw a1,(t1)#-> total de elementos, lo usamos para el for
+	
+	li a2,2 #-> cargamos un 2 para dividir
+	li a3,1 #cargamos un 1 para usar e ir cargando
+	
+	li a4,0 #-> contador para el segundo bucle
+	
+	
+	##LA LOGICA ES PONER AL ELEMENTO N DEL VECTOR 0 SI EL CONTADOR ES PAR
+	## 1 SI EL CONTADOR ES IMPAR
+	
+	#inicializacion
+	for: beq a0,a1,fin1
+	     rem t3,a0,a2
+	     addi a0,a0,1 # sumamos 1 al contador
+	     beq t3,zero,asigna0 #si t3=0 es par, ponemos 0. Sino guardamos 1
+	     sw a3,(t0)
+	     addi t0,t0,4
+	     j for
+	     
+   	asigna0: sw zero,(t0)
+   	  addi t0,t0,4
+          j for
+        
+        fin1: la t0,V #volvemos a asignar la primer direccion del vector V
+       
+    	buqle_contador: beq a4,a1 fin
+    			addi a4,a4,1
+    			lw a5,(t0)
+    			beqz a5,contador
+    			addi t0,t0,4 #Sumamos 4 al puntero
+    			j buqle_contador
+    		
+      contador: addi t6,t6,1
+      		addi t0,t0,4
+      		j buqle_contador
+          
+    fin: 
+    	sw t6,(t2)
+    	ori a7,x0,10
+    	ecall

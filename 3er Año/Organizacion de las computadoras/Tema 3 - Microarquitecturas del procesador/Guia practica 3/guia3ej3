@@ -1,0 +1,41 @@
+.text
+
+#Valores para comparar
+li t5,5
+li t6,6 
+li t4,10
+li a1,30
+#Valores variables
+li t1,11
+li t2,10
+li t3, 10
+
+#blt t1,t5,menor #a
+#beq t1,t5,igual_1 #b
+#bne t1,t2,distintos_1 #c
+
+#blt t1,t6,nomayor #d #No se puede usar bgt
+#li a0,500
+#j fin
+
+blt t1,t4,nomayor #e #No se puede usar bgt
+blt t1,a1,inciso_e
+
+menor: li a0,1
+	j fin
+igual_1: beq t2,t3,igual_2
+	 j fin
+igual_2: li a0,500
+	 j fin
+distintos_1: bne t1,t3,distintos_2
+	     j fin
+distintos_2: li a0, 5001
+	     j fin
+nomayor: li a0,-1
+	j fin
+
+inciso_e: li a0,5001
+         j fin
+	
+fin: ori a7,x0,10
+     ecall

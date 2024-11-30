@@ -1,0 +1,26 @@
+.data
+	cadena: .asciz "aaa"
+	buscado: .byte 'a'
+	resultado: .word 0
+
+.text
+	
+	lb a0,buscado
+	li a1,0
+	la t0,cadena
+	la t2,resultado
+	lb t1,(t0)
+	
+	for: beqz t1,fin
+	     lb t1,(t0)
+	     beq t1,a0,contar
+	     addi t0,t0,1
+	     j for
+	     
+	contar:	addi a1,a1,1
+		addi t0,t0,1
+		j for
+		
+	fin: 	sw a1,(t2)
+		ori a7,x0,10
+		ecall

@@ -1,0 +1,38 @@
+.data
+	empleados: .word 4
+	sMax: .word 0x001B7635
+	sueldos: .word 11,17,11,40
+	hijos: .word 1,2,3,4
+	
+.text
+	la t0,sueldos
+	la t2,empleados
+	lw t3,(t2)
+	li a0,0
+	li a1,0
+	li a2,0
+	
+	for: beq a0,t3,fin
+		addi a0,a0,1
+		lw t1,(t0)
+		
+		bgt t1,a2,esmayor2
+		addi t0,t0,4
+		j for
+	
+	esmayor2:
+		bgt t1,a1,esmayor1
+		li a2,0
+		add a2,zero,t1
+		addi t0,t0,4
+		j for
+	
+	esmayor1: li a2,0
+		add a2,zero,a1
+		li a1,0
+		add a1,zero,t1
+		addi t0,t0,4
+		j for
+		
+	fin: ori a7,x0,10
+		ecall

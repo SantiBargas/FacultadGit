@@ -1,0 +1,13 @@
+.text
+
+li t0,61 #numero hasta donde va a ir el for
+li t1,0 #contador
+li t2,10 #numero a multiplicar
+
+for: beq t1,t0 fin
+	addi t1,t1,1
+	add a0,a0,t2
+	j for
+	
+fin: ori a7,x0,10
+     ecall

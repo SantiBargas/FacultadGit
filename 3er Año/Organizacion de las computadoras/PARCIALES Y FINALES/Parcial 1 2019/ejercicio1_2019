@@ -1,0 +1,24 @@
+.data
+	VALOR: .word 9
+	
+.text
+	la t0,VALOR #guardamos en t0 la direccion de VALOR
+	lw a0,(t0) #guardamos en a0 el valor de VALOR
+	
+	#cargamos los valores para comparar
+	li a1,10  #no cargamos 10 pq puede ser 10
+	li a2,90 
+	li a3,0
+	
+	bucle: ble a0,a2,menor90 #si a0 < 90 vamos a chequear si es mayor a 10
+		j fin
+		
+	menor90: bge a0,a1,entre10_y_90
+		j fin
+		
+	entre10_y_90:
+		    li a3,1
+		    j fin
+		    
+	fin: ori a7,x0,10
+		ecall

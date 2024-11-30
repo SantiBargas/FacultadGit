@@ -1,0 +1,21 @@
+.data
+	n: .word 8
+
+.text
+
+	la t0,n
+	lw a0,(t0) #-> numero a calcular
+	
+	li a2,0
+	li a3,1 #-> primer numero impar, para obtener los siguientes le vamos sumando 2
+	li a4,2 #-> para ir sumando para obtener los impares
+	
+	for: beq a2,a0,fin #el contador llego a 3
+	     addi a2,a2,1 #sumamos 1 al contador
+	     add a1,a1,a3 #vamos sumando los impares
+	     add a3,a3,a4
+	     j for
+             
+			
+	fin: ori a7,x0,10
+		ecall

@@ -1,0 +1,21 @@
+.data 
+	n: .word 12
+
+.text
+	
+	la t0,n
+	lw,t1,(t0)
+	
+	li a0,1 # 2^0 = 1
+	li a1,0
+	li a3,2
+	for:
+	    bge a0,t1, fin
+	    mul a0,a0,a3
+	    bge a0,t1, fin
+	    
+	    addi a1,a1,1
+	    j for
+	
+	fin: ori a7,x0,10
+	     ecall

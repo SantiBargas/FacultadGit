@@ -1,0 +1,28 @@
+.data 
+	V: 1,2,3,4,5,6,7,8,9,10# Definir vector V con 10 palabras
+	A:  .space 40  # Reservamos 60 bytes (15 palabras de 4 bytes) para el vector A (4 bytes * 15 = 60 bytes)
+
+.text 
+
+	la a0,V
+	la a1,A
+	li t4,8 #en t4 guardamos el valor que va a multiplicar 
+	li t0,0
+	li t3,10
+	
+	for: beq t0,t3 fin
+	         lw t1,(a0) #cargamos en t1 el valor de V[0] que esta en la direccion a0
+    		 mul t2,t1,t4 #guardamos en t2 -> t1 * 8
+    		 sw t2,(a1) #guardamos en la direccion a1 el valor t1
+    		 
+    		 addi a0,a0,4
+    		 addi a1,a1,4
+    		 addi t0,t0,1
+    		 j for
+     	
+	
+	
+	
+	
+	fin: ori a7,x0,10
+		ecall

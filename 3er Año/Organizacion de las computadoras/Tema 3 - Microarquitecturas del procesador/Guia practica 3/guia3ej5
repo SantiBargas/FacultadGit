@@ -1,0 +1,23 @@
+.data
+dato1: .word 87
+dato2: .word 13
+res: .space 4
+mod: .space 4
+
+.text
+	lw t1, dato1 #Guardamos en t1, dato1
+	lw t2, dato2 #Guardamos en t2, dato2
+	and a0, zero, zero #Seteamos 0 en a0
+	and a1, zero, zero #Seteamos 0 en a1
+	
+		si: beq t2, zero, finsi # si t2 es igual a 0 vamos a finsi
+		
+		enton: div a0, t1, t2 #sino dividimos t1/t2 y guardamos en a0
+			rem a1, t1, t2 #guardamos el resto en a1
+		
+		finsi: sw a0, res, t0 #Guardamos en res el valor a0 usando t0 como temporal
+			sw a1, mod, t0 #Guardamos en mod el valor a1 usando t0 como temporal
+			nop
+
+
+

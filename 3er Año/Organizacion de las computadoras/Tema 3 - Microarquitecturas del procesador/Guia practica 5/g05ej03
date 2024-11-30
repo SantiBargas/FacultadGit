@@ -1,0 +1,30 @@
+.data
+	V: .word 1,2,3,4
+	cant: .word 4
+	total: .space 4
+	
+.text
+	la t0,V
+	la t1,cant
+	lw a1,(t1)
+	li a0,0
+	li a3,2
+	li a6,0
+	
+	for: beq a0,a1 fin
+	     addi a0,a0,1
+	     lw a2,(t0)
+	     addi t0,t0,4
+	     
+	     rem a4,a2,a3
+	     
+	     beqz a4,contador
+	     
+	     j for
+	
+	
+	contador: addi a6,a6,1
+		 j for
+		 
+	fin: ori a7,x0,10
+		ecall

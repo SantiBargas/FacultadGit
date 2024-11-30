@@ -1,0 +1,37 @@
+.data
+    V: .word 1, 2, 3, 4, 5, 6, 7, 8, 9, 10   # Vector de 10 elementos
+    N: .word 10                              # Número de elementos en el vector
+
+.text
+    la t0, V            # t0 = dirección de V (inicio del vector)
+    la t1, V            # t1 = dirección de V (inicio del vector, para manejar el final)
+    
+    lw t2, N            # Cargar el tamaño del vector en t2
+    li t3, 0            # t3 = contador inicial, comenzará en 0
+    li t4, 4            # Tamaño en bytes de cada palabra (4 bytes)
+    
+    # Calcular la dirección del final del vector
+    mul t5, t2, t4      # t5 = tamaño del vector en bytes (10 * 4 = 40 bytes)
+    add t1, t1, t5      # t1 = dirección final del vector
+    addi t1, t1, -4     # Ajustar t1 para apuntar al último elemento (restar 4 bytes)
+
+invertir:
+    bge t0, t1, fin     # Si t0 >= t1, hemos terminado de invertir (los punteros se encuentran)
+
+    # Cargar el elemento en t0 (inicio) y t1 (final)
+    lw t6, 0(t0)        # Cargar el elemento al principio (t0) en t6
+    lw t5, 0(t1)        # Cargar el elemento al final (t1) en t5
+
+    # Intercambiar los valores
+    sw t5, 0(t0)        # Guardar el valor de t5 (el final) en t0 (inicio)
+    sw t6, 0(t1)        # Guardar el valor de t6 (el inicio) en t1 (final)
+
+    # Avanzar t0 (inicio) y retroceder t1 (final)
+    addi t0, t0, 4      # Mover t0 al siguiente elemento (sumar 4 bytes)
+    addi t1, t1, -4     # Mover t1 al elemento anterior (restar 4 bytes)
+
+    j invertir          # Repetir el ciclo
+
+fin:
+    li a7, 10           # Llamada al sistema para salir (ecall)
+    ecall

@@ -1,0 +1,28 @@
+.data
+valor: .word 0
+.text
+lui t0, 0x12345
+lui t1, 0x345
+lui t2, 0x5
+sw t0, valor, t6
+la a7, valor
+sw t1, 4(a7)
+sw t2, 8(a7)
+
+
+#Source y Basic pueden referirse a dos formas de ver el código en RARS. Source generalmente muestra el código en ensamblador tal como se escribe. Basic podría referirse a una vista más simplificada o al resultado final después de la ejecución de las instrucciones.
+
+#La línea 4 es lui t2, 0x5. Esta instrucción carga el valor 0x00050000 en el registro t2.
+
+##t0 es cargado con 0x12345000 por lui t0, 0x12345.
+##t1 es cargado con 0x03450000 por lui t1, 0x345.
+##t2 es cargado con 0x00050000 por lui t2, 0x5.
+##t6 es utilizado como un offset en sw t0, valor(t6)
+
+#El valor inicial de t6 depende del estado previo del programa, pero si no se inicializó previamente, puede contener un valor indeterminado.
+#Después de la ejecución, t6 no cambia su valor ya que no es modificado por ninguna instrucción en el código proporcionado.
+
+#DATA ADDRESS
+#Se almacena t0, que contiene 0x12345000.
+#Se almacena t1, que contiene 0x03450000, en 0x10010004.
+#Se almacena t2, que contiene 0x00050000, en 0x10010008.

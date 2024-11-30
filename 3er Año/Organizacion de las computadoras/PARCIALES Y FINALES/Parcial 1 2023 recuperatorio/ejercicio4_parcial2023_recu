@@ -1,0 +1,39 @@
+.data
+   .word 345,457,45,67,456,2425,5876,354,12,23,400,677,44,2344,1123,56,333,112,556,444
+
+.text
+    li t0, 0x10010000  # Puntero al inicio del vector
+    addi t1, t0, 80    # Puntero al final del vector (último elemento + 4 bytes)
+	
+	for: 
+	    beq t1, t0, fin        # Si el puntero t0 llega al final, salir del bucle
+	    lw a0, 0(t0)           # Cargar el valor en t0 como el menor
+	    add t2, zero, t0       # Inicializar t2 como copia de t0
+	    addi t2, t2, 4         # Avanzar t2 al siguiente elemento
+	    add t3, zero, t0       # Inicializamos t3 en t0 (posición del menor actual)
+	
+		bucle_interno: 
+		    beq t2, t1, guardar    # Si llegamos al final del vector, guardar el menor
+		    lw a1, 0(t2)           # Cargar el valor en t2
+		    blt a1, a0, esmenor    # Si a1 es menor que a0, actualizar el menor
+		    addi t2, t2, 4         # Avanzar t2 al siguiente elemento
+		    j bucle_interno        # Saltar de vuelta al inicio del bucle interno
+		
+		esmenor: 
+		    add a0, zero, a1       # Actualizar a0 con el nuevo menor
+		    add t3, zero, t2       # Guardar la dirección del menor
+		    addi t2, t2, 4         # Avanzar t2 al siguiente elemento
+		    j bucle_interno        # Continuar con el bucle
+
+		guardar: 
+		    lw a2, 0(t3)           # Cargar el menor encontrado en a2
+		    lw a3, 0(t0)           # Cargar el valor actual en a3
+		    sw a2, 0(t0)           # Guardar el menor en la posición de t0
+		    sw a3, 0(t3)           # Guardar el valor original en la posición del menor
+		    addi t0, t0, 4         # Avanzar el puntero t0 al siguiente elemento
+		    j for                  # Saltar de vuelta al inicio del bucle externo
+
+fin: 
+    ori a7, x0, 10         # Salida del programa
+    ecall
+

@@ -1,0 +1,46 @@
+.data
+	valores:.word 30,50,10   # Definimos tres valores en memoria
+	menor: .space 4         # Reservamos 4 bytes para almacenar el menor valor
+	
+.text
+	
+  	# Cargar los valores en registros
+ 	la t0, valores            # Cargar la dirección base de los valores
+ 	lw t1, 0(t0)              # Cargar el primer valor en t1
+  	lw t2, 4(t0)              # Cargar el segundo valor en t2
+ 	lw t3, 8(t0)              # Cargar el tercer valor en t3
+ 
+ 	#Comparamos el primer y el segundo valor
+ 	blt t1,t2 comparar_t1_t3 #si t1 es menor a t2, t1<t3?
+ 	
+ 	## t2 es menor a t1, t2< t3?
+ 	blt t2,t3,comparar_t2_t3
+ 	
+ 	la a1,menor
+ 	sw t3,(a1)
+ 	j fin
+ 	
+ 	comparar_t1_t3: blt t1,t3,asignar_t1
+ 			j comparar_t2_t3
+
+ 	comparar_t2_t3: blt t2,t3,asignar_t2
+ 	
+
+ 	
+ 	asignar_t1:
+ 		la a1,menor
+ 		sw t1,(a1)
+ 		j fin
+ 		
+ 	asignar_t2:
+ 		la a1,menor
+ 		sw t2,(a1)
+ 		j fin
+ 		
+fin: ori a7,x0,10                  # Llamada al sistema para salir
+    ecall
+ 		
+ 	
+ 			
+ 			
+	

@@ -1,0 +1,32 @@
+.data
+    cadena:    .asciz "aSSaaa"      # Cadena de ejemplo (termina con nulo)
+    char_buscado:  .byte 'a'       # Carácter a buscar
+    resultado:  .word 0            # Resultado para guardar el contador final
+
+.text
+
+    la t0, cadena        # t0 -> dirección de la cadena    
+    la t1, char_buscado  # t1 -> dirección de char_buscado
+    lb t2, (t1)          # Cargar el carácter buscado en t2 (valor ASCII de 'a')
+    li a0, 0             # Inicializar el contador en a0
+  
+bucle:
+    lb t3, (t0)          # Cargar el carácter actual de la cadena en t3
+    beqz t3, fin         # Si es el carácter nulo (0), terminamos
+
+    beq t3, t2, contador # Si el carácter es igual al buscado, incrementar contador
+    addi t0, t0, 1       # Mover a la siguiente posición de la cadena
+    j bucle              # Continuar con el siguiente carácter
+
+contador:
+    addi a0, a0, 1       # Incrementar el contador
+    addi t0, t0, 1       # Mover a la siguiente posición de la cadena
+    j bucle              # Continuar con el siguiente carácter
+
+fin:
+    # Aquí se puede almacenar el resultado en memoria si es necesario
+    la t4, resultado
+    sw a0, 0(t4)         # Guardar el contador final en 'resultado'
+
+    li a7, 10            # Llamada de salida
+    ecall                # Salir del programa

@@ -1,0 +1,16 @@
+
+##Forma 1 li usa lui y addi
+.text
+	li s1,0x12345678
+	
+##Forma 2
+.text
+	lui s1,0x12345
+	addi s1, s1 0x678
+	
+##Forma 3
+.text
+lui s1,0x12345
+ori s1,s1,0x678
+
+

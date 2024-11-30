@@ -1,0 +1,37 @@
+.data
+    V: .word 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,10   # Vector de 10 elementos
+    N: .word 10                             # Número de elementos en el vector
+
+.text
+	la t0,V
+	lw t1,N
+	
+	addi sp,sp,-40
+
+push_loop:
+	beqz t1,pop_loop
+	lw t2,(t0)
+	sw t2,(sp)
+	addi sp,sp,-4
+	addi t0,t0,4
+	addi t1,t1,-1
+	j push_loop
+
+pop_loop:
+    lw t1, N             # t1 = número de elementos en el vector (10)
+    la t0, V             # t0 apunta nuevamente al inicio del vector
+    
+
+pop_cycle:
+   beqz t1,fin
+   addi sp,sp,4
+   lw t2,(sp)
+   sw t2,(t0)
+   addi t0,t0,4
+   addi t1,t1,-1
+   j pop_cycle
+    
+# Finalizar el programa
+fin:
+    li a7, 10            # Llamada al sistema para salir (ecall)
+    ecall

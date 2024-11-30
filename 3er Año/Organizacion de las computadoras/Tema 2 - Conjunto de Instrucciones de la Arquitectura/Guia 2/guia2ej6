@@ -1,0 +1,8 @@
+add t0,t0,t0
+
+li t0,5
+add t0,t0,t0
+
+#tiene sentido si hay algo guardado en t0 y realiza la operacion de duplicar el valor del 
+#registro t0. Es decir, suma el contenido del registro t0 consigo mismo 
+#y almacena el resultado nuevamente en el registro t0.

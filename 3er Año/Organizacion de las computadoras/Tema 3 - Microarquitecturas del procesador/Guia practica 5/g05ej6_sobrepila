@@ -1,0 +1,39 @@
+.data
+    V: .word 1, 2, 3, 4, 5, 6, 7, 8, 9, 10   # Vector de 10 elementos
+    N: .word 10                              # Número de elementos en el vector
+.text
+    # Inicialización de registros
+    la t0, V             # t0 apunta al inicio del vector V
+    lw t1, N             # t1 = número de elementos en el vector (10)
+
+    # Configuración de la pila
+    addi sp, sp, -40     # Reservar espacio para 10 elementos (4 bytes por cada palabra, 10*4 = 40 bytes)
+
+    # Empujar todos los elementos del vector en la pila
+push_loop:
+    beqz t1, pop_loop    # Si t1 == 0, todos los elementos ya están empujados, ir a pop_loop
+    lw t2, 0(t0)         # Cargar el valor del vector en t2
+    sw t2, 0(sp)         # Guardar el valor de t2 en la pila
+    addi sp, sp, -4      # Decrementar el stack pointer (empujar en la pila)
+    addi t0, t0, 4       # Mover el puntero del vector al siguiente elemento
+    addi t1, t1, -1      # Decrementar el contador de elementos
+    j push_loop          # Repetir el ciclo
+
+# Sacar (pop) los elementos de la pila y almacenarlos en el vector en orden inverso
+pop_loop:
+    lw t1, N             # t1 = número de elementos en el vector (10)
+    la t0, V             # t0 apunta nuevamente al inicio del vector
+
+pop_cycle:
+    beqz t1, fin         # Si t1 == 0, hemos terminado, ir a fin
+    addi sp, sp, 4       # Incrementar el stack pointer (sacar de la pila)
+    lw t2, 0(sp)         # Cargar el valor de la pila en t2
+    sw t2, 0(t0)         # Guardar el valor en la posición actual del vector
+    addi t0, t0, 4       # Mover el puntero del vector al siguiente elemento
+    addi t1, t1, -1      # Decrementar el contador de elementos
+    j pop_cycle          # Repetir el ciclo
+
+# Finalizar el programa
+fin:
+    li a7, 10            # Llamada al sistema para salir (ecall)
+    ecall

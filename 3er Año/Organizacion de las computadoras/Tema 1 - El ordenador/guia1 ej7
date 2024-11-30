@@ -1,0 +1,13 @@
+.data
+valor: .word 0x805215C9
+.text
+la s0, valor  #Esta instrucción carga la dirección de la etiqueta valor en el registro s0.
+lhu a1, 0(s0) #Esta instrucción carga 16 bits (2 bytes) sin signo desde la dirección s0 en el registro a1
+lhu a2, 2(s0) #Similarmente, esta instrucción carga los siguientes 16 bits desde s0 + 2 en el registro
+
+#.data
+#valor: .word 0x805215C9
+#.text
+#la s0, valor #Esta instrucción carga 16 bits (2 bytes) desde la dirección s0 en el registro a1, pero en este caso, con signo. Si el bit más significativo (MSB) de los 16 bits es 1, se extiende el signo (se completa con 1s en los 16 bits superiores).
+#lh a1, 0(s0)
+#lh a2, 2(s0)

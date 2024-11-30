@@ -1,0 +1,28 @@
+.data
+	V: .word 1,2,0,4,5
+	C: .word 20 #4 bytes cada elemento -> 5 elementos = 20bytes
+	
+.text 
+
+	la t0,V #Cargamos direccion de V
+	la t1,C #Cargamos direccion de C
+	
+	lw a1,(t1) #Cargamos la cantidad total de bytes
+	li a2,4 #Cargamos un 4 para dividir
+	div a3,a1,a2 #hacemos 20/4 para saber la cantidad de elementos y usar para el bucle
+	
+	li a2,1 #Cargamos lo que devolvera si son todos distintos de 0
+	li a4,0 #Para el contador
+	
+	for: beq a4,a3,fin
+		lw t2,(t0) #Cargamos el valor del vector
+		beqz t2,cero
+		addi t0,t0,4
+		addi a4,a4,1
+		j for
+	
+	cero: li a2,0
+		j fin
+		
+	fin: ori a7,x0,10
+		ecall     

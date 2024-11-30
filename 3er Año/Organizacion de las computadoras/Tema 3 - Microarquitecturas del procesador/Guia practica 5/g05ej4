@@ -1,0 +1,41 @@
+.data 
+	cadena1: .asciz "holasi"
+	cadena2: .asciz "holas"
+
+.text
+	
+	la t0,cadena1
+	li a0,0
+	li t5,1
+	
+	CONTADOR1: lb t2,(t0)
+		beqz t2,bucle2
+		addi t0,t0,1
+		addi a0,a0,1
+		j CONTADOR1
+	
+bucle2:
+	la t1,cadena2
+	li a1,0
+	
+	CONTADOR2: lb t3,(t1)
+		beqz t3,asigna
+		addi t1,t1,1
+		addi a1,a1,1
+		j CONTADOR2
+	
+		
+asigna: 
+    slt t4, a0, a1       # t4 = 1 si a0 < a1  #t4 = 0 si a1 < a0
+    bnez t4, asigna_2    # Si t4 != 0, a1 (cadena2) es mayor, saltar a asignar 2 a s1
+
+asigna_1:
+  	li s1,1
+  	j fin
+asigna_2:
+  	li s1,2
+  	j fin
+# Fin del programa
+fin: 
+    li a7, 10            # Llamada al sistema para salir (ecall)
+    ecall

@@ -1,0 +1,38 @@
+.data
+	empleados: .word 4
+	sMax: .word 0x001B7635
+	sueldos: .word 12,12,12,12
+	hijos: .word 1,2,3,4
+	
+.text
+	la t0,empleados
+	lw a0,(t0) #cant de empleados para hacer el for
+	la t2,sueldos
+	lw t3,(t2) #1.799.733
+	la t4,hijos
+	
+	li a1,0 #contador para el for
+	li a3,44000
+	
+	for: beq a1,a0,fin
+		addi a1,a1,1
+		lw a2,(t2) #cargamos el sueldo
+		
+		bgt a2,t3,avanzar #el sueldo es mayor a 1.799.733 avanzamos
+		
+		lw t5,(t4) #cargamos la cantidad de hijos
+		
+		mul t6,t5,a3 #calculamos el salario a sumar por los hijos
+		add t6,t6,a2 #sumamos el salario actual + salario por hijo
+		sw t6,(t2) #actualizamos el sueldo en la posicion de sueldo que estamos
+		
+		addi t2,t2,4 #corremos el puntero de sueldos
+		addi t4,t4,4 #corremos el puntero de hijos
+		j for
+	
+	avanzar: addi t2,t2,4
+		 addi t4,t4,4
+		 j for
+	
+	fin: ori a7,x0,10
+	     ecall

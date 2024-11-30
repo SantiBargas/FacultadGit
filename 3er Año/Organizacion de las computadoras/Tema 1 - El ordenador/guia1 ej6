@@ -1,0 +1,36 @@
+.data
+valor: .word 0x805215C9
+.text
+la s0,valor     # Cargar la dirección de 'valor' en s0
+lbu a1, 0(s0)   # Cargar byte sin signo desde s0 a a1
+lbu a2, 1(s0)   # Cargar byte sin signo desde s0+1 a a2
+lbu a3, 2(s0)   # Cargar byte sin signo desde s0+2 a a3
+lbu a4, 3(s0)   # Cargar byte sin signo desde s0+3 a a4
+
+
+.data
+valor: .word 0x805215C9
+.text
+la s0,valor     # Cargar la dirección de 'valor' en s0
+lb a1, 0(s0)    # Cargar byte con signo desde s0 a a1
+lb a2, 1(s0)    # Cargar byte con signo desde s0+1 a a2
+lb a3, 2(s0)    # Cargar byte con signo desde s0+2 a a3
+lb a4, 3(s0)    # Cargar byte con signo desde s0+3 a a4
+
+
+#Big endian: El byte más significativo (MSB) se almacena en la dirección de memoria más baja.
+#Little endian: El byte menos significativo (LSB) se almacena en la dirección de memoria más baja.
+
+#LITTLE ENDIAN
+#Dirección   Contenido
+#s0          C9
+#s0 + 1      15
+#s0 + 2      52
+#s0 + 3      80
+
+#BIG ENDIAN
+#Dirección   Contenido
+#s0          80
+#s0 + 1      52
+#s0 + 2      15
+#s0 + 3      C9

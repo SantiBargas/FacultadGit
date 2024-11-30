@@ -1,0 +1,30 @@
+.data 
+	V: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 # Definir vector V con 15 palabras
+	A:  .space 60  # Reservamos 60 bytes (15 palabras de 4 bytes) para el vector A (4 bytes * 15 = 60 bytes)
+
+.text
+	la t0,V  # Cargamos la direccion de memoria de V en el registro t0
+	la t2,A # Cargamos la direccion de memoria de A en el registro t2
+	li a0,0 # Inicializamos a0 con 0 (contador de bucle)
+	li a1,15 # Cargamos el valor 15 en a1 (limite del bucle)
+	li a2,2 #cargamos en a2 el valor 2 para chequear si es impar o par
+	
+for: beq a0,a1,fin
+	
+	addi a0,a0,1
+	
+	lw t1,(t0) #cargamos en t1 el valor de V[0] que esta en la direccion t0
+	rem t3,t1,a2 # t1/a2
+	addi t0,t0,4 #incrementamos el puntero, solo el del valor para ir cargando todo junto
+	bnez t3,impar # si t3 es != a 0 entonces es impar, lo cargamos
+	j for	   
+     
+
+impar:
+	sw t1,(t2) #guardamos en la direccion t2 el valor t1
+     	addi t0,t0,4 #incrementamos el puntero
+	addi t2,t2,4 #aca si incrementamos el puntero para ir guardando
+     	j for
+
+fin: ori a0,x0,10
+	ecall

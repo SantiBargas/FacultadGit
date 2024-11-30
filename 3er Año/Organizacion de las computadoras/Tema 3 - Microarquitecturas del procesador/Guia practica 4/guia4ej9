@@ -1,0 +1,28 @@
+.data
+    V: .word 401,402,3,4,5,6,500,408,9,410,11,12,13,14,15,416,417,18,419,420  # Declaración del vector V
+
+.text 
+	li a0,0 #-> contador de valores
+	li a1,0 #-> contador para el for
+	li a2,20 #-> contador hasta para el for
+	
+	la t0,V #->guardo la direccion de V
+	li t3,400 #-> valor para comparar
+	
+	for: beq a1,a2,fin
+		
+		addi a1,a1,1
+		lw t1,(t0) #me guardo en t1 el valor de la direccion t0
+		bgt t1,t3,mayor #si es mayor vamos a mayor
+		
+		addi t0,t0,4 #sino sumamos 4 para recorrer el vector
+		j for
+		
+	mayor: addi a0,a0,1
+		addi t0,t0,4
+		j for
+	
+	
+	
+	fin: ori a7,x0,10
+		ecall

@@ -1,0 +1,4 @@
+.text
+add t0,t0,zero
+
+#Es siempre sumar cero a lo que haya en t0

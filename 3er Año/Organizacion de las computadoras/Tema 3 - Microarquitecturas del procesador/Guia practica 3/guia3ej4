@@ -1,0 +1,26 @@
+.data
+dato1: .word 20
+dato2: .word 10
+res: .space 4
+
+.text
+lw s8, dato1 #Guardamos en s8 el dato1
+lw s9, dato2 #Guardamos en s9 el dato2
+and t0, t0, zero #Hacemos el and entre t0 y zero (Setea en 0)
+and t1, t1, zero #Hacemos el and entre t1 y zeor (Setea en 0)
+bge s8, s9, salto #Si s8 es mayor a s9 vamos a salto
+ori t1, t1, 1
+
+salto: or t0, t0, t1 #guardamos en t0 el or entre t0 y t1
+	sw t0, res, t6
+	nop
+	nop
+
+
+#A) en res: .space 4 no se carga nada
+
+#B) como se cumple la condicion y va a la etiqueta Salto guarda en res el valor de t0 usando t6 como temporal
+
+#C) Se carga el valor 0, ya que en t0 tenemos 0 y cumple la condicion salto
+
+#D) Se carga el valor 0

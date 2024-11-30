@@ -1,0 +1,23 @@
+##.text
+##	li t0,0x512
+
+##li usa un addi asi q es lo mismo
+	
+	
+.text
+	addi t0, zero,0x512
+		
+				
+#Nos fijamos que dice en code cuando ensamblamos 
+#Code : 0x51200293 
+# 0x51200293 en binario : 1010001001000000000001010010011
+
+#en el libro de monalisa dice addi: immediate[11:0] rs1 000 rd 0010011
+
+#				    101000100100 00000 000 01000 0010011
+
+#Immediate[11:0]: Los 12 bits del valor inmediato.
+#rs1: El registro fuente.
+#funct3: Especifica la operación (para addi, es 000).
+#rd: El registro de destino.
+#Opcode: 0010011 para instrucciones de tipo I.
