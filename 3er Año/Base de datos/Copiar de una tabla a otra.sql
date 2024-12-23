@@ -1,0 +1,18 @@
+create table PRUEBA (
+numero integer);
+
+INSERT INTO PRUEBA VALUES
+    (1),
+    (2),
+    (3),
+    (4);
+
+SELECT * FROM PRUEBA
+
+
+CREATE TABLE PRUEBA_TEMP(
+numero integer);
+
+INSERT INTO PRUEBA_TEMP SELECT * FROM PRUEBA;
+
+SELECT * FROM PRUEBA_TEMP

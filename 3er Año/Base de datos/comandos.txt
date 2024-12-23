@@ -1,0 +1,8 @@
+alter table esquema.PERSONA add constraint FK_PERSONA foreign key (id_localidad) references esquema.LOCALIDAD(id_localidad)
+alter table esquema.PERSONA add constraint CHK_PERSONA_TIPO_DOC check(tipo_doc in ('DNI','LE','LC'));
+
+-- Tabla PAIS
+INSERT INTO actor.PAIS (ID_PAIS, CODIGO_PAIS, NOMBRE_PAIS, NOMBRE_PAIS_RESUMIDO, GENTILICIO)
+VALUES (1, 'ARG', 'Argentina', 'Arg', 'Argentino');
+
+create index IDX_PERSONA on esquema.PERSONA(id_localidad);

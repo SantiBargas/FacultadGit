@@ -1,0 +1,5 @@
+SI TENGO QUE PASAR DE CN A A ID, Y LA TABLA ES DEPENDIENTE: le creo un nuevo id a la tabla que depende
+y me traigo el id de la tabla de arriba y le pongo unique y foreign key
+
+SI TENGO QUE MANTENER CN Y LA TABLA ES DEPENDIENTE: me traigo los PK de la tabla que depende y los pongo
+como <pk,fk> en la tabla 

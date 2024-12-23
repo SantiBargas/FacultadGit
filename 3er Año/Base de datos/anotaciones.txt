@@ -1,0 +1,32 @@
+LAS TABLAS SON ESTATICAS UNA VEZ QUE LA DEFINIMOS
+NO CRECE EN COLUMNAS, CRECE EN CANTIDAD DE FILAS
+
+TODAS LAS ENTIDADES SON TABLAS
+
+PORQUE CONVIENE PONER UN INDICE POR FOREINGKEY ?? PREG PARCIAL
+PARA BUSCAR RAPIDAMENTE SI TIENE UNA TABLA RELACIONADA Y ASI PODER VER SI PUEDO BORRAR O NO
+POR EJ: QUIERO BORRAR UNA LOCALIDAD, BUSCO SI POR LO MENOS UNA PERSONA RELACIONADA
+
+SI HAY N TABLAS DEBE HABER N-1 JOIN
+
+SELECT nom.provincia,nom.localidad FROM persona.provincia,persona.localidad
+---------------------------------------------------------------------------------------
+SELECT prov nom_provincia provincia,
+	loca nom_localidad localidad
+
+FROM persona.provincia prov,
+	persona.localidad loca
+
+WHERE prov.id_provincia = loca.id_provincia AND
+	prov.nom_provincia like 'S%'
+
+---------------------------------------------------------------------------------------
+SELECT p.nom_provincia, count(*)
+FROM provincia p, localidad
+WHERE p.id_provincia = l.id_provincia AND
+l.nom_localidad like 'S%'
+GROUP BY 1( donde 1 es p.nom_provincia)
+HAVING count(*) > 5 
+ORDER BY 1 DESC
+---------------------------------------------------------------------------------------
+Group by se suele usar cuando hay operaciones como count, debajo del having
