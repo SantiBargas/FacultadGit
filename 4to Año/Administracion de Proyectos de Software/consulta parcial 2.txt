@@ -1,0 +1,9 @@
+Evitar
+Transferir
+Mitigar
+todas estas se toman acciones antes de empezar el proyecto
+
+Si es aceptar el plan de contigencia se arma antes y si el riesgo pasa el plan de contigencia el riesgo se ejecuta
+
+Aceptar activamente -> si el riesgo pasa, tengo el plan de contigencia. Plan de contigencia: que hago si pasa el riesgo. Por ej te doy 20 dias de garantia si pasa un defecto te arreglo ese defecto sin cargo
+Aceptar pasivamente -> NO TIENE PLAN, SI EL RIESGO NO PASA SOMOS TODOS FELICES. SI EL RIESGO PASA EMPEZAMOS EN ESE MOMENTO QUE OCURRE A VER QUE PASA
