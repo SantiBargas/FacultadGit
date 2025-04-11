@@ -1,0 +1,5 @@
+Probamos en diferencias finitas 1D poner:
+2Neumann distintas e iguales
+1Rob y 1neu
+
+Y tira resultados NaN por matriz singular

@@ -1,0 +1,17 @@
+nx = 11;  % Número de nodos en x
+ny = 11;  % Número de nodos en y
+% Inicializar la matriz icone
+icone = [];
+
+% Crear los elementos
+for j = 1:(ny-1)
+    for i = 1:(nx-1)
+        % Definir los nodos de cada cuadrado (elemento)
+        n1 = i + (j-1)*nx;       % Nodo inferior izquierdo
+        n2 = n1 + 1;             % Nodo inferior derecho
+        n3 = n1 + nx;            % Nodo superior izquierdo
+        n4 = n3 + 1;             % Nodo superior derecho
+        % Añadir el elemento a la matriz icone
+        icone = [icone; n1, n2, n4, n3];
+    end
+end

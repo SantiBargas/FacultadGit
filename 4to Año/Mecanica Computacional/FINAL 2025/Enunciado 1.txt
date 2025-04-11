@@ -1,0 +1,14 @@
+Determine la fuerza de la barra y la tension axial en cada miembre de la figura.
+Supongamos que el modulo de Young es de E=2.1 GPa y que todas las secciones transversales
+son circulares con un diametro de 50.8cm.
+
+Limite elastico del material de todas las barras = 110 MPa
+
+
+Metodo de diferencias finitas 2d problema de transferencia de calor 2D estacionario
+ecuacion diferencia que describe el problema
+
+Calcular el proble de diferencias finitas 2d problema de transferencia de calor 2D estacionario
+
+Cond de contorno: Flujo salida q<0 = -30;
+Dirlichet = T=40

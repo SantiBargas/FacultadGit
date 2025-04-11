@@ -1,0 +1,2 @@
+Hya 4 grados de libertad ya que tenemos 4 incognitas
+y no 8 en x e y ya que la temperatura es un escalar
