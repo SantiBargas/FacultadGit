@@ -1,0 +1,2 @@
+- Sistema de gimnasio
+- Sistema de mapa global para encontrar empleo, el sistema se encarga de recopilar datos y el empleado busca donde quiere con filtros seleccionados
