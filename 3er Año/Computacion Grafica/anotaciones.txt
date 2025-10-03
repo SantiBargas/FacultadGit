@@ -1,0 +1,194 @@
+conviene tener un supixel blanco? justifique. Preg de parcial
+como modelarias los objetos de esta aula? preg de parcial. Por ej: para modelar el tubo fluorescente hay que ponerle la componente emisiva
+
+La K es del material, la I es de la luz
+Ke = componente emisiva
+Ir = intensidad reflejada
+Ia = comp abiente
+Ka = comp ambiente
+Ks = comp especular
+Iaj = intensidad luz color ambiente
+
+Preg parcial: Si quiero modelar objeto/escena que valores le pongo a las constantes de la ecuacion?
+Preg parcial: nos da dos puntos donde esta la luz y el ojo, como se ve depende de donde ponga
+el punto en la superficie?
+
+un objeto no iluminado esta solo con la componente ambiente, sin especular sin difusa
+la sombra tiene solo componente ambiente, no tiene brillo ni nada
+
+La difusa es maxima cuando esta justo debajo
+
+del buffer de donde sale el fragmento Z que compara los dos para ver cual esta mas cerca? de la rasterizacion
+todo lo Z que llega a la rasterizacion esta entre el Znear y Zfar
+No se analiza tan cerca del ojo pq puede aparecer una division por cero
+
+
+la sombra verde del tp la dibujamos dos veces una con transparecia y otra sin, previo debemos hacer algo
+para que no tape al verdadero
+
+como haria para marcar las lineas ocultas de un objeto? preg parcial
+describa z buffer como funciona etc. preg parcial
+
+las transparencias es un gran problema del z buffer. Zbuffer NO FUNCIONA CON TRANSPARENCIAS
+Si tengo transparencias y quiero usar Zbuffer primero partimos el objeto y primero todo lo opaco 
+y luego lo transparente
+
+ALGORITMO PARA DIBUJAR
+Activar Z, el z por defecto pasa el que esta mas cercano
+BorrarZbuffer()
+BorrarPantalla()
+DibujarIco() .   pero este algoritmo no da la solucion a dibujar transparencias
+
+ALGORITMO PARA DIBUJAR
+Activar Z, el z por defecto pasa el que esta mas cercano
+BorrarZbuffer()
+BorrarPantalla()
+DibujarIcoSolido()
+                ->>> ACTIVAR(PO)
+DibujarIcoWirte()
+		->>> DESACTIVAR(PO)
+
+entre cada dibujar ico activo o desactivo el poligon offset
+
+
+Para dibujar las lineas transparentes
+primero dibujamos las lineas gruesas
+luego le decimos al z buffer que pasen las lineas mas lejanas
+lugo dibujamos las lineas finas 
+luego dibujamos el icosaedro
+
+es decir el truco es invertir la depth a greather y luego volver a invertir depth a less
+
+si sacamos el relleno no anda ya que no tenemos con que comparar, cuando tenemos relleno comparamos para ver cuales estan delante o detras
+
+si queremos que funcione sin relleno debemos: si queremos sin relleno lo pintamos igual pero no lo mostramos
+
+el test de alpha soluciona el problema de la transparencia cuando es 100% transparente, si quiero niveles intermedios de transparencia no me lo resuelve. Preg de parcial
+
+MODELO DE PHONG SEGURAMENTE ENTRE UN EJERCICIO EN EL PARCIAL
+
+Con el exponente q del cos(0) controlo si el brillo es grande o chico, si bajo el exponente el brillo se desparrama mas, si desparramamos mas el brillo le bajamos la intensidad de K
+
+A la formula le sumamos IaKa para que no desaparezca por completo el objeto cuando no tiene brillo
+Ka Kd Ks(mayoria de los materiales blanco) -> dependen del material, para modelar la realidad Ka debe ser mas o menos igual a Kd
+Ia Id Is -> dependen de la luz
+
+En los modelos realistas vemos cos0/pi ya que si entra 1 de luz refleja 3,14 
+
+vector halfways, variacion de bling. La mayoria que usa phong usa la variacion de bling
+
+el vertex sheder aplasta el objeto en la ventana para que el render identifique que triangulo pintar para aproximar a la forma
+
+en ray tracin tiramos rayos a traves de la ventana y vemos a que primitiva le pega
+
+ALGEBRA
+Cuando las cosas suman 1 tiene sentido, sino es un error
+Punto medio= P1 + (P2-P1)/2 
+Cualquier punto que este en el plano tiene que tener un angulo de 90 con la normal entonces Cos(90) = 0 y satisface la ecuacion n*(x-p)=0
+donde n es la normal
+x el punto que buscamos en el plano y p el punto inicial
+
+Con el angulo podemos saber si el punto es positivo o negativo es decir, si esta por arriba o por debajo del plano
+
+n*(a-p) * n(f-p) > 0 
+
+Hablar de arriba y abajo no tiene sentido, asi que pensamos en el lado que apunta la normal y el lado que no apunta la normal
+Para saber si estoy viendo la parte de adelante o atras de una primitiva nos damos cuenta por donde apunte la normal
+
+Utilizamos el producto punto para saber si dos cosas miran hacia el mismo lado o no 
+
+Area de un triangulo: Modulo del Producto cruz entre dos vectores y dividimos por dos
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+INTERPOLACION AFIN: Los pesos deben sumar 1
+Bilineal: si tengo 4 puntos
+Afin:(BIEN CLARO HAY QUE TENERLO) si hablo de recta necesito 2 puntos si hablo de superficie necesito 3 puntos
+Si tengo muchos puntos, primero hago una triangulacion y uso la afin y para que la triangulacion sea eficiente necesito el algoritmo de busqueda lineal
+Un punto esta dentro de un triangulo si todos los pesos son positivos
+
+Hiperbolica:(perspectiva) Con la interpolacion afin y un componente extra (la distancia de la camara) acomoda los pesos
+
+Slerp: (direcciones / normales) que pasa si agregamos 3 puntos en slerp? Rotaciones -> Quaternon
+
+
+En el practico importa la de 3 puntos y en el oral tmb
+En el practico a1= (a1*at)/(at*at) donde at es el area total
+
+Interpolar: conozco un conjunto de puntos (Xi Vi)
+            dado X^ conozco su posicion pero quiero "inventar su valor v^"
+
+PARA EL PRACTICO ENTENDER BIEN LA BUSQUEDA LINEAL
+
+Como me invento una normal para un nodo ? calculo las normales del segmento de la izquierda y la derecha y pongo el promedio en el punto del medio
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TRANSFORMACIONES: 
+Para open gl la camara siempre va a estar en el 0,0 en direccion a z negativo
+Acomodamos todo para que la camara se quede quieta y lo que se mueva es el mundog
+
+MODEL VIEW TRANSFORMS:
+Ubicar el modelo del mundo y llevar el mundo al espacio del ojo
+
+VERTEX SHADING:
+Podemos hacer trucos como el modelo de phong o trucos para los vertices, programables
+
+PROJECTION:
+La projection se encarga de pasar a un plano 2d lo que es 3d, le ponemos un limite para que no vea hasta el infinito
+Despues se transforma el cubo de lo que ve la camara para renderizarlo
+Open gl siempre renderiza como si estuviera en el 0,0 mirando al -z, renderizando un cubo que va desde -1 a 1 en todas las direcciones
+
+CLIPPING:
+Lo que hace es tirar todo lo que quedo fuera del cubo o cortarlo y lo que queda en el cubo es lo que se lleva a las coordenadas
+de la ventana para renderizar
+
+SCREEN MAPING:
+Tirar el resultado del clipping a la ventana con las coordenadas donde se realiza a rasterizacion
+
+TRANSFORMACION LINEAL: 
+Es lineal si preserva la combinacion lineal
+
+TRANSFORMACION AFIN: 
+Es afin si preserva la combinacion afin
+
+
+La normal no se transforma bien con la matriz, pero hay una forma "facil" (involucra invertir la matriz pero son matrices chicas)
+que si preserva la perpendicularidad
+
+ESPACIO PROYECTIVO:
+Si a un punto (X,Y,W) de la recta, que pasa por el origen, lo divido por w encuentro un punto equivalente de la misma recta pero con la particularidad de que w
+vale 1 . VA A SER DONDE JUSTO CORTE EL PLANO W=1
+
+Un punto que esta en el infinito tiene w=0 pero ninguno de sus coordenadas es infinita
+
+en el tp debemos espejar las ruedas y no girarlas 180 grados
+ 
+paso1: armar por columna
+
+paso2: usar glm rotate escale y traslate
+
+
+
+-------------------------TEXTURAS----------------------------------
+El problema esta en definir de que lugar de la textura saco para la tetera
+
+Trabajamos con textura de 0,0 a 1,1
+
+a cada vertice del triangulo le mando su textura y dentro se interpola 
+
+En el tp analizamos mapeo plano: lo que hace es inventar la coordenada de textura a partir de una ecuacion de un plano Ax + By + Cz + D = 0
+Los coef definen de que plano hablamos y xyz son las coordenadas que reemplazo para ver si estan en el plano, si no da 0 no esta en el plano
+si da mayor o menor a 0 determino de que lado del plano estoy. El valor que nos da esta asociado de alguna manera a la distancia que hay entre el punto y el plano
+Ese valor es el metodo que propone el mapeo automatico como coordenada de textura. NO ES LA DISTANCIA, ES ALGO PROPORCIONAL   
+
+Para que sea euclideo necesito que el vector sea unitario  
+
+----------------------------------------------------------------------
+
+-------------------------CURVAS Y SUPERFICIES----------------------------------
+Para decir como graficar una curva no decir el algoritmo de memoria pq sino se da a entender que no entendimos el tema
+
+El algoritmo que debemos saber es: en cada arista del poligono original interpolo por el t que me dieron, con eso obtengo un poligono mas chico
+				    repito hasta que me quede un solo punto y ese sera el punto de la curva
+
+DERIVADA: La derivada es un vector en la direccion

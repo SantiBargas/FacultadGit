@@ -1,0 +1,28 @@
+1- El muñeco con esqueleto entero suficiente para tp
+2- La animacion de la pelota pasando la red detallado
+3- La fisica mucho mas simple que aplicar la spline
+4- En caso de tener 3 splines es mejor interpolar a medida que a poco se pasa
+5- Lo complicado seria calcular el rebote con el tablero
+
+
+
+En el juego no nos gastemos con la intefaz de usuario, con los 5 tiros
+con la logica del juego con el tiempo, SIMPLIFICAR EL JUEGO y hacer un personaje
+
+SIMPLE: sombra del lego proyectando en el piso
+IR POR LA FISICA BASICA, SOLAMENTE DETECTAR LAS COLISIONES
+DETTECCION DE COLISIONES PARA EL REBOTE DEL ARO 
+
+-REBOTE DEL ARO
+
+-BOLUDEAR CON EFECTOS POR TODOS LADOS, REFLEJOS SOBRE EL PARQUE
+-HACER LOS REFLEJOS CON LOS BUFFERS
+-PELOTITA MOTION BLUR
+-CUANDO PEGA EN EL TABLERO QUE SAQUE CHISPA
+-CUANDO ENTRA QUE HAGA UN EFECTO
+
+
+-TRANSFORMACIONES PARA ANIMAR PERSONAJE
+-TEXTURA
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

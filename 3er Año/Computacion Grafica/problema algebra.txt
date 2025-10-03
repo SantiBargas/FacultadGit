@@ -1,0 +1,1 @@
+tengo dos puntos y un plano como hago para saber si los puntos estan en el mismo lado del plano o no
