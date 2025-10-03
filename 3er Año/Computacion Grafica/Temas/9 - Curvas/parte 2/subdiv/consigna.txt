@@ -1,0 +1,23 @@
+
+Nodo:
+Representa un punto en la malla con coordenadas 3D.
+Tiene un atributo booleano es_frontera que indica si el nodo se encuentra en la frontera de la malla.
+Contiene un vector de enteros e que almacena los índices de los elementos que tienen este nodo como uno de sus vértices.
+El constructor toma una posición glm::vec3 como argumento y crea un nodo con esa posición.
+
+Elemento:
+Representa un elemento en la malla, que puede ser un triángulo o un cuadrilátero.
+Tiene un atributo nv que indica la cantidad de vértices en el elemento (3 para triángulo, 4 para cuadrilátero).
+Almacena los índices de los nodos que componen el elemento en el array n, y los índices de los elementos vecinos en el array v. Un valor de -1 en v indica que no hay un elemento vecino en esa arista (frontera).
+El constructor toma los índices de los nodos que componen el elemento y opcionalmente los índices de los elementos vecinos.
+
+SubDivMesh:
+Representa la malla en su conjunto.
+Contiene dos vectores: uno para almacenar objetos de tipo Nodo y otro para almacenar objetos de tipo Elemento.
+Proporciona un constructor que puede leer datos de una malla desde un archivo, pero no se muestra en el código proporcionado.
+Ofrece métodos para trabajar con la malla, como makeVecinos para calcular y establecer las relaciones entre elementos vecinos y métodos para agregar y reemplazar elementos.
+
+En resumen, estas clases permiten representar una malla subdividida en un formato que almacena nodos con sus coordenadas, elementos con sus nodos y vecinos. La clase SubDivMesh es la que reúne todos los datos y proporciona métodos para manipular la malla.
+
+
+SI EL VECINO ES -1 ES UNA ARISTA FRONTERA

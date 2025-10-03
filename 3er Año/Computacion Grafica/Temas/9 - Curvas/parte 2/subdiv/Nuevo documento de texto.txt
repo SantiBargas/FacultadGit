@@ -1,0 +1,139 @@
+//  2) Por cada arista de cada cara, agregar un pto en el medio que es
+	//      promedio de los vertices de la arista y los centroides de las caras 
+	//      adyacentes. Aca hay que usar los elementos vecinos.
+	//      En los bordes, cuando no hay vecinos, es simplemente el promedio de los 
+	//      vertices de la arista
+	//      Hay que evitar procesar dos veces la misma arista (como?)
+	//      Mas adelante vamos a necesitar determinar cual punto agregamos en cada
+	//      arista, y ya que no se pueden relacionar los indices con una formula simple
+	//      se sugiere usar Mapa como estructura auxiliar
+	
+	// Mapa sirve para guardar una asociación entre una arista y un indice de nodo (que no es de la arista)
+	using Mapa = std::map<Arista, int>;
+	Mapa mapa;
+	
+	for (int i = 0; i < mesh.e.size(); ++i) {
+		for (int j = 0; j < mesh.e[i].nv; ++j) {
+			int indicenodo1 = mesh.e[i].n[j];
+			int indicenodo2 = mesh.e[i][(j + 1) % mesh.e[i].nv];
+			// Verificar si la arista ya ha sido procesada (para evitar duplicados)
+			Arista arista = {indicenodo1, indicenodo2};
+			if (mapa.find(arista) != mapa.end()) {
+				continue;
+			}
+			// Calcular el promedio de los nodos de la arista
+			if (mesh.e[i].v[j] == -1){ //si es -1 es frontera{
+				Nodo n1 = mesh.n[indicenodo1];
+				Nodo n2 = mesh.n[indicenodo2];
+				glm::vec3 promedio_arista = {
+					(n1.p.x + n2.p.x) / 2.0f,
+						(n1.p.y + n2.p.y) / 2.0f,
+						(n1.p.z + n2.p.z) / 2.0f
+				};
+				// Agregar el nodo en el medio de la arista
+				Nodo nodo_medio(promedio_arista);
+				mesh.n.push_back(nodo_medio);
+				// Registrar la arista como procesada
+				
+													/// el mapa se hace para saber que nodo se relaciona con cada arista
+				mapa[arista] = mesh.n.size() - 1;   /// a la arista 1 le relaciona el ultimo nodo
+
+			}else{
+				Nodo n1 = mesh.n[indicenodo1];
+				Nodo n2 = mesh.n[indicenodo2];
+				Nodo n3 = mesh.n[N+i]; ///centroide del elemento i
+				Nodo n4 = mesh.n[N+mesh.e[i].v[j]];   ///centroide del vecino del elemento i
+				
+				glm::vec3 prom_nodos= { (n1.p.x + n2.p.x + n3.p.x + n4.p.x)/4.0f,
+					(n1.p.y + n2.p.y + n3.p.y + n4.p.y)/4.0f,
+					(n1.p.z + n2.p.z + n3.p.z + n4.p.z)/4.0f
+				};
+				
+				Nodo promarista_vecino(prom_nodos);
+				mesh.n.push_back(promarista_vecino);
+				// Registrar la arista como procesada
+				mapa[arista] = mesh.n.size() - 1;
+			}
+		}
+	}
+
+	
+	//  3) Armar los elementos nuevos
+	//      Los quads se dividen en 4, (uno reemplaza al original, los otros 3 se agregan)
+	//      Los triangulos se dividen en 3, (uno reemplaza al original, los otros 2 se agregan)
+	//      Para encontrar los nodos de las aristas usar el mapa que armaron en el paso 2
+	//      Ordenar los nodos de todos los elementos nuevos con un mismo criterio (por ej, 
+	//      siempre poner primero al centroide del elemento), para simplificar el paso 4.
+	
+	
+	// 3) Generar los nuevos elementos
+	for (int i = 0; i < mesh.e.size(); ++i) {
+		if (mesh.e[i].nv == 4) {
+			int centroide = N + i;
+			int indicenodo1 = mesh.e[i].n[0];
+			int indicenodo2 = mesh.e[i].n[1];
+			int indicenodo3 = mesh.e[i].n[2];
+			int indicenodo4 = mesh.e[i].n[3];
+			Arista arista1 = {indicenodo1, indicenodo2};
+			Arista arista2 = {indicenodo2, indicenodo3};
+			Arista arista3 = {indicenodo3, indicenodo4};
+			Arista arista4 = {indicenodo4, indicenodo1};
+			int nododelaarista1 = mapa[arista1];
+			int nododelaarista2 = mapa[arista2];
+			int nododelaarista3 = mapa[arista3];
+			int nododelaarista4 = mapa[arista4];
+			
+			mesh.reemplazarElemento(i, centroide, nododelaarista1, indicenodo2,nododelaarista2);
+			//mesh.agregarElemento(centroide,nododelaarista4,indicenodo1,-4);
+			
+			
+			//mesh.agregarElemento(indicenodo1,nododelaarista1,indicenodo4,-centroide);
+			
+			/*mesh.agregarElemento(i, nododelaarista3, indicenodo3, nododelaarista4);
+			
+			mesh.agregarElemento(i, nododelaarista3, indicenodo3, nododelaarista4);*/
+		}  
+		if (mesh.e[i].nv == 3){
+			int centroide = N+i;
+			int indicenodo1 = mesh.e[i].n[0];
+			int indicenodo2 = mesh.e[i].n[1];
+			int indicenodo3 = mesh.e[i].n[2];
+			Arista arista1 = {indicenodo1, indicenodo2};
+			Arista arista2 = {indicenodo2, indicenodo3};
+			Arista arista3 = {indicenodo3, indicenodo1};
+			int nododelaarista1 = mapa[arista1];
+			int nododelaarista2 = mapa[arista2];
+			int nododelaarista3 = mapa[arista3];
+			mesh.reemplazarElemento(i,centroide,nododelaarista1,indicenodo2,nododelaarista2);
+			//mesh.agregarElemento(centroide,nododelaarista1,nododelaarista3,indicenodo2);
+			/*mesh.agregarElemento(centroide,nododelaarista3,nododelaarista1,indicenodo1);*/
+		}
+	}
+	
+	mesh.makeVecinos();
+
+	
+	
+	//  4) Calcular las nuevas posiciones de los nodos originales
+	//      Para nodos interiores: (4r-f+(n-3)p)/n
+	//         f=promedio de nodos interiores de las caras (los agregados en el paso 1)
+	//         r=promedio de los pts medios de las aristas (los agregados en el paso 2)
+	//         p=posicion del nodo original
+	//         n=cantidad de elementos para ese nodo
+	//      Para nodos del borde: (r+p)/2
+	//         r=promedio de los dos pts medios de las aristas
+	//         p=posicion del nodo original
+	//      Ojo: en el paso 3 cambio toda la SubDivMesh, analizar donde quedan en los nuevos 
+	//      elementos (¿de que tipo son?) los nodos de las caras y los de las aristas 
+	//      que se agregaron antes.
+	// tips:
+	//   no es necesario cambiar ni agregar nada fuera de este método, (con Mapa como 
+	//     estructura auxiliar alcanza)
+	//   sugerencia: probar primero usando el cubo (es cerrado y solo tiene quads)
+	//               despues usando la piramide (tambien cerrada, y solo triangulos)
+	//               despues el ejemplo plano (para ver que pasa en los bordes)
+	//               finalmente el mono (tiene mezcla y elementos sin vecinos)
+	//   repaso de como usar un mapa:
+	//     para asociar un indice (i) de nodo a una arista (n1-n2): elmapa[Arista(n1,n2)]=i;
+	//     para saber si hay un indice asociado a una arista:  ¿elmapa.find(Arista(n1,n2))!=elmapa.end()?
+	//     para recuperar el indice (en j) asociado a una arista: int j=elmapa[Arista(n1,n2)];

@@ -1,0 +1,201 @@
+// función que rendiriza todo el auto, parte por parte
+void renderCar(const Car &car, const std::vector<Part> &parts, Shader &shader) {
+	const Part &axis = parts[0], &body = parts[1], &wheel = parts[2],
+	           &fwing = parts[3], &rwing = parts[4], &helmet = parts[use_helmet?5:6];
+
+	/// @todo: armar la matriz de transformación de cada parte para construir el auto
+
+	/// glm::mat4(1.f) MATRIZ DE IDENTIDAD
+
+	
+	
+	if (body.show or play) {
+		glm::mat4 transformationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.1f, 0.0f)); ///trasladamos en z 0.1f
+		
+		/*glm::mat4 transformationMatrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
+												   0.0f, 1.0f, 0.0f, 0.0f,
+												   0.0f, 0.0f, 1.0f, 0.0f,
+												   0.0f, 0.0f, 0.0f, 1.0f);
+		*/
+		
+		renderPart(car, body.models, transformationMatrix, shader);
+	
+	
+	}
+
+	if (wheel.show or play) {
+		
+		/*El orden típico de aplicación de transformaciones es el siguiente:
+			Escala.
+			Rotación.
+			Traslación.*/
+		
+		///RUEDAS DE ATRAS
+		///glm::vec3(0.1f, 0.1f, 0.1f): Este es el vector de escala que indica cómo se escalará el objeto en las tres dimensiones (X, Y, Z). 
+		///glm::vec3(-9.f, 1.f, 3.0f): Este es el vector de traslación que indica cómo se desplazará el objeto en las tres dimensiones (X, Y, Z)
+		
+		glm::mat4 transformationMatrix1 = glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), glm::vec3(-9.f, 1.f, 3.0f));
+		renderPart(car, wheel.models, transformationMatrix1, shader);                     ///escalado                 ///traslacion
+	
+		glm::mat4 transformationMatrix1_espejo = glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), glm::vec3(-9.f, 1.f, -3.0f));
+		renderPart(car, wheel.models, transformationMatrix1_espejo, shader);
+		
+		///RUEDAS DE ADELANTE
+		glm::mat4 transformationMatrix2 = glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), glm::vec3(4.8f, 1.f, 3.0f));
+		renderPart(car, wheel.models, transformationMatrix2, shader);
+		
+		glm::mat4 transformationMatrix2_espejo = glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), glm::vec3(4.8f, 1.f, -3.0f));
+		renderPart(car, wheel.models, transformationMatrix2_espejo, shader);
+	}
+	
+	if (fwing.show or play) {
+		
+		glm::mat4 transformationMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.3f, 0.5f, 0.33f)), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.12f, -2.9f));
+		                                                            ///Escalado en 0.3 a la matriz de identidad                  ///Rotacion de -90 grados en eje y                 ///Traslacion
+		renderPart(car,fwing.models, transformationMatrix,shader);                              
+	}
+	
+	if (rwing.show or play) {
+		float scl = 0.30f;
+		
+		/// Las alas se escalan primero en las tres dimensiones (X, Y, Z) por un factor de 0.3
+		
+		glm::mat4 transformationMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.3f, 0.3f, 0.3f)), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.8f, 3.5f));
+																		///Escalado en 0.3 a la matriz de identidad         ///Rotacion de -90 grados en eje y                    ///Traslacion
+		
+		renderPart(car, rwing.models, transformationMatrix, shader);  // escalado -> rotación -> traslación
+		
+
+	}
+	
+	if (helmet.show or play) {
+		
+
+		/// El casco se escala primero en las tres dimensiones (X, Y, Z) por un factor de 0.1, lo que lo hace más pequeño
+		///Luego, se aplica una rotación de -90 grados alrededor del eje Y (glm::vec3(0.0f, 1.0f, 0.0f)
+		///Traslación (glm::translate): Finalmente, se traslada el casco 2 unidades hacia arriba en el eje Y
+		
+		glm::mat4 transformationMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 2.0f, 0.0f));
+																				///Escalado a la matriz identidad 0.1 en xyz  ///Rotacion de -90 grados en eje y                 ///Traslado en eje y
+		
+		renderPart(car, helmet.models, transformationMatrix, shader);
+		
+	}
+	
+	if (axis.show and (not play)) renderPart(car,axis.models,glm::mat4(1.f),shader);
+}
+
+		glm::mat4 transformationMatrix2_espejo = glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), glm::vec3(4.8f, 1.f, -3.0f));
+		renderPart(car, wheel.models, transformationMatrix2_espejo, shader);
+	}
+	
+	if (fwing.show or play) {
+		
+		glm::mat4 transformationMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.3f, 0.5f, 0.33f)), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.12f, -2.9f));
+		                                                            ///Escalado en 0.3 a la matriz de identidad                  ///Rotacion de -90 grados en eje y                 ///Traslacion
+		renderPart(car,fwing.models, transformationMatrix,shader);                              
+	}
+	
+	if (rwing.show or play) {
+		float scl = 0.30f;
+		
+		/// Las alas se escalan primero en las tres dimensiones (X, Y, Z) por un factor de 0.3
+		
+		glm::mat4 transformationMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.3f, 0.3f, 0.3f)), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.8f, 3.5f));
+																		///Escalado en 0.3 a la matriz de identidad         ///Rotacion de -90 grados en eje y                    ///Traslacion
+		
+		renderPart(car, rwing.models, transformationMatrix, shader);  // escalado -> rotación -> traslación
+		
+
+	}
+	
+	if (helmet.show or play) {
+		
+
+		/// El casco se escala primero en las tres dimensiones (X, Y, Z) por un factor de 0.1, lo que lo hace más pequeño
+		///Luego, se aplica una rotación de -90 grados alrededor del eje Y (glm::vec3(0.0f, 1.0f, 0.0f)
+		///Traslación (glm::translate): Finalmente, se traslada el casco 2 unidades hacia arriba en el eje Y
+		
+		glm::mat4 transformationMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 2.0f, 0.0f));
+																				///Escalado a la matriz identidad 0.1 en xyz  ///Rotacion de -90 grados en eje y                 ///Traslado en eje y
+		
+		renderPart(car, helmet.models, transformationMatrix, shader);
+		
+	}
+	
+	if (axis.show and (not play)) renderPart(car,axis.models,glm::mat4(1.f),shader);
+}
+
+	}
+	
+	if (helmet.show or play) {
+		
+		///aplicamos a la matriz de identidad la escala
+		
+		glm::mat4 transformationMatrix = glm::rotate(glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), glm::vec3(0.0f, 2.0f, 0.0f)), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+																																						///-90 ya que la camara mira hacia -z?
+
+		
+		renderPart(car, helmet.models, transformationMatrix, shader);
+		
+	}
+	
+	if (axis.show and (not play)) renderPart(car,axis.models,glm::mat4(1.f),shader);
+}
+
+}
+
+
+
+
+
+
+
+glm::mat4 transformationMatrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
+				           0.0f, 1.0f, 0.0f, 0.0f,
+					   0.0f, 0.0f, 1.0f, 0.0f,
+	              			   0.0f, 0.1f, 0.0f, 1.0f);
+		
+		
+renderPart(car, body.models, transformationMatrix, shader);
+
+
+
+
+
+----------------------------
+
+
+
+void renderPart(const Car &car, const std::vector<Model> &v_models, const glm::mat4 &matrix, Shader &shader) {
+	// select a shader
+	for(const Model &model : v_models) {
+		shader.use();
+		
+		// matrixes
+		if (play) {
+			/// @todo: modificar una de estas matrices para mover todo el auto (todas
+			///        las partes) a la posición (y orientación) que le corresponde en la pista
+			
+			
+			//multiplicar la matrix constante por otra
+			float pos_x = car.x;
+			float pos_z = car.y;
+			
+			float angulo = car.ang;
+			
+			
+			glm::mat4 matrix1 =glm::mat4(1.0f, 0.0f, 1.0f,   0.0f,
+									     1.0f, 1.0f, 0.0f, 0.0f,
+										 0.f, 0.0f, 1.0f, 0.0f,
+										   pos_x, 0.f, pos_z, 1.0f);
+			
+			
+		
+			
+			
+			
+			shader.setMatrixes(matrix*matrix1,view_matrix,projection_matrix);
+			shader.setMatrixes(matrix,view_matrix*matrix1,projection_matrix);
+			shader.setMatrixes(matrix,view_matrix,projection_matrix*matrix1);
+			

@@ -1,0 +1,114 @@
+
+// función que rendiriza todo el auto, parte por parte
+void renderCar(const Car &car, const std::vector<Part> &parts, Shader &shader) {
+	const Part &axis = parts[0], &body = parts[1], &wheel = parts[2],
+	           &fwing = parts[3], &rwing = parts[4], &helmet = parts[use_helmet?5:6];
+
+	/// @todo: armar la matriz de transformación de cada parte para construir el auto
+	
+	if (body.show or play) {
+		
+		
+		glm::mat4 transformationMatrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
+												   0.0f, 1.0f, 0.0f, 0.0f,
+												   0.0f, 0.0f, 1.0f, 0.0f,
+												   0.0f, 0.1f, 0.0f, 1.0f);
+		
+
+		
+		renderPart(car, body.models, transformationMatrix, shader);
+		
+	}
+	
+	if (wheel.show or play) {
+		
+	
+		///RUEDA DE ATRAS
+		
+		glm::mat4 transformationMatrix1 = glm::mat4(0.1f, 0.0f, 0.0f, 0.0f,
+												   0.0f, 0.1f, 0.0f, 0.0f,
+												   0.0f, 0.0f, 0.1f, 0.0f,
+												   -0.9f, 0.1f, 0.3f, 1.0f);
+		
+		
+		renderPart(car, wheel.models, transformationMatrix1, shader);
+		
+		glm::mat4 transformationMatrix1_esp = glm::mat4(0.1f, 0.0f, 0.0f, 0.0f,
+												   0.0f, 0.1f, 0.0f, 0.0f,
+												   0.0f, 0.0f, 0.1f, 0.0f,
+												   -0.9f, 0.1f, -0.3f, 1.0f);
+		
+		
+		renderPart(car, wheel.models, transformationMatrix1_esp, shader);
+		
+		///RUEDA DE ADELANTE
+		
+		glm::mat4 transformationMatrix2 = glm::mat4(0.1f, 0.0f, 0.0f, 0.0f,
+													0.0f, 0.1f, 0.0f, 0.0f,
+													0.0f, 0.0f, 0.1f, 0.0f,
+													0.5f, 0.1f, 0.3f, 1.0f);
+		///diagonal escalado en 0.1 las xyz
+		///Ultima fila trasladado 0.5 en x 0.1 en y 0.3 en z
+		
+		renderPart(car, wheel.models, transformationMatrix2, shader);
+		
+		glm::mat4 transformationMatrix2_esp = glm::mat4(0.1f, 0.0f, 0.0f, 0.0f,
+														0.0f, 0.1f, 0.0f, 0.0f,
+														0.0f, 0.0f, 0.1f, 0.0f,
+														0.5f, 0.1f, -0.3f, 1.0f);
+		
+		
+		renderPart(car, wheel.models, transformationMatrix2_esp, shader);
+		
+		
+		
+		
+	}
+	
+	if (fwing.show or play) {
+		
+		
+		glm::mat4 transformationMatrix = glm::mat4(0.f, 0.0f, 1.0f, 0.0f,
+												   0.f, 1.f, 0.0f, 0.0f,
+												   -1.0f, 0.0f, 0.f, 0.f,
+												   2.6f, 0.15f, 0.f, 3.f);
+		
+		///w=3 para escalar seria 0.3 cada componente 
+
+		
+		
+		renderPart(car,fwing.models, transformationMatrix,shader);             
+		
+	}
+	
+	if (rwing.show or play) {
+		float scl = 0.30f;
+		
+		/*glm::mat4 transformationMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.3f, 0.3f, 0.3f)), glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.8f, 3.5f));
+		///Escalado en 0.3 a la matriz de identidad         ///Rotacion de -90 grados en eje y                    ///Traslacion
+		*/
+		
+		
+		
+		glm::mat4 transformationMatrix = glm::mat4(0.f, 0.0f, -1.0f, 0.0f,
+												   0.f, 1.f, 0.0f, 0.0f,
+												   -1.0f, 0.0f, 0.f, 0.f,
+												   -3.2f, 0.7f, 0.f, 3.f);
+		
+		
+		
+		renderPart(car,rwing.models, transformationMatrix,shader);
+	}
+	
+	if (helmet.show or play) {
+		
+		glm::mat4 transformationMatrix = glm::mat4(0.f, 0.0f, 1.0f, 0.0f,
+												   0.f, 1.f, 0.0f, 0.0f,
+												   -1.0f, 0.0f, 0.f, 0.f,
+												   0.f, 2.f, 0.f, 10.f);
+		
+		renderPart(car,helmet.models, transformationMatrix,shader);
+	}
+	
+	if (axis.show and (not play)) renderPart(car,axis.models,glm::mat4(1.f),shader);
+}

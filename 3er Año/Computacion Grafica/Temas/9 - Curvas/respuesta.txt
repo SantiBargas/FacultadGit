@@ -1,0 +1,25 @@
+Implementación de animación en el Vertex Shader:
+
+Ventajas:
+
+Control detallado: Al implementar la animación en el shader, se tiene un control muy detallado sobre cómo se aplican las deformaciones a la geometría en cada frame. Esto permite realizar ajustes precisos en tiempo real.
+Menos carga de datos: No se requiere cargar múltiples fotogramas de animación en la memoria, lo que puede ser beneficioso en términos de eficiencia de memoria.
+Efectos en tiempo real: Puede ser útil para efectos de animación que deben interactuar con otros aspectos de la escena en tiempo real.
+Desventajas:
+
+Complejidad del código: La animación está directamente integrada en el shader, lo que puede hacer que el código sea más complicado y difícil de mantener.
+Limitaciones de la animación: Puede ser complicado implementar ciertos tipos de animaciones complejas o suaves sin una gran cantidad de código en el shader.
+Definición de animación genéricamente en archivos de entrada:
+
+Ventajas:
+
+Flexibilidad: Permite definir animaciones complejas y detalladas con mayor facilidad, ya que se pueden proporcionar múltiples fotogramas clave y realizar interpolación suave entre ellos.
+Mantenibilidad: Separar la animación de la lógica del shader puede hacer que el código sea más limpio y mantenible.
+Facilita la colaboración: Los artistas y diseñadores pueden trabajar en las animaciones sin necesidad de conocer la programación de shaders.
+Desventajas:
+
+Mayor consumo de memoria: Requiere almacenar y cargar múltiples fotogramas clave, lo que puede consumir más memoria.
+Interpolación adicional: Se necesita lógica adicional para la interpolación entre fotogramas clave, lo que puede introducir cierta complejidad en el sistema.
+La elección entre estos enfoques depende de la aplicación y sus necesidades específicas. Si se trata de una animación simple y directa que afecta a pocos vértices, implementarla en el shader puede ser eficiente y efectivo. Sin embargo, si se necesitan animaciones más complejas y flexibles, o si se busca facilitar la colaboración entre artistas y desarrolladores, definir la animación en archivos de entrada y realizar interpolación puede ser la opción preferible.
+
+En última instancia, la elección del enfoque dependerá de las prioridades del proyecto y de cómo se desea abordar la animación en función de las necesidades específicas de la aplicación.
