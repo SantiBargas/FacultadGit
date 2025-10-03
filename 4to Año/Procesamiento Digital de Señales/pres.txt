@@ -1,0 +1,41 @@
+Nuestro trabajo se basa en la estimacion de tempo en grabaciones de audio utilizando Octave
+Para comenzar es importante tener en claro estas definiciones basicas:
+Beat: pulso básico de la música. Un ritmo constante que se puede contar. Base sobre la cual se constriye la melodía y armonía. 
+Tempo: Velocidad de una pieza musical y esta medido en beats por minuto. 
+Swing: Las notas no se tocan de manera estrictamente regular. Proporciona una sensación de balanceo que es común en el jazz. 
+
+
+Primer describimos una idea general del algoritmo la cual es :
+
+Extraer ubicaciones probables donde se encuentren los beats.
+Analizar si en dichas ubicaciones se encuentran los beats.
+Calcular bpm
+
+Para estimar el tempo de una cancion el algoritmo deberia utilizar caracteristicas notorias
+dentro del contexto de la cancion como son el comienzo y el fin de notas, el cambio de una
+nota a otra o golpes de percusion. Esto se debe a que los beats suelen ocurrir en esos instantes
+Una forma simple de realizarlo consiste en localizar variaciones rapidas de energia en la señal
+
+
+Entonces como primer paso extraemos el audio de una cacion en funcion del tiempo como vemos en
+esta grafica
+
+Luego analizamos la señal utilizando ventanas sucesivas de 10 milisegundos aplicandoles
+la transformada rapida de Fourier para obtener la energia en ese fragmento de tiempo
+
+
+El tempo esta compuesto de cuatro sub-beats
+Uno de los problemas que se presento fue que la funcion de probabilidad es periodica cada
+medio beat si hay swing o cada cuarto beat si no hay swing, y como vemos en el grafico
+la funcion de probabilidad es igual para cada sub beat. Entonces lo que hicimos fue
+aplicar un peso ponderado haciendo que la probabilidad de que aparezca un beat es mayor en 
+el primer sub-beat luego en el tercer-sub beat- luego en el 2do y dsp en el 4to
+
+
+
+Porque tan bajo nuestro porcentaje? Las conclusiones que llegamos con los chicos fue que
+
+Mala elección del umbral para los picos significativos.
+Variación de tempo en el fragmento analizado.
+Pausas largas en la señal.
+Escasez de eventos significativos en ese fragmento.

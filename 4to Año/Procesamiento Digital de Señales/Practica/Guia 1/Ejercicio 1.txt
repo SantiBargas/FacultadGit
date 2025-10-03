@@ -1,0 +1,1 @@
+function y = senoidal( tini,tfin,fm,fs,A,fi) 

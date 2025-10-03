@@ -1,0 +1,2 @@
+siempre que saco la respuesta al impulso, debemos tener en cuenta que el sistema esta en reposo
+Tantas condiciones iniciales como retardos
