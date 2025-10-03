@@ -1,0 +1,14 @@
+# Blender 3.3.1 MTL File: 'None'
+# www.blender.org
+
+newmtl Material
+Ex -0.0002
+Ns 250.0
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 1.0 1.0 1.0
+Ke 0.0 0.0 0.0
+Ni 1.45
+d 1.0
+map_Kd stone.png
+illum2
