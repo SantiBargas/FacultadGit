@@ -1,0 +1,1 @@
+como mejoro la sincronizacion de esta señal, que pasa si excedo el Angulo critico

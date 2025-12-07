@@ -1,0 +1,10 @@
+parcial 1 de teoria:
+¿qué codificación/modulación usaría para transmitir a 1km de distancia con un medio guiado con una velocidad de 1Mbps?
+que es el ruido electrico, que es el ruido no correlacionado, dos ejemplos de ruido no correlacionado y explicar
+satelites: en que orbitas pueden estar, que rangos de frecuencias, que tipos de satelites hay (mini, nano)
+¿qué partes componen el sistema óptico de transmisión? dar tres ejemplos de pérdidas en la fibra óptica y explicar
+
+parcial 1 de practica:
+ejercicio con antenas parabólicas: calcular la línea de vista, calcular zona de fresnel, calcular factibilidad del enlace y si no se cumplen poner qué se podría cambiar para que sí se cumpla
+ejercicio de fibra optica y atenuacion con los empalmes 
+ejercicio de canales ascendentes y descendentes, bitrate teorico (el mismo de la guia 5)4

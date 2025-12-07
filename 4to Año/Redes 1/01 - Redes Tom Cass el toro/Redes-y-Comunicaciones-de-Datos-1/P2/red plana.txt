@@ -1,0 +1,1 @@
+es cuando estan al mismo nivel en capa 2, tienen comunicacion todos los hosts

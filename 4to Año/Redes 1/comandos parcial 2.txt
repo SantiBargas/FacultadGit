@@ -1,0 +1,16 @@
+CONFIGURACION DEL DOMINIO EN SWITCH:
+
+SWITCH EN MODO SERVIDOR
+enter para activar consola
+Switch> enable
+Switch# configure terminal
+Switch(config)# vtp mode server
+Switch(config)# vtp domain UNL
+Switch(config)# end
+
+SWITCH EN MODO CLIENTE
+Switch> enable
+Switch# configure terminal
+Switch(config)# vtp mode client
+Switch(config)# vtp domain UNL
+Switch(config)# end

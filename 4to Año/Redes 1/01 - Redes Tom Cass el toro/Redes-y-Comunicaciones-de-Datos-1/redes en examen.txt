@@ -1,0 +1,5 @@
+cual es la similitud entre la capa 2 y la capa 4? porque parece que tienen las mismas funciones, pero la capa 4 tiene por debajo la capa 3
+la capa 4 no puede manejar el enrutamiento de la subred, solo determina la conexion extremo a extremo
+el enrutador tiene hasta capa 3 porque no necesita la capa de transporte
+los dos hosts tienen hasta la capa 4 por lo menos
+ningun dispositivo del medio interfiere en el transporte

@@ -1,0 +1,42 @@
+A una señal le Podemos modificar 3 parametros:
+	Amplitud (con ASK): ej, cuando hay un 0 no mando señal y cuando hay un 1 mando señal
+		
+	Frecuencia (con FSK): para transmitir un 0 envio con cierta frecuencia, para transmitir un 0 envio con el doble de frecuencia
+		
+	Fase (con PSK): cuando es un 0 viene con una fase y cuando es un 1 cambio la fase
+
+
+En cuanto a ruido:
+	ASK
+	Si tengo un canal Ruidoso, este metodo me puede generar errores, ya que el ruido modifica la amplitude
+	FSK
+	La tecnica fsk es mejor para canales Ruidoso ya que es raro que haya ruido en la frecuencia, generalmente es en la amplitude
+	PSK
+	El ruido tampoco afecta la fase
+
+En cuanto a complejidad:
+	ASK
+	No es compleja
+	FSK
+	tiene mayor complejidad ya que se debe poder generar dos senoidales de distinta frecuencia
+	PSK
+	No tan compleja pero mayor compleja que la ASK
+
+En cuanto a ancho de banda:
+El ancho de banda es la diferencia entre una frecuencia y la otra
+	ASK:
+		El ask mide respect al origen: si transmit a 100khz el ancho de banad sera 100khz-0=100khz
+	FSK:
+		Voy a requerir un mayor ancho de banda ya que tengo dos frecuencias que transmitir: por ej si f1=500khz y f2=1mhz ancho de banda=f2-f1=500mhz
+	PSK:
+	
+ASK:
+	Son buenas en fibra optica ya que el ruido electrico no afecta la transmission
+FSK: Generalmente se utilizan altas frecuencias
+Multiple FSK: podria usar 4 frecuencias, logrando mandar 00, 01, 10, y 11 en el mismo instante de tiempo
+		M = 2^L M son los elementos de señalizacion y L es la cantidad de bits que mando
+
+la tecnica de multinivel se puede aplicar tanto en ask, como en fsk y psk
+se pueden combiner las tecnicas, por ejemplo combiner las distintas amplitudes con las distintas fases
+de esta menera no se modifica el ancho de banda, ya que no toco la frecuencia. esta tecnica se llama QAM
+

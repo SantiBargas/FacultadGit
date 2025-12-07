@@ -1,0 +1,2 @@
+capa de enlace conecta dos equipos directamente conectados
+la conexion de la capa de transporte no es tan directa, es entre dos extremos pero existe una subred por debajo

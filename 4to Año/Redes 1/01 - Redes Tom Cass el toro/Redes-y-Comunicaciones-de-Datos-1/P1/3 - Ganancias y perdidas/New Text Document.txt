@@ -1,0 +1,40 @@
+fibra optica transmite señales electromagneticas (luz)
+
+frecuencia baja, longitude de onda grande
+frecuencia alta, longitud de onda chica
+
+longitud de onda en fibra optica:
+800nm a 1500nm
+
+la velocidad de la luz en el aire 2x10^8
+
+amplificador:
+señal de salida = ganancia * señal de entrada
+
+atenuador: los medios generan atenuacion
+señal de salida = a*se
+
+las antenas de radiofrecuencia generan ganancia pero no necesitan estar conectadas a la energia
+
+Relacion de ganancias:
+10 log (ss/se)
+
+con el decibel logro achatar valores muy pequeños o muy grandes 
+
+
+el ruido es una señal que tiene la misma naturaleza que la señal dato y la misma frecuencia
+
+los ruidos no correlacionados quiere decir que si yo no inyecto señal, el ruido existe
+	internos: ruido termico
+	externos: Lluvia, ruido del Sistema solar, etc
+los ruidos correlacionados son aquellos que se generan cuando existe la señal
+mas info sobre esto en el apunte fenomenos
+el ruido termico se encuentra en 1 hz, es decir si quiero calcular el ruido en un espectro multiplico 1 * la cantidad de frecuencias
+
+snr = s/n, n es el ruido termico mas otros ruidos
+
+si amplifico la señal con el ruido, con el amplificador ademas agrego ruido termico, por lo que la relacion señal ruido es peor
+
+el factor de ruido realiza una relacion de relaciones, snr de entrada/snr de salida
+
+un circuito no ideal siempre tendra F>1 porque siempre snre>snrs

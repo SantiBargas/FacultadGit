@@ -1,0 +1,6 @@
+Por que tengo dos controles de flujo en capa de enlace y capa de transporte?
+La principal diferencia es que en el medio de las capas de transporte están las subredes de comunicaciones. Los host no conocen como están formadas esas redes
+Ej dos host se quieren comunicar y piensa que esta yendo por la fibra óptica que tarda 40ms y después de los 50ms no me devuelve nada, sin embargo es porque se estaban mandando por satélite en donde tarda 300ms
+En la capa de enlace esto no pasa ya que el nivel de comunicación es por medio de la capa física, entonces yo se cuanto va a tardar en ir y volver.
+La capa de transporte no sabe por donde va a ir ese mensaje
+Si se pierde un paquete, la capa de transporte es la que espera a que llegue

@@ -1,0 +1,16 @@
+Para examen: (5 preguntas teoria)
+-estudiar trama estandar 802.11 (a, b, g y n)
+-Entender trama de 802.11 a nivel capa de enlace
+-cuales son los estandares definidos ( a que frecuencia trabajan cada uno, tipo de modulación, cant de canales habilitados p cada norma)
+-como trabaja subcapa mac, que cambia con respecto a trama ethernet
+-por que tengo definido un tamaño de trama
+---
+qué es el radio?
+calculo de enlace: cumplir linea de vista, calculo potencia y radio fresnel.
+---
+capa de enlace
+conceptos de protocolos  hdlc, ppp LISTO
+---
+ethernet, vlan LISTO
+.
+Libro (Edicion 5) secciónes 3, 4.1 y 4.4 (creo)

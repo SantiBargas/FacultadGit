@@ -1,0 +1,5 @@
+asi como 802.3 define ethernet
+fast ethernet y gigaethernet tienen su numero dentro de "...." 
+estúdienlo, analicen que es lo que pasa en fast ethernet y gigaethernet 
+para definir tamaño mínimo de trama o distancia máxima que nosotros tenemos.
+Tenganlo claro a eso normalmente lo pregunto en examenes
