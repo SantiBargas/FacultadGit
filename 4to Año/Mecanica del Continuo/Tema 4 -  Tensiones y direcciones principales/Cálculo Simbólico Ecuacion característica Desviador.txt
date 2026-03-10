@@ -1,0 +1,46 @@
+% ECUACION CARACTERISTICA DEL DESVIADOR DE UN TENSOR SIMETRICO DE RANGO 2
+clear all
+% Declaracion de variables simbolicas
+syms sigma_11 sigma_12 sigma_13 sigma_22 sigma_23 sigma_33 sigmap real
+
+% Matriz de componentes del tensor en el sistema Cartesiano x1-x_2-x3
+SIGMA = [sigma_11 sigma_12 sigma_13;...
+         sigma_12 sigma_22 sigma_23;...
+         sigma_13 sigma_23 sigma_33];
+% Tension media
+sigma_0 = (sigma_11+sigma_22+sigma_33)/3;
+
+% Matriz identidad
+I = eye(3);
+
+% Matriz de componentes del tensor desviador en el sistema Cartesiano x1-x_2-x3
+DEVSIGMA = SIGMA - sigma_0*I;
+% Ecuacion caracteristica del deviador
+ec_car_dev = det(DEVSIGMA-sigmap*I)
+
+% Invariantes principales del desviador 
+J_1 = DEVSIGMA(1,1) + DEVSIGMA(2,2) + DEVSIGMA(3,3);
+J_2 =-det([DEVSIGMA(2,2) DEVSIGMA(2,3); DEVSIGMA(2,3) DEVSIGMA(3,3)])...
+     -det([DEVSIGMA(3,3) DEVSIGMA(1,3); DEVSIGMA(1,3) DEVSIGMA(1,1)])...
+     -det([DEVSIGMA(1,1) DEVSIGMA(1,2); DEVSIGMA(1,2) DEVSIGMA(2,2)]);
+J_3 = det([DEVSIGMA(1,1) DEVSIGMA(1,2) DEVSIGMA(1,3);...
+           DEVSIGMA(1,2) DEVSIGMA(2,2) DEVSIGMA(2,3);...
+           DEVSIGMA(1,3) DEVSIGMA(2,3) DEVSIGMA(3,3)]);
+       
+
+% Expresión alternativa de la ecuacion caracteristica del desviador
+ec_car_dev_2 = -sigmap^3+J_1*sigmap^2+J_2*sigmap+J_3
+
+% Verificacion
+dif = simplify(ec_car_dev-ec_car_dev_2)
+
+% Expresión alternativa de J_2
+SCUA = 0;
+for i = 1:3
+    for j = 1:3
+        SCUA = SCUA + DEVSIGMA(i,j)^2;
+    end
+end
+% Verificacion
+dif = simplify(J_2-SCUA/2)
+

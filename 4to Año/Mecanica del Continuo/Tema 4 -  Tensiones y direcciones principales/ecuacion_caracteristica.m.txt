@@ -1,0 +1,34 @@
+% ECUACION CARACTERISTICA DE UN TENSOR SIMETRICO DE RANGO 2
+clear all
+% Declaracion de variables simbolicas
+syms sigma_11 sigma_12 sigma_13 sigma_22 sigma_23 sigma_33 real
+syms sigma
+
+% Matriz de componentes del tensor en el sistema Cartesiano x1-x2-x3
+SIGMA = [sigma_11 sigma_12 sigma_13
+         sigma_12 sigma_22 sigma_23
+         sigma_13 sigma_23 sigma_33];
+
+% Matriz identidad
+I = eye(3);
+
+% Ecuacion caracteristica
+ec_car = det(SIGMA-sigma*I)
+
+% Invariantes principales del tensor
+I_1 = sigma_11 + sigma_22 + sigma_33;
+I_2 = det([sigma_22 sigma_23; ...
+           sigma_23 sigma_33])...
+     +det([sigma_33 sigma_13;...
+           sigma_13 sigma_11])...
+     +det([sigma_11 sigma_12;...
+           sigma_12 sigma_22]);
+I_3 = det([sigma_11 sigma_12 sigma_13;...
+           sigma_12 sigma_22 sigma_23;...
+           sigma_13 sigma_23 sigma_33]);
+       
+% Expresión alternativa de la ecuacion caracteristica
+ec_car_2 = -sigma^3+I_1*sigma^2-I_2*sigma+I_3
+
+% Verificacion
+dif = simplify(ec_car-ec_car_2)

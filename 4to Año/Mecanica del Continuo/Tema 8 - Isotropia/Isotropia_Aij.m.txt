@@ -1,0 +1,53 @@
+% ISOTROPIA DE UN TENSOR DE RANGO 2
+clear all
+% Declaracion de variables simbolicas
+syms A_11 A_12 A_13 A_21 A_22 A_23 A_31 A_32 A_33 real
+
+% Matriz de componentes del tensor en el sistema Cartesiano x1-x2-x3
+A = [A_11 A_12 A_13
+         A_21 A_22 A_23
+         A_31 A_32 A_33];
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Matriz de rotacion de 180° alrededor de x1
+BETA1 = [1 0 0 
+    0 -1 0
+    0 0 -1];
+
+% Matriz de componentes del tensor en el sistema rotado
+AP1 = BETA1*A*BETA1'; % AP1=A <=> A_12=A_21=A_13=A_31=0
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Matriz de rotacion de 180° alrededor de x2
+BETA2 = [-1 0 0 
+    0 1 0
+    0 0 -1];
+
+% Matriz de componentes del tensor en el sistema rotado
+AP2 = BETA2*A*BETA2'; % AP2=A <=> A_12=A_21=A_23=A_32=0
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Matriz de rotacion de 90° alrededor de x3
+BETA3 = [0 1 0 
+    -1 0 0
+    0 0 1];
+
+% Matriz de componentes del tensor en el sistema rotado
+AP3 = BETA3*A*BETA3'; % AP3=A <=> A_11=A_22
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Matriz de rotacion de 90° alrededor de x2
+BETA4 = [0 0 -1 
+    0 1 0
+    1 0 0];
+
+% Matriz de componentes del tensor en el sistema rotado
+AP4 = BETA4*A*BETA4'; % AP4=A <=> A_11=A_33
+
+% => Todo tensor de rango 2 isotropo tiene la forma 
+%    A = A_11*[1 0 0
+%              0 1 0
+%              0 0 1]
+% con A_11 escalar
+%
+%

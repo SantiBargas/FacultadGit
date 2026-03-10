@@ -1,0 +1,21 @@
+% ESTADO PLANO DE TENSIONES
+% TRANSFORMACION DE LAS COMPONENTES DE TENSION POR ROTACION
+clear all
+% Declaracion de variables simbolicas
+syms sigma_xx sigma_xy sigma_yy theta real
+
+% Matriz de componentes de tension en xy
+SIGMA = [sigma_xx sigma_xy
+         sigma_xy sigma_yy];
+
+% Matriz de rotacion xy -> x'y'
+BETA = [ cos(theta) sin(theta)
+        -sin(theta) cos(theta)];
+              
+% Matriz de componentes de tension en x'y'
+SIGMAP = BETA*SIGMA*BETA';
+
+sigmap_xx = simplify(SIGMAP(1,1));
+sigmap_xy = simplify(SIGMAP(1,2));
+sigmap_yy = simplify(SIGMAP(2,2));
+sigmap_yx = simplify(SIGMAP(2,1));

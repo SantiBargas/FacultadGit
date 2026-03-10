@@ -1,0 +1,29 @@
+
+maximos=zeros(length(t),1);
+
+for i=1:length(Y(1,:))
+    aux=zeros(length(t),1);
+
+    for j=1:length(Y(:,1))
+          if(j+1 < length(Y(:,1)))
+
+            N1_1=Y(j,i);  #Coordenada en x del 1er nodo
+            N1_2=Y(j+1,i); #Coordenada en y del 1er nodo
+            N1=[N1_1,N1_2]; #Coordenada xy del 1er nodo
+
+         else
+            break;
+          endif;
+         if( (j+1 <length(Y(:,1))) & (i+1 < length(Y(1,:))) )
+            N2_1=Y(j,i+1); #Coordenada en x del 2do nodo
+            N2_2=Y(j+1,i+1); #Coordenada en y del 2do nodo
+            N2=[N2_1,N2_2]; #Coordenada xy del 2do nodo
+            aux(j)=norm(N2-N1); #Guardamos en aux la distancia entre el 1er nodo y 2do nodo
+          else
+          break;
+          endif
+    endfor
+
+    maximos(i, 1) = t(i);        % Almacenar el tiempo en la primera columna
+    maximos(i, 2) = max(aux);    % Almacenar el desplazamiento máximo en la segunda columna
+endfor

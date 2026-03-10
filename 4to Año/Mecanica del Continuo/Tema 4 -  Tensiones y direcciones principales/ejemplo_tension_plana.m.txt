@@ -1,0 +1,33 @@
+% ESTADO PLANO DE TENSIONES
+clear all
+% Tensiones en el sistema cartesiano xy
+sigma_xx = 3;
+sigma_yy = -2;
+sigma_xy = 4;
+
+% Tensiones en el sistema cartesiano x'y' en funcion del angulo theta entre x y x'
+theta=-pi/2:pi/180:pi/2;
+sigmap_xx = (sigma_xx+sigma_yy)/2+(sigma_xx-sigma_yy)/2*cos(2*theta)+sigma_xy*sin(2*theta);
+sigmap_yy = (sigma_xx+sigma_yy)/2-(sigma_xx-sigma_yy)/2*cos(2*theta)-sigma_xy*sin(2*theta);
+sigmap_xy = -(sigma_xx-sigma_yy)/2*sin(2*theta)+sigma_xy*cos(2*theta);
+
+% Tensiones principales
+theta_sigma = 0.5*atan(2*sigma_xy/(sigma_xx-sigma_yy));
+sigma_1 = (sigma_xx+sigma_yy)/2+(sigma_xx-sigma_yy)/2*cos(2*theta_sigma)+sigma_xy*sin(2*theta_sigma);
+sigma_2 = (sigma_xx+sigma_yy)/2-(sigma_xx-sigma_yy)/2*cos(2*theta_sigma)-sigma_xy*sin(2*theta_sigma);
+   
+% Tension de corte máxima
+theta_tau = 0.5*acot(-2*sigma_xy/(sigma_xx-sigma_yy));
+tau_max = -(sigma_xx-sigma_yy)/2*sin(2*theta_tau)+sigma_xy*cos(2*theta_tau);
+
+% Ploteo
+plot(theta/pi*180,sigmap_xx,'b',theta/pi*180,sigmap_yy,'r',theta/pi*180,sigmap_xy,'g--',...
+    theta_sigma/pi*180,sigma_1,'bo',theta_sigma/pi*180,sigma_2,'ro',...
+    theta_tau/pi*180,tau_max,'go');
+legend('\sigma_{xx}^\prime','\sigma_{yy}^\prime','\sigma_{xy}^\prime',...
+    '\sigma_1','\sigma_2','\tau_{max}')
+axis
+xticks(-90:15:90);
+grid on
+
+
