@@ -1,5 +1,8 @@
 #include <wx/image.h>
 #include "Application.h"
+#include "Application.h"
+#include "WinExample.h"
+#include "WinExample.h"
 #include "WinExample.h"
 
 IMPLEMENT_APP(Application)
