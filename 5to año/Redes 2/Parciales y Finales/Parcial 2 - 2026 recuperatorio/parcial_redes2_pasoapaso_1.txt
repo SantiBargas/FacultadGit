@@ -1,0 +1,290 @@
+================================================================================
+PARCIAL REDES 2 — PASO A PASO COMPLETO CON CHEQUEOS
+================================================================================
+
+TOPOLOGÍA: Toda enrutada con RIP v2, salvo SUBRED1 (R0) y SUBRED2 (R2)
+
+MAPA DE IPs RELEVADO:
+  R0  Fa0/0 = 10.0.0.17/29  → SUBRED1 (PC0, PC1, PC2)
+  R0  Fa1/0 = 192.168.0.1/30 → hacia R1
+  R2  Fa0/0 = 172.16.0.6/30  → hacia R1 (IP pública NAT)
+  R2  Fa1/0 = 10.0.0.25/29  → SUBRED2 (PC3, PC4, PC5)
+  R5  Fa6/0 = 10.0.0.9/29   → hacia Switch0/Servers
+  Server_DNS   = 172.18.0.2  GW: 172.18.0.1 (R1 Fa6/0) ← CORREGIR SIEMPRE
+  Server_WEB   = 10.0.0.10
+  Server_FTP   = 10.0.0.11
+  Server_EMAIL = 10.0.0.12
+  Server_DHCP  = 10.0.0.13
+
+⚠️  ACCIÓN PREVIA OBLIGATORIA — ANTES DE CONFIGURAR NADA:
+    Server_DNS → Desktop → IP Configuration
+    Default Gateway: cambiar 172.16.0.1 → 172.18.0.1
+    (La cátedra suele dejarlo mal. Sin esto, el DNS no responde y nada funciona.)
+
+================================================================================
+ÍTEM 1 — DHCP en Router0 para PC0, PC1, PC2
+================================================================================
+
+Red de Fa0/0 = 10.0.0.16/29
+Rango usable: 10.0.0.17 → 10.0.0.22
+Excluimos 10.0.0.17 (es la IP del router)
+
+COMANDOS EN ROUTER0:
+  enable
+  configure terminal
+  ip dhcp excluded-address 10.0.0.17
+  ip dhcp pool SUBRED1
+  network 10.0.0.16 255.255.255.248
+  default-router 10.0.0.17
+  dns-server 172.18.0.2
+  exit
+  exit
+  exit
+  write memory
+
+✅ CHEQUEO ÍTEM 1:
+  En PC0, PC1, PC2 → Command Prompt:
+    ipconfig /renew
+    ipconfig
+  Resultado esperado:
+    IP Address: 10.0.0.18 / 10.0.0.19 / 10.0.0.20
+    Subnet Mask: 255.255.255.248
+    Default Gateway: 10.0.0.17
+    DNS Server: 172.18.0.2
+
+================================================================================
+ÍTEM 2 — DHCP en Server_DHCP para PC3, PC4, PC5
+================================================================================
+
+Red de Fa1/0 de R2 = 10.0.0.24/29
+Rango usable: 10.0.0.25 → 10.0.0.30
+Excluimos 10.0.0.25 (es la IP del router)
+Gateway para PCs: 10.0.0.25
+
+PASO A — Server_DHCP → Services → DHCP:
+  Service: ON
+  Pool Name: SUBRED2
+  Default Gateway: 10.0.0.25
+  DNS Server: 172.18.0.2
+  Start IP Address: 10.0.0.26
+  Subnet Mask: 255.255.255.248
+  Maximum Users: 5
+  Click ADD
+
+PASO B — COMANDOS EN ROUTER2 (ip helper-address):
+  enable
+  configure terminal
+  interface fastEthernet 1/0
+  ip helper-address 10.0.0.13
+  exit
+  exit
+  exit
+  write memory
+
+  (El helper-address redirige el broadcast DHCP de las PCs al Server_DHCP
+   que está en otra red. Sin esto, las PCs nunca reciben IP.)
+
+✅ CHEQUEO ÍTEM 2:
+  En PC3, PC4, PC5 → Command Prompt:
+    ipconfig /renew
+    ipconfig
+  Resultado esperado:
+    IP Address: 10.0.0.26 / 10.0.0.27 / 10.0.0.28 (en cualquier orden)
+    Subnet Mask: 255.255.255.248
+    Default Gateway: 10.0.0.25
+    DNS Server: 172.18.0.2
+
+================================================================================
+ÍTEM 3A — NAT/PAT en Router0 (SUBRED1)
+================================================================================
+
+Interfaz inside: Fa0/0 (hacia PCs)
+Interfaz outside: Fa1/0 (hacia internet/R1)
+ACL: permite toda la red 10.0.0.16/29
+
+COMANDOS EN ROUTER0:
+  enable
+  configure terminal
+  interface fastEthernet 0/0
+  ip nat inside
+  exit
+  interface fastEthernet 1/0
+  ip nat outside
+  exit
+  access-list 1 permit 10.0.0.16 0.0.0.7
+  ip nat inside source list 1 interface fastEthernet 1/0 overload
+  exit
+  exit
+  write memory
+
+✅ CHEQUEO ÍTEM 3A:
+  En PC0 → Command Prompt:
+    ping 10.0.0.9
+  Resultado esperado: 4 replies (el paquete sale nateado por R0)
+  
+  En Router0:
+    show ip nat translations
+  Resultado esperado: entradas con Inside Global = 192.168.0.1
+
+================================================================================
+ÍTEM 3B — NAT ESTÁTICA en Router2 (SUBRED2)
+================================================================================
+
+Interfaz inside: Fa1/0 (hacia PCs)
+Interfaz outside: Fa0/0 (hacia internet/R1)
+IP pública disponible: 172.16.0.6 (única IP de Fa0/0)
+
+NOTA: NAT estática real requiere 1 IP pública por PC.
+Como el enunciado no especifica IPs públicas distintas, mapeamos
+las 3 PCs a la misma IP pública. Packet Tracer lo acepta.
+Si el enunciado da IPs públicas distintas, usarlas en lugar de 172.16.0.6.
+
+⚠️  ANTES de estos comandos, verificar las IPs que recibieron las PCs
+    con ipconfig, porque la NAT estática requiere la IP interna exacta.
+
+COMANDOS EN ROUTER2:
+  enable
+  configure terminal
+  interface fastEthernet 1/0
+  ip nat inside
+  exit
+  interface fastEthernet 0/0
+  ip nat outside
+  exit
+  ip nat inside source static 10.0.0.26 172.16.0.6
+  ip nat inside source static 10.0.0.27 172.16.0.6
+  ip nat inside source static 10.0.0.28 172.16.0.6
+  exit
+  exit
+  write memory
+
+✅ CHEQUEO ÍTEM 3B:
+  En PC3 → Command Prompt:
+    ping 10.0.0.9
+  Resultado esperado: 4 replies
+
+  En Router2:
+    show ip nat translations
+  Resultado esperado: entradas estáticas con las 3 IPs privadas
+  mapeadas a 172.16.0.6
+
+================================================================================
+ÍTEM 4 — Navegación web: www.cisco.com en Server_WEB
+================================================================================
+
+PASO A — Server_DNS → Services → DNS:
+  DNS Service: ON
+  Agregar registro:
+    Name: www.cisco.com | Type: A Record | Address: 10.0.0.10 → ADD
+
+PASO B — Server_WEB → Services → HTTP:
+  Verificar que HTTP esté ON (ya viene configurado)
+
+  (No hay nada más que configurar en routers — el DNS ya llega a las PCs
+   vía DHCP y el enrutamiento RIP ya conecta todo.)
+
+✅ CHEQUEO ÍTEM 4:
+  En PC0 → Desktop → Web Browser:
+    URL: www.cisco.com → GO
+  En PC3 → Desktop → Web Browser:
+    URL: www.cisco.com → GO
+  Resultado esperado: carga la página "Cisco Packet Tracer - Opening doors..."
+  Probar en al menos una PC de cada subred.
+
+================================================================================
+ÍTEM 5A — FTP: ftp.cisco.com en Server_FTP
+================================================================================
+
+PASO A — Server_DNS → Services → DNS:
+  Agregar registro:
+    Name: ftp.cisco.com | Type: A Record | Address: 10.0.0.11 → ADD
+
+PASO B — Server_FTP → Services → FTP:
+  Verificar que esté ON
+  Verificar que exista usuario: cisco / contraseña: cisco / permisos: RWDNL
+  (Ya viene por defecto en Packet Tracer)
+
+✅ CHEQUEO ÍTEM 5A:
+  En PC0 → Command Prompt:
+    ftp ftp.cisco.com
+    Username: cisco
+    Password: cisco
+  Resultado esperado: "230- Logged in"
+  
+  Repetir en PC3 (una PC de cada subred)
+
+================================================================================
+ÍTEM 5B — EMAIL: Juan (PC0) ↔ Pedro (PC5)
+================================================================================
+
+PASO A — Server_DNS → Services → DNS:
+  Agregar registros:
+    Name: smtp.cisco.com | Type: A Record | Address: 10.0.0.12 → ADD
+    Name: pop3.cisco.com | Type: A Record | Address: 10.0.0.12 → ADD
+
+PASO B — Server_EMAIL → Services → EMAIL:
+  SMTP Service: ON
+  POP3 Service: ON
+  Domain Name: cisco.com → click SET
+  Agregar usuarios:
+    User: juan | Password: juan → +
+    User: pedro | Password: pedro → +
+
+PASO C — PC0 (JUAN) → Desktop → Email → Configure Mail:
+  Your Name:            juan
+  Email Address:        juan@cisco.com
+  Incoming Mail Server: pop3.cisco.com
+  Outgoing Mail Server: smtp.cisco.com
+  User Name:            juan
+  Password:             juan
+  → SAVE
+
+PASO D — PC5 (PEDRO) → Desktop → Email → Configure Mail:
+  Your Name:            pedro
+  Email Address:        pedro@cisco.com
+  Incoming Mail Server: pop3.cisco.com
+  Outgoing Mail Server: smtp.cisco.com
+  User Name:            pedro
+  Password:             pedro
+  → SAVE
+
+✅ CHEQUEO ÍTEM 5B:
+  1. PC0 → Email → Compose
+     To: pedro@cisco.com | Subject: prueba | mensaje libre → SEND
+  2. PC5 → Email → Receive
+     Resultado esperado: llega el mail de juan@cisco.com
+  3. PC5 → Email → Compose
+     To: juan@cisco.com | Subject: respuesta → SEND
+  4. PC0 → Email → Receive
+     Resultado esperado: llega el mail de pedro@cisco.com
+
+================================================================================
+RESUMEN DE CHEQUEOS RÁPIDOS
+================================================================================
+
+  ÍTEM 1  → ipconfig en PC0/1/2: IP 10.0.0.18-20, GW 10.0.0.17
+  ÍTEM 2  → ipconfig en PC3/4/5: IP 10.0.0.26-28, GW 10.0.0.25
+  ÍTEM 3A → ping 10.0.0.9 desde PC0: 4 replies
+  ÍTEM 3B → ping 10.0.0.9 desde PC3: 4 replies
+  ÍTEM 4  → Web Browser www.cisco.com en PC0 y PC3: carga la página
+  ÍTEM 5A → ftp ftp.cisco.com desde PC0 y PC3: "230- Logged in"
+  ÍTEM 5B → Juan envía mail a Pedro y Pedro lo recibe (y viceversa)
+
+================================================================================
+ERRORES TÍPICOS DE LA CÁTEDRA — SIEMPRE VERIFICAR
+================================================================================
+
+1. Server_DNS con Default Gateway mal configurado (172.16.0.1 en vez de 172.18.0.1)
+   → Las consultas DNS salen pero las respuestas no vuelven
+   → Síntoma: ping al DNS da timeout, Web Browser queda en blanco
+   → Fix: Server_DNS → Desktop → IP Configuration → Default Gateway = 172.18.0.1
+
+2. Server_EMAIL sin Domain Name configurado
+   → El servidor rechaza todas las conexiones ("Server not found")
+   → Fix: Server_EMAIL → Services → EMAIL → Domain Name = cisco.com → SET
+
+3. ip helper-address olvidado en R2
+   → Las PCs de SUBRED2 nunca reciben IP por DHCP
+   → Fix: R2 → interface Fa1/0 → ip helper-address 10.0.0.13
+
+================================================================================
