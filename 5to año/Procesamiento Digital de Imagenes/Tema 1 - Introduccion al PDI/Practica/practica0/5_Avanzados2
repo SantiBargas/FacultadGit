@@ -1,0 +1,40 @@
+import cv2
+import numpy as np
+
+
+imagen1 = cv2.imread('OpenCV-Logo.png')
+imagen2 = cv2.imread('OpenCV-Logo2.png')
+if imagen1 is None:
+    imagen1 = np.zeros((500, 500, 3), dtype="uint8")
+    
+imagen2 = np.full(imagen1.shape, 255, dtype="uint8") # Imagen blanca del mismo tamaño
+
+title_window = 'Blending de Imagenes'
+alpha_slider_max = 100
+dst = imagen1.copy() # Variable global para la imagen resultante
+
+# 2. Función callback que se ejecuta cada vez que movés el trackbar
+def on_trackbar_alpha(val):
+    global imagen1, imagen2, dst
+    alpha = val / alpha_slider_max
+    beta = (1.0 - alpha) 
+    dst = cv2.addWeighted(imagen1, alpha, imagen2, beta, 0.0)
+    cv2.imshow(title_window, dst) 
+
+# 3. Crear la ventana y el trackbar
+cv2.namedWindow(title_window)
+cv2.createTrackbar('Alpha', title_window, 50, alpha_slider_max, on_trackbar_alpha) 
+on_trackbar_alpha(50)
+
+print("Mové la barra 'Alpha' para mezclar las imágenes. Presioná 'c' para salir.")
+
+# 4. Bucle principal
+while True:
+    cv2.imshow(title_window, dst)
+    key = cv2.waitKey(1) & 0xFF 
+    
+    # Presione 'c' para salir 
+    if key == ord('c'): 
+        break   
+
+cv2.destroyAllWindows()

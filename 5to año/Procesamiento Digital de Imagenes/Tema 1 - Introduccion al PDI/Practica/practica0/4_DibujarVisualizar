@@ -1,0 +1,25 @@
+#incluir la biblioteca
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+#Dibujar y visualizar
+imagen = cv2.imread('OpenCV-Logo2.png')
+imagen_gray = cv2.imread('OpenCV-Logo2.png', cv2.IMREAD_GRAYSCALE)
+imagen2 = np.zeros(imagen.shape, dtype = imagen.dtype)
+cv2.line(imagen, (0,0), (300,300), (255,0,0), 5)
+cv2.rectangle(imagen, (100,100), (300,300), (0,255,0), 5)
+cv2.circle(imagen, (200,200), 50, (0,0,255), 5)
+cv2.putText(imagen, "OpenCV", (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,0), 2)
+cv2.imshow("Hello World", imagen)
+cv2.waitKey(0)
+
+plt.figure()
+plt.imshow(imagen)
+plt.imshow(imagen_gray, cmap='gray')
+plt.subplot(1,3,1)
+plt.imshow(imagen)
+plt.subplot(1,3,2)
+plt.imshow(imagen_gray, cmap='gray')
+plt.subplot(1,3,3)
+plt.imshow(imagen2)
+plt.show()

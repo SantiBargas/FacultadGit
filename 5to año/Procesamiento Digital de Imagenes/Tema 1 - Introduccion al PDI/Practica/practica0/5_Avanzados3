@@ -1,0 +1,26 @@
+import cv2
+import argparse
+
+ap = argparse.ArgumentParser()
+ap.add_argument("-ig", "--imagen_gris", required=True, help="path de la imagen de grises")
+ap.add_argument("-ic", "--imagen_color", required=True, help="path de la imagen color")
+args = vars(ap.parse_args())
+
+path_gris = args["imagen_gris"]
+imagen_color = cv2.imread(args["imagen_color"])
+
+# Cargar la de grises (usando el path recibido)
+imagen_gris = cv2.imread(path_gris, cv2.IMREAD_GRAYSCALE)
+
+# 3. Mostrar para verificar
+if imagen_color is not None and imagen_gris is not None:
+    cv2.imshow("Imagen Color", imagen_color)
+    cv2.imshow("Imagen Gris", imagen_gris)
+    print(f"Cargada la gris desde: {path_gris}")
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+else:
+    print("Error: No se pudieron cargar las imágenes. Verificá los paths.")
+
+
+#CORRER EN TERMINAL: python 5_Avanzados3 -ig OpenCv-Logo2.png -ic OpenCv-Logo2.png

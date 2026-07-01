@@ -1,0 +1,188 @@
+"""
+Simulador de transformaciones de histograma
+  - Suma/Resta:      S = R + C
+  - Multiplicacion:  S = a * R
+  - Ecualizacion:    CDF
+Imagen original: campana gaussiana centrada en nivel 80
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+from matplotlib.widgets import Slider, RadioButtons, Button
+
+# ── Configuracion ──────────────────────────────────────────────────────────────
+ORIG_MU  = 80
+ORIG_SIG = 18
+N        = 256   # niveles de gris 0-255
+
+# ── Funciones de histograma ────────────────────────────────────────────────────
+
+def orig_hist():
+    x = np.arange(N)
+    h = np.exp(-0.5 * ((x - ORIG_MU) / ORIG_SIG) ** 2)
+    return (h / h.max() * 1000).astype(float)
+
+def suma_hist(c):
+    new_mu = int(np.clip(ORIG_MU + c, 0, 255))
+    x = np.arange(N)
+    h = np.exp(-0.5 * ((x - new_mu) / ORIG_SIG) ** 2)
+    return (h / h.max() * 1000).astype(float), new_mu
+
+def mult_hist(a):
+    orig = orig_hist()
+    out  = np.zeros(N)
+    for i in range(N):
+        ni = int(np.clip(round(i * a), 0, 255))
+        out[ni] += orig[i]
+    new_mu = int(np.clip(round(ORIG_MU * a), 0, 255))
+    return out, new_mu
+
+def ecual_hist():
+    orig  = orig_hist()
+    total = orig.sum()
+    cdf   = np.cumsum(orig)
+    cdf_min = cdf[orig > 0][0]
+    lut   = np.round((cdf - cdf_min) / (total - cdf_min) * 255).astype(int)
+    lut   = np.clip(lut, 0, 255)
+    out   = np.zeros(N)
+    for i in range(N):
+        out[lut[i]] += orig[i]
+    return out
+
+# ── Layout ─────────────────────────────────────────────────────────────────────
+
+fig = plt.figure(figsize=(13, 7), facecolor="#1a1a2e")
+fig.suptitle("Simulador de Transformaciones de Histograma",
+             color="white", fontsize=14, fontweight="bold", y=0.98)
+
+# Ejes principales
+ax_orig = fig.add_axes([0.05, 0.42, 0.40, 0.42])
+ax_res  = fig.add_axes([0.55, 0.42, 0.40, 0.42])
+
+# Slider
+ax_sl   = fig.add_axes([0.20, 0.30, 0.60, 0.03])
+
+# RadioButtons
+ax_rad  = fig.add_axes([0.05, 0.05, 0.20, 0.20])
+
+# Texto explicacion
+ax_txt  = fig.add_axes([0.30, 0.02, 0.65, 0.22])
+ax_txt.axis("off")
+
+# Estilo ejes
+BG = "#16213e"
+for ax in [ax_orig, ax_res]:
+    ax.set_facecolor(BG)
+    ax.tick_params(colors="gray", labelsize=8)
+    ax.spines["bottom"].set_color("gray")
+    ax.spines["left"].set_color("gray")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.set_xlim(0, 255)
+    ax.set_xlabel("Nivel de gris", color="gray", fontsize=9)
+    ax.set_ylabel("Frecuencia", color="gray", fontsize=9)
+
+ax_sl.set_facecolor(BG)
+
+# ── Estado ─────────────────────────────────────────────────────────────────────
+
+state = {"op": "suma", "param": 70}
+
+x = np.arange(N)
+
+# Dibuja orig de una vez (no cambia)
+h_orig = orig_hist()
+bar_orig = ax_orig.bar(x, h_orig, color="#4A90D9", width=1.0)
+ax_orig.set_title("Imagen original  (centro=80)", color="white", fontsize=10)
+ax_orig.set_ylim(0, 1150)
+
+# Barra resultado (se actualiza)
+bar_res = ax_res.bar(x, np.zeros(N), color="#E8593C", width=1.0)
+ax_res.set_ylim(0, 1150)
+title_res = ax_res.set_title("", color="white", fontsize=10)
+
+# Marker de centro
+vline_orig = ax_orig.axvline(ORIG_MU, color="yellow", linewidth=1.2, linestyle="--", alpha=0.7)
+vline_res  = ax_res.axvline(0,        color="yellow", linewidth=1.2, linestyle="--", alpha=0.7)
+
+explain_txt = ax_txt.text(0.0, 0.95, "", color="white", fontsize=9,
+                           va="top", ha="left", wrap=True,
+                           transform=ax_txt.transAxes,
+                           bbox=dict(boxstyle="round,pad=0.5", facecolor="#0f3460", edgecolor="#4A90D9"))
+
+# ── Slider ─────────────────────────────────────────────────────────────────────
+
+slider = Slider(ax_sl, "Parámetro", -120, 120, valinit=70,
+                color="#4A90D9", valstep=1)
+ax_sl.set_facecolor(BG)
+slider.label.set_color("white")
+slider.valtext.set_color("white")
+
+# ── Radio ──────────────────────────────────────────────────────────────────────
+
+radio = RadioButtons(ax_rad,
+    ("Suma  S=R+C", "Mult  S=a·R", "Ecualización"),
+    activecolor="#4A90D9")
+ax_rad.set_facecolor(BG)
+for lbl in radio.labels:
+    lbl.set_color("white")
+    lbl.set_fontsize(9)
+
+# ── Update ─────────────────────────────────────────────────────────────────────
+
+def update(_=None):
+    op    = state["op"]
+    param = int(slider.val)
+    state["param"] = param
+
+    if op == "suma":
+        h, nc = suma_hist(param)
+        t = (f"S = R {'+' if param>=0 else ''}{param}\n"
+             f"La campana se desplaza {param} niveles.\n"
+             f"Centro: 80 → {nc}\n"
+             f"{'Suma → imagen más OSCURA' if param>0 else 'Resta → imagen más CLARA'}")
+        ttl = f"Resultado  (centro={nc})"
+        slider.label.set_text("Constante C")
+    elif op == "mult":
+        a = max(0.05, (param + 120) / 120)   # mapea [-120,120] → [0.05, 2]
+        h, nc = mult_hist(a)
+        t = (f"S = {a:.2f} · R\n"
+             f"La campana se {'ESTIRA (más contraste)' if a>1 else 'COMPRIME (menos contraste)'}.\n"
+             f"Centro: 80 → {nc}\n"
+             f"Factor a = {a:.2f}")
+        ttl = f"Resultado  (centro≈{nc})"
+        slider.label.set_text("Factor a  (izq=÷  der=×)")
+    else:   # ecualización
+        h  = ecual_hist()
+        nc = int(np.average(np.arange(N), weights=h)) if h.sum() > 0 else 128
+        t  = ("Ecualización (FDA)\n"
+              "La FDA redistribuye los píxeles para que ocupen\n"
+              "todo el rango 0–255 de forma uniforme.\n"
+              "La campana original DESAPARECE → máximo contraste.")
+        ttl = "Resultado  (histograma aplanado)"
+        slider.label.set_text("— sin parámetro —")
+
+    # Actualizar barras resultado
+    for bar, val in zip(bar_res, h):
+        bar.set_height(val)
+
+    # Actualizar línea vertical
+    vline_res.set_xdata([nc, nc])
+
+    ax_res.set_title(ttl, color="white", fontsize=10)
+    ax_res.set_ylim(0, max(h.max() * 1.15, 100))
+    explain_txt.set_text(t)
+    fig.canvas.draw_idle()
+
+def on_radio(label):
+    if "Suma"  in label: state["op"] = "suma"
+    elif "Mult" in label: state["op"] = "mult"
+    else:                  state["op"] = "ecual"
+    update()
+
+slider.on_changed(update)
+radio.on_clicked(on_radio)
+update()
+
+plt.show()

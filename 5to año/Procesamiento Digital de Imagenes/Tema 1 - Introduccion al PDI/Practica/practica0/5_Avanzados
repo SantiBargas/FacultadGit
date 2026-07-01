@@ -1,0 +1,43 @@
+import cv2
+import numpy as np
+
+# 1. Variables globales para guardar los puntos y el estado
+refPt = []
+str_win = 'DibujaWin' # [cite: 100]
+
+def click(event, x, y, flags, param):
+    global refPt, imagen
+    
+    # Si se presiona el botón izquierdo, se guarda la localización (x,y)
+    if event == cv2.EVENT_LBUTTONDOWN: # 
+        refPt = [(x, y)] # [cite: 93]
+        
+    # Si se libera el botón, se guarda la localización final y se dibuja
+    elif event == cv2.EVENT_LBUTTONUP: # [cite: 95]
+        refPt.append((x, y)) # [cite: 96]
+        # Dibuja la linea entre los puntos [cite: 97]
+        cv2.line(imagen, refPt[0], refPt[1], (0, 255, 0), 2) # [cite: 98]
+        cv2.imshow(str_win, imagen)
+
+# 2. Cargar imagen y preparar ventana
+imagen = cv2.imread('OpenCV-Logo2.png') # [cite: 29]
+
+# Si no encuentra la imagen, creamos una negra para que no de error
+if imagen is None:
+    imagen = np.zeros((500, 500, 3), dtype="uint8") # [cite: 37, 40]
+
+cv2.namedWindow(str_win) # [cite: 101]
+cv2.setMouseCallback(str_win, click) # [cite: 102]
+
+# 3. Bucle principal
+print("Instrucciones: Click y arrastrar para dibujar. Presioná 'q' para salir.")
+
+while True: # [cite: 103]
+    cv2.imshow(str_win, imagen) # [cite: 105]
+    key = cv2.waitKey(1) & 0xFF # [cite: 106]
+    
+    # Si la tecla 'q' (o 'c' como dice la guia) es presionada, sale
+    if key == ord('q') or key == ord('c'): # [cite: 107]
+        break # [cite: 108]
+
+cv2.destroyAllWindows() # [cite: 34]
