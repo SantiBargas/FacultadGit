@@ -1,0 +1,811 @@
+TODA LA TOPOLOGÍA ESTA ENRUTADA, SALVO LAS SUBREDES 1 Y SUBRDES 2
+
+SE PIDE, CONFIGURAR 
+
+1) EL ROUTER0, PARA QUE OTORGUE IP, A LAS PC0,1 Y2, DE ACUERDO A LA IP DE LA Fa0/0
+
+2) EL Server_DHCP, PARA QUE OTORGUE IP, A LAS PC 3, 4 y 5, DE ACUERDO A LA IP DE LA fA1/0   DEL ROUTER2
+
+3) NAT/PAT EN LA SUBRED 1 Y ESTÁTICA EN LA 2
+
+4)  TODAS LAS PC'S, DEBEN PODER NAVEGAR EN
+
+ WWW.CISCO.COM EN EL Sever_WEB
+
+5) TODAS LAS PC'S, DEBEN PODER ACCEDER  FTP.CISCO.COM (USUARIO Y CONTRASEÑA POR DEFECTO) en el Server_FTP
+
+5) JUAN Y PEDRO, SE DEBEN PODER ENVIAR MENSAJES. EMPLEE POP3.CISCO.COM Y SMTP.CISCO.COM 
+
+enable
+show ip interface brief
+show running-config
+-------------router 0------------------------- 
+Router>
+Router>show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+ 
+FastEthernet0/0        10.0.0.17       YES manual up                    up
+ 
+FastEthernet1/0        192.168.0.1     YES manual up                    up
+ 
+Serial2/0              unassigned      YES unset  administratively down down
+ 
+Serial3/0              unassigned      YES unset  administratively down down
+ 
+FastEthernet4/0        unassigned      YES unset  administratively down down
+ 
+FastEthernet5/0        unassigned      YES unset  administratively down down
+Router>show running-config
+            ^
+% Invalid input detected at '^' marker.
+	
+Router>enable
+Router#show running-config
+Building configuration...
+
+Current configuration : 848 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.0.0.17 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+ ip address 192.168.0.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Serial2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface FastEthernet4/0
+ no ip address
+ shutdown
+!
+interface FastEthernet5/0
+ no ip address
+ shutdown
+!
+router rip
+ version 2
+ network 10.0.0.0
+ network 172.16.0.0
+ network 192.168.0.0
+ no auto-summary
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+Router#
+-------------router 1-------------------------
+Router>
+Router>
+Router>show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+ 
+FastEthernet0/0        172.16.0.5      YES manual up                    up
+ 
+FastEthernet1/0        192.168.0.2     YES manual up                    up
+ 
+Serial2/0              unassigned      YES unset  administratively down down
+ 
+Serial3/0              unassigned      YES unset  administratively down down
+ 
+FastEthernet4/0        172.19.0.2      YES manual up                    up
+ 
+FastEthernet5/0        172.20.0.1      YES manual up                    up
+ 
+FastEthernet6/0        172.18.0.1      YES manual up                    up
+Router>show running-config
+            ^
+% Invalid input detected at '^' marker.
+	
+Router>enable
+Router#show running-config
+Building configuration...
+
+Current configuration : 989 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 172.16.0.5 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+ ip address 192.168.0.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Serial2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface FastEthernet4/0
+ ip address 172.19.0.2 255.255.255.252
+!
+interface FastEthernet5/0
+ ip address 172.20.0.1 255.255.255.252
+!
+interface FastEthernet6/0
+ ip address 172.18.0.1 255.255.255.252
+!
+router rip
+ version 2
+ network 172.16.0.0
+ network 172.18.0.0
+ network 172.19.0.0
+ network 172.20.0.0
+ network 192.168.0.0
+ no auto-summary
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+Router# 
+-------------router 2-------------------------
+Router>
+Router>show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+ 
+FastEthernet0/0        172.16.0.6      YES manual up                    up
+ 
+FastEthernet1/0        10.0.0.25       YES manual up                    up
+ 
+Serial2/0              unassigned      YES unset  administratively down down
+ 
+Serial3/0              unassigned      YES unset  administratively down down
+ 
+FastEthernet4/0        unassigned      YES unset  administratively down down
+ 
+FastEthernet5/0        unassigned      YES unset  administratively down down
+Router>
+Router>
+Router>enable
+Router#show running-config
+Building configuration...
+
+Current configuration : 846 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 172.16.0.6 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+ ip address 10.0.0.25 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface Serial2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface FastEthernet4/0
+ no ip address
+ shutdown
+!
+interface FastEthernet5/0
+ no ip address
+ shutdown
+!
+router rip
+ version 2
+ network 10.0.0.0
+ network 172.16.0.0
+ network 172.17.0.0
+ no auto-summary
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+Router# 
+-------------router 3-------------------------
+Router>show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+ 
+FastEthernet0/0        unassigned      YES unset  administratively down down
+ 
+FastEthernet1/0        unassigned      YES unset  administratively down down
+ 
+Serial2/0              unassigned      YES unset  administratively down down
+ 
+Serial3/0              unassigned      YES unset  administratively down down
+ 
+FastEthernet4/0        172.19.0.1      YES manual up                    up
+ 
+FastEthernet5/0        172.22.0.2      YES manual up                    up
+Router>
+Router>
+Router>enable
+Router#show running-config
+Building configuration...
+
+Current configuration : 829 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet1/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface FastEthernet4/0
+ ip address 172.19.0.1 255.255.255.252
+!
+interface FastEthernet5/0
+ ip address 172.22.0.2 255.255.255.252
+!
+router rip
+ version 2
+ network 172.19.0.0
+ network 172.22.0.0
+ no auto-summary
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+Router#
+-------------router 4-------------------------
+Router>
+Router>show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+ 
+FastEthernet0/0        unassigned      YES unset  administratively down down
+ 
+FastEthernet1/0        unassigned      YES unset  administratively down down
+ 
+Serial2/0              unassigned      YES unset  administratively down down
+ 
+Serial3/0              unassigned      YES unset  administratively down down
+ 
+FastEthernet4/0        172.21.0.1      YES manual up                    up
+ 
+FastEthernet5/0        172.20.0.2      YES manual up                    up
+Router>enable
+Router#show running-config
+Building configuration...
+
+Current configuration : 829 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet1/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface FastEthernet4/0
+ ip address 172.21.0.1 255.255.255.252
+!
+interface FastEthernet5/0
+ ip address 172.20.0.2 255.255.255.252
+!
+router rip
+ version 2
+ network 172.20.0.0
+ network 172.21.0.0
+ no auto-summary
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+Router# 
+-------------router 5-------------------------
+Router>show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+ 
+FastEthernet0/0        unassigned      YES unset  administratively down down
+ 
+FastEthernet1/0        unassigned      YES unset  administratively down down
+ 
+Serial2/0              unassigned      YES unset  administratively down down
+ 
+Serial3/0              unassigned      YES unset  administratively down down
+ 
+FastEthernet4/0        172.21.0.2      YES manual up                    up
+ 
+FastEthernet5/0        172.22.0.1      YES manual up                    up
+ 
+FastEthernet6/0        10.0.0.9        YES manual up                    up
+Router>enable
+Router#show running-config
+Building configuration...
+
+Current configuration : 915 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet1/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface FastEthernet4/0
+ ip address 172.21.0.2 255.255.255.252
+!
+interface FastEthernet5/0
+ ip address 172.22.0.1 255.255.255.252
+!
+interface FastEthernet6/0
+ ip address 10.0.0.9 255.255.255.248
+!
+router rip
+ version 2
+ network 10.0.0.0
+ network 172.21.0.0
+ network 172.22.0.0
+ no auto-summary
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+Router# 
+-------------pc 0-------------------------
+PC>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0005.5EED.83AE
+   Link-local IPv6 Address.........: FE80::205:5EFF:FEED:83AE
+   IP Address......................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: 0.0.0.0
+   DNS Servers.....................: 0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 Client DUID..............: 00-01-00-01-A4-DE-A7-BC-00-05-5E-ED-83-AE
+
+
+PC>
+-------------pc 1-------------------------
+PC>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0010.1131.E62E
+   Link-local IPv6 Address.........: FE80::210:11FF:FE31:E62E
+   IP Address......................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: 0.0.0.0
+   DNS Servers.....................: 0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 Client DUID..............: 00-01-00-01-BE-71-D4-A6-00-10-11-31-E6-2E
+
+
+PC>
+-------------pc 2-------------------------
+PC>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0001.6451.341E
+   Link-local IPv6 Address.........: FE80::201:64FF:FE51:341E
+   IP Address......................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: 0.0.0.0
+   DNS Servers.....................: 0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 Client DUID..............: 00-01-00-01-76-5C-7E-87-00-01-64-51-34-1E
+
+
+PC>
+-------------pc 3-------------------------
+PC>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 00D0.FF3E.5E53
+   Link-local IPv6 Address.........: FE80::2D0:FFFF:FE3E:5E53
+   IP Address......................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: 0.0.0.0
+   DNS Servers.....................: 0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 Client DUID..............: 00-01-00-01-9B-B8-ED-7B-00-D0-FF-3E-5E-53
+
+
+PC>
+-------------pc 4-------------------------
+PC>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 000C.85B3.D548
+   Link-local IPv6 Address.........: FE80::20C:85FF:FEB3:D548
+   IP Address......................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: 0.0.0.0
+   DNS Servers.....................: 0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 Client DUID..............: 00-01-00-01-D3-2C-99-93-00-0C-85-B3-D5-48
+
+
+PC>
+-------------pc 5-------------------------
+PC>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0001.634B.BE4A
+   Link-local IPv6 Address.........: FE80::201:63FF:FE4B:BE4A
+   IP Address......................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: 0.0.0.0
+   DNS Servers.....................: 0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 Client DUID..............: 00-01-00-01-CC-1B-A4-B8-00-01-63-4B-BE-4A

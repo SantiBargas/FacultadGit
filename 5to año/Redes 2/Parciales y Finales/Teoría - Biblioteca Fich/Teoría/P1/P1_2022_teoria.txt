@@ -1,0 +1,5 @@
+1) Diferencias entre Datagrama y Circuitos Virtuales.
+2) Desarrollar algoritmo de enrutamiento. Explicar un enrutamiento dinámico.
+3) Campos y funciones del encabezado de IPv4. Como hace para matchear IP de capa 3 con dirección MAC de capa 2.
+4) Como hace un host para conectarse con su propia red y como para salir a una red externa. (Con explicar gateway, red interna, router de por medio, y una subred alcanza, decir que es en LAN, sino explicar NAT también sirve, y decir que es para internet)
+5) Como hace IPv4 para manejar datos grandes. Como lo hace IPv6
