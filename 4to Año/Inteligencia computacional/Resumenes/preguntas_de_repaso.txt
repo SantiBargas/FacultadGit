@@ -1,0 +1,244 @@
+PREGUNTAS DE REPASO — Inteligencia Computacional
+(ordenadas según el orden real de cada PDF de la cátedra)
+
+===========================================
+UNIDAD 2 — Perceptrón Simple
+===========================================
+
+1. ¿Cuáles son las 6 características de las redes neuronales?
+
+2. ¿Cuáles son las simplificaciones que se agregan al modelo de neurona?
+
+3. ¿Cómo se llega al modelo simplificado del perceptrón simple? (los 3 pasos, hasta llegar a x0 y w0)
+
+4. Ecuación formal.
+
+5. ¿Qué son las funciones de activación?
+
+6. ¿Qué es el sesgo/bias? ¿Para qué sirve?
+
+7. ¿Cuáles son los tipos de entrenamiento del perceptrón simple, y cómo funciona cada uno?
+
+===========================================
+UNIDAD 3 — Redes Neuronales 2
+===========================================
+
+--- Perceptrón Multicapa (MLP) ---
+
+8. ¿Por qué no alcanza con el perceptrón simple?
+
+9. ¿Cómo es la arquitectura del MLP? (notación matricial, capas)
+
+10. ¿Qué función de activación se usa y por qué ya no es la signo?
+
+11. ¿Cuál es el criterio de error que se usa?
+
+--- Backpropagation ---
+
+12. Propagación hacia adelante
+
+13. Propagación hacia atrás
+
+14. ¿Por qué a esto se le llama "retropropagación"?
+
+15. ¿Qué es una época?
+
+--- RBF-NN (Redes de Base Radial) ---
+
+16. ¿Qué es una red de base radial? ¿Cuál es su objetivo?
+
+17. ¿Cómo es la arquitectura de una red de base radial?
+
+18. Entrenamiento de Redes de Base Radial
+
+19. Modelo matemático (fórmulas de φj(x) y de la salida)
+
+20. ¿Cómo se calcula σ de cada neurona radial?
+
+--- Redes Neuronales Dinámicas ---
+
+21. ¿Por qué dinámica?
+
+22. ¿Cuáles son las 3 aproximaciones? (hacer el gráfico)
+
+23. Clasificación de redes dinámicas: TDNN vs. RNN
+
+24. Red de Hopfield: arquitectura, modelo matemático, entrenamiento y prueba (hacer el gráfico)
+
+25. Campos energéticos: ¿qué son los valles espurios y por qué aparecen?
+
+26. ¿Qué son BPTT, Elman y Jordan?
+
+===========================================
+UNIDAD 4 — Aprendizaje Automático
+===========================================
+
+--- Capacidad de generalización ---
+
+27. Superficies de error: ¿qué pasa si hay muchos mínimos? ¿Cómo se aborda esto?
+
+28. Sobre-entrenamiento. ¿Qué es? ¿Cómo se evita?
+
+29. ¿Cómo se estima la capacidad de generalización? Validación cruzada: leave-k-out, leave-1-out, solapar particiones
+
+--- Aprendizaje Automático "no neuronal" ---
+
+30. kNN: ¿cómo funciona? Ventajas y desventajas
+
+31. Árboles de decisión: ¿cómo se elige por qué variable dividir? (impureza de Gini, entropía, ganancia de información). Ventajas y desventajas
+
+32. Naive Bayes: ¿qué lo hace "ingenuo"? Ventajas y desventajas
+
+33. SVM: margen, vectores de soporte, truco del kernel. Ventajas y desventajas
+
+--- Ensambles de clasificadores ---
+
+34. Bagging: ¿qué es bootstrap? ¿Cómo se combina el resultado?
+
+35. Stacking: ¿qué son los 2 niveles (modelos simples + meta-modelo)?
+
+36. Boosting por muestreo (C1, C2, C3): ¿cómo se arma cada muestra?
+
+37. AdaBoost: ¿cómo se modifican los pesos de los patrones? ¿Cómo es el voto final?
+
+38. Gradient Boosting: ¿qué predice cada modelo nuevo? Ejemplo completo (precio de una casa)
+
+39. Ventajas y desventajas de los ensambles en general
+
+--- SOM ---
+
+40. ¿Qué es SOM? Auto-organización
+
+41. Arquitectura del SOM
+
+42. Entrenamiento del SOM: neurona ganadora, algoritmo formal (inicialización, selección del ganador, adaptación de pesos)
+
+43. Alcance (Ag) y velocidad de aprendizaje (η): ¿por qué son variables y decrecientes? Las 3 etapas del entrenamiento
+
+44. Formación de mapas topológicos: ¿qué pasa con vecindad vs. sin vecindad?
+
+--- LVQ ---
+
+45. LVQ: diferencias con SOM
+
+--- Clustering (aprendizaje no supervisado) ---
+
+46. ¿Qué es clustering? ¿Qué rol cumple la distancia?
+
+47. Clustering jerárquico: aglomerativo vs. divisivo, dendrograma
+
+48. Métricas de clustering: internas (cohesión, separación, Davies-Bouldin) y externas (Fowlkes-Mallows, Rand Index)
+
+49. ¿Cómo se elige el número óptimo de clusters (k)?
+
+===========================================
+UNIDAD 5 — Inteligencia Colectiva 1
+===========================================
+
+--- Autómatas Celulares ---
+
+50. Autómatas celulares: estructura. Ej: Juego de la vida de Conway
+
+--- Agentes ---
+
+51. Agentes: ¿Qué es? ¿Qué debe tener un agente inteligente?
+
+--- Sistemas Multiagentes ---
+
+52. Sistemas multiagente: ¿Qué son?
+
+--- Inteligencia Colectiva - Generalidades ---
+
+53. Denominaciones y características generales (auto-organización, estigmergia, comportamiento emergente, componentes estocásticas, bio-inspiración)
+
+--- Computación Evolutiva: Algoritmos Genéticos ---
+
+54. Ej. de la jirafa (Darwin): variación y selección natural, ¿qué tiene que ver con la computación?
+
+55. La evolución como algoritmo: poblaciones vs. individuos, aleatoriedad, diversidad
+
+56. Elementos de un algoritmo evolutivo (los 5: representación, fitness, selección, operadores, reproducción)
+
+57. Genotipo y Fenotipo: cromosomas, genes, alelos. Codificación y decodificación
+
+58. Función de aptitud (fitness): características generales (monotonicidad, precisión, suavidad regulable)
+
+59. Estrategias de selección: ruleta y ventanas — ¿cuándo termina la selección?
+
+60. Operadores de variación: mutación y cruza — rol de cada uno (exploración vs. explotación)
+
+61. ¿Qué pasa si hay demasiada mutación? ¿Y demasiada cruza?
+
+62. Reproducción y reemplazo generacional
+
+--- Computación Evolutiva: Variantes ---
+
+63. Parámetros que controlan la evolución → Estrategias de Evolución: representación fenotípica, (μ+λ)-ES vs. (μ,λ)-ES
+
+64. Representación de individuos: Genético (binario) vs. Evolutivo (real) — comparación
+
+--- Programación Genética ---
+
+65. Elementos de un programa, representación en árbol
+
+66. Cruza (intercambio de ramas) y mutación (reemplazo de rama). Ej. con operadores lógicos
+
+67. Manejo de restricciones del problema real (5 formas)
+
+===========================================
+UNIDAD 6 — Inteligencia Colectiva 2
+===========================================
+
+--- Colonia de Hormigas ---
+
+68. Inspiración biológica, estigmergia y experimento del puente binario
+
+69. Definiciones formales: grafo, σij, N_i, p^k(t)
+
+70. Algoritmo 1 (sACO): fórmula de probabilidad. ¿Cómo maneja los ciclos?
+
+71. Algoritmo 2 (AS): diferencias con sACO (heurística η=1/d, lista tabú N_i^k, 3 formas de depositar feromonas)
+
+72. α y ρ: ¿qué controla cada uno? ¿Qué pasa en los extremos (α=0, α>1, ρ alto)?
+
+--- Enjambre de Partículas (PSO) ---
+
+73. Inspiración biológica y definiciones: x_k(t), v_k(t), y_k, ŷ
+
+74. Fórmulas de velocidad y posición (regla básica)
+
+75. Algoritmo 3 (gBest) vs. Algoritmo 4 (lBest): diferencia en la topología y en ŷ
+
+76. Ventajas y desventajas de gBest vs. lBest (velocidad de convergencia vs. resistencia a óptimos falsos)
+
+===========================================
+UNIDAD 7 — Lógica Borrosa
+===========================================
+
+--- Introducción ---
+
+77. ¿Qué es la lógica borrosa? Incerteza vs. aleatoriedad — diferencia y ejemplos
+
+--- Conceptos matemáticos borrosos ---
+
+78. Conjunto binario vs. conjunto borroso. Función de membresía (grados de pertenencia)
+
+79. Subconjunto borroso: definición formal. Inclusión, igualdad, complemento
+
+80. Operadores borrosos y geometría de los conjuntos borrosos
+
+81. Entropía borrosa
+
+--- Memorias Asociativas Borrosas (FAM) ---
+
+82. ¿Qué son las FAM? Regla simple (local FAM) vs. composición de reglas (global FAM)
+
+83. Codificación de reglas borrosas: Fuzzy Hebb FAMs (correlación-mínimo y correlación-producto)
+
+84. Composición de reglas: superposición de matrices vs. Modelo Aditivo Estándar (SAM) — ¿por qué SAM es mejor?
+
+85. Defuzzyfication: ¿para qué sirve? Maximum-defuzzyfication vs. Centroid-defuzzyfication (ejemplo del semáforo)
+
+86. Extensiones de FAM: conjuntos de pertenencia continuos, dos antecedentes por consecuente
+
+

@@ -1,0 +1,8 @@
+011_Aplicacion_del_gradiente
+7'39"
+
+En el último paso de la deducción el tercer factor es (1-y_j(n)).
+
+Este error no se propaga porque (1-y_j(n)) = -(y_j(n)-1) y ese signo menos se anula con el que tiene adelante la ecuación del gradiente de error local instantáneo.
+
+Por lo tanto a la ecuación del gradiente de error local instantáneo y todas las que de ella se derivan luego son correctas.

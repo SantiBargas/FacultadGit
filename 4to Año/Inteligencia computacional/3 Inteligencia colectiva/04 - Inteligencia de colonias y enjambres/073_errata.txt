@@ -1,0 +1,4 @@
+073_Enjambres_del_mejor_local
+3'55"
+
+Los dos \hat{{\bf y}} que aparecen en la ecuación deberían ser \hat{{\bf y}}_k, porque no es global a todo el enjambre sino solamente al entorno social de la partícula k

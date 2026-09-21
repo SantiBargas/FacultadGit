@@ -1,0 +1,48 @@
+#funcion_error(mejor_pos_personal): Calcula el valor de la función de error para todas 
+# las partículas en sus posiciones personales actuales. 
+# Devuelve un array con los valores de la función objetivo evaluada en cada una de esas posiciones.
+
+#np.argmin(funcion_error(mejor_pos_personal)): Busca el índice de la partícula que tiene el valor 
+# de error más bajo, es decir, la mejor solución hasta ahora (mínimo valor de la función objetivo).
+
+#c1 y c2 es cuanta importancia le damos a la experiencia personal de la particula y a la experiencia del enjambre
+#r1 y r2: Factores aleatorios entre 0 y 1 que permiten variación y exploración en el comportamiento de las partículas
+#c1 grande al principio para que en las primeras iteraciones se haga una buena exploracion del espacio de busqueda y luego se reduzca
+#c2 pequeña al principio y que vaya creciendo para que en las ultimas iteraciones se le vaya dando mas importancia a la componente social del enjambre y favorezca a la convergencia del algoritmo
+#valores entre 0.5 y 2.5
+
+En cada iteración del algoritmo de optimización por enjambre de partículas (PSO), las partículas representan soluciones posibles que intentan moverse hacia la mejor solución (el "mejor global") mientras exploran el espacio de búsqueda. Aquí te explico los elementos clave de las gráficas y cómo interpretarlos:
+
+### 1. **Función de error (Curva negra)**
+   - **Qué representa**: La curva negra es la gráfica de la **función objetivo o de error** que el algoritmo intenta minimizar. En cada punto de la curva, el valor de la función representa el "error" o "costo" asociado con una solución en esa posición.
+   - **Objetivo del algoritmo**: El algoritmo quiere encontrar el **mínimo global**, es decir, el punto donde esta función tiene su valor más bajo.
+
+### 2. **Partículas (Puntos azules)**
+   - **Qué representan**: Las partículas (puntos azules) son las soluciones candidatas actuales en esa iteración. Cada partícula tiene una posición en el espacio de búsqueda (en el eje \(x\)) y un valor de error correspondiente (en el eje \(y\)).
+   - **Comportamiento esperado**: En cada iteración, las partículas se mueven a lo largo del espacio de búsqueda, impulsadas por dos fuerzas principales:
+     - **Componente personal**: La tendencia de la partícula a regresar hacia su mejor posición personal encontrada hasta ahora.
+     - **Componente global**: La tendencia de la partícula a moverse hacia la mejor posición global encontrada por todas las partículas.
+   - **En las gráficas**: Los puntos azules están distribuidos a lo largo de la función de error. En cada iteración, verás que cambian de posición, tratando de acercarse al mínimo de la curva.
+
+### 3. **Mejor global (Punto rojo)**
+   - **Qué representa**: El punto rojo muestra la **mejor solución global** encontrada hasta ese momento por todas las partículas.
+   - **Función**: Esta solución es la posición con el valor más bajo de la función de error que alguna partícula ha alcanzado en todas las iteraciones hasta ahora. El objetivo del algoritmo es que las partículas se acerquen cada vez más a esta solución.
+   - **Actualización**: Si alguna partícula encuentra un valor más bajo en una iteración, el mejor global se actualiza y el punto rojo cambia de lugar.
+   
+### 4. **Movimiento de las partículas**
+   - **Cómo se mueven**: En cada iteración, las partículas ajustan su posición y velocidad basándose en:
+     - Su propia mejor experiencia (mejor posición personal).
+     - La mejor experiencia global (mejor posición global de todas las partículas).
+   - **Tendencia hacia el mínimo**: Si el algoritmo está funcionando bien, verás que a lo largo de las iteraciones, las partículas tienden a agruparse alrededor de la posición del mínimo de la función de error (que idealmente coincide con la mejor global). La dispersión de las partículas suele reducirse a medida que avanzan las iteraciones, ya que exploran menos y se concentran en las mejores áreas.
+
+### 5. **Interpretación de las imágenes a lo largo de las iteraciones**
+   - **Primeras iteraciones**: Las partículas estarán distribuidas a lo largo de la función de error, explorando diferentes áreas del espacio de búsqueda. El mejor global (punto rojo) puede estar en una posición con un valor de error relativamente alto, ya que las partículas aún no han encontrado las mejores soluciones.
+   - **Iteraciones intermedias**: A medida que las partículas exploran, se irán moviendo hacia regiones donde el error es menor. Las partículas comenzarán a agruparse cerca del mejor global, y el valor del mejor global también tenderá a disminuir con cada iteración.
+   - **Últimas iteraciones**: Las partículas se agrupan más alrededor del mínimo de la función, y el mejor global se estabiliza cerca del valor más bajo de la función de error. Si el algoritmo converge correctamente, al final, todas las partículas estarán cerca del punto rojo.
+
+### Resumen visual:
+- **Puntos azules**: Son las posiciones actuales de las partículas, que se mueven en cada iteración buscando mejorar su error.
+- **Curva negra**: Es la función de error que el enjambre intenta minimizar.
+- **Punto rojo**: Es el mejor global, que representa la mejor solución encontrada por todas las partículas hasta la iteración actual. Idealmente, este punto debería estar en el valor más bajo de la curva negra.
+
+Si en una iteración ves que las partículas no están convergiendo hacia el mínimo, es posible que el algoritmo esté en una fase temprana de exploración, o que necesite más iteraciones para llegar al mejor global.

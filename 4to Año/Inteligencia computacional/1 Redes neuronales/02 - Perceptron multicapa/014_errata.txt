@@ -1,0 +1,4 @@
+014_Resumen_del_algoritmo_de_retropropagacion_BP
+9'22"
+
+Donde dice w_{12} debe decir w_{21}.

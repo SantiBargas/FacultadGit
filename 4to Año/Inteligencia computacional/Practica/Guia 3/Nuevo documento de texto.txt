@@ -1,0 +1,32 @@
+kf.split(x) -> vector de indices de entrenamiento y prueba
+
+train: [1 2 3 4] Test: [0]
+Train: [0 2 3 4] Test: [1]
+Train: [0 1 3 4] Test: [2]
+Train: [0 1 2 4] Test: [3]
+Train: [0 1 2 3] Test: [4]
+
+La media mide la tasa de acierto para datos que no estan en el entrenamiento
+que tanto sirve nuestro clasificador para datos que no conocemos
+
+La varianza mide la dispersion de los resultados, si los resultados son muy diferentes
+a la hora de ir cambiando el indice de los train
+que tan diferente son los datos que dio con los datos de las media
+
+
+Para Naive Bayes podemos usar:
+GaussianNB: Para datos continuos con distribucion gaussiana
+MultinomialNB: Para datos discremos
+BernoulliNB: Para datos binarios o modelos de presencia/ausencia caracteristica
+
+KNN= KNeighborsClassfier(CantidadDeVecinos,Pesos,algoritmo,tamañoDeHoja
+
+Pesos por default ninguno
+algoritmo elige uno de los 3 algoritmos segun lo que los valores que le pasamos decide
+Tamaño de hoja por defecto 30 : Parametro de los algoritmos ball tree y k tree
+P: parametro de potencia para la metrica meankowsky medida de distancia P=1 dist de manhattan P=2 Euclidea
+
+Arbol = 
+Criterio: cual toma ginny,entropia por default ginny
+Splitter: desde donde empieza a separar, best elige la mejor parte. Pasas por todas las barras, agarras el que separa las clases con menos impureza
+Max depth: Maxima profundidad del arbol, nivel de hojas. Default none: se expande hasta que no haya impureza

@@ -1,0 +1,11 @@
+- cargar datos
+- inicializar pesos
+
+- Mientras (control de salida)
+		Para cada patron:
+			-Paso hacia adelante (calcular z, y)
+			- Cargar pesos
+
+		Para cada patron:
+			- Peso adelante
+			- Evaluar desempeño

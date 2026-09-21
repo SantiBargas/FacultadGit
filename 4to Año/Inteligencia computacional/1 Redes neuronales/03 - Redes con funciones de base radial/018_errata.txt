@@ -1,0 +1,6 @@
+018_Gaussianas_n_dimensionales
+3'36", 8'25", 11'06" 
+
+En lo que escribo sobre los slides suelo utilizar una notación simplificada sigma_j1, sigma_j2,... que en realidad deberían ser sigma^2_j1, sigma^2_j2,... para dejar claro que son varianzas (y no desviaciones estándar).
+
+Notar que cuando estamos fuera de la diagonal serían covarianzas. Una notación más clara aún podría ser var_j1 y var_j2 cuando estamos sobre la diagonal y cov_j12, cov_j21 en el resto de la matriz de covarianza.  

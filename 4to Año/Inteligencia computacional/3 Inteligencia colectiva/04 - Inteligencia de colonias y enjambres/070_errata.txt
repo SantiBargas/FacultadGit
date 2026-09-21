@@ -1,0 +1,5 @@
+070_Sistema_de_hormigas
+1'05"
+
+En el denominador, dentro de la sumatoria, debería ser $$\eta_{iu}^\beta(t)$$.
+Es decir, los subíndices correctos son $$iu$$ (en lugar de $$ij$$).

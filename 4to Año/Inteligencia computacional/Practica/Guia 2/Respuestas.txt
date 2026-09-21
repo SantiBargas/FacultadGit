@@ -1,0 +1,17 @@
+Ejercicio 2:
+La arquitectura mínima para poder resolver este problema es 3-1 ya que necesito hacer una región de decisión cerrada. 
+Con solo 2 neuronas en la capa de entrada probablemente no se cierre la región que genera,aunque podría quedar 
+como un ojo dependiendo del parámetro de la función sigmoidea.
+
+Ejercicio 3:
+También se podría resolver este problema con una capa de entrada de una sola neurona (arquitectura 1-3) 
+debido a que usamos la función sigmoidea como función de activación y, viendo las gráficas de relación 
+entre las entradas, permitiría clasificar las tres posibles clases en distintos rangos 
+(por ejemplo, la azul en -1, la verde en 1 y la naranja en el medio).
+
+Si el error oscila mucho, la velocidad de aprendizaje es muy alta haciendo que el proceso de entrenamiento 
+sea inestable porque olvida rápidamente lo aprendido previamente y lo reemplaza por lo nuevo. 
+En este caso, podemos disminuir el valor del parámetro para mejorar el desempeño.
+
+Si el error baja muy lentamente, la velocidad de aprendizaje es muy baja y hace que la red aprenda poco en cada nueva época, 
+por lo que si vemos que la gráfica de error tiende a ser constante, podemos aumentar el valor del parámetro para mejorar el desempeño.
